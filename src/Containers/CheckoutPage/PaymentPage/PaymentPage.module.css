@@ -1,0 +1,41 @@
+.payment-container{
+    box-shadow: 1px 1px 18px 11px var(--secondary);
+    width: 95%;
+    height: 39rem;
+    margin-top: 2rem;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    background-color: whitesmoke;
+}
+
+.payment-container h1,.payment-container h2{
+    font-weight: 300;
+}
+
+.button-solid{
+    color: var(--white);
+    outline: none;
+    border: 0px;
+    margin-top: 1rem;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+}
+
+.button-primary{
+    background-color: var(--primary);
+}
+
+.form-container{
+    height: 19.5rem;
+}
+
+@media (min-width:700px){
+    .payment-container{
+        width: 45rem;
+        height: 100%;
+    }
+    .form-container{
+        height: 24rem;
+    }
+}
