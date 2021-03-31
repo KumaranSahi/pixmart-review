@@ -8,7 +8,7 @@ const CartCard=({id,name,image,hasDiscount,price,discount,rating,pixmartChoice,i
 
     const {dispatch}=useContext(ProductsContext);
     useEffect(()=>{
-        dispatch({type:"CALCULATETOTALCOST"})
+        dispatch({type:"CALCULATE_TOTAL_COST"})
     },[quantity,dispatch])
     
     const calculateDiscount=(price,discount)=>{
@@ -55,7 +55,7 @@ const CartCard=({id,name,image,hasDiscount,price,discount,rating,pixmartChoice,i
                     <div className={classes['quantity-buttons']}>
                         <button 
                             className={`${classes["button-solid"]} ${classes["button-primary"]}`}
-                            onClick={()=>dispatch({type:"DECREMENTQUANTITY",payload:id})}
+                            onClick={()=>dispatch({type:"DECREMENT_QUANTITY",payload:id})}
                         >
                             -
                         </button>
@@ -64,14 +64,14 @@ const CartCard=({id,name,image,hasDiscount,price,discount,rating,pixmartChoice,i
                         </p>
                         <button 
                             className={`${classes["button-solid"]} ${classes["button-primary"]}`}
-                            onClick={()=>dispatch({type:"INCREMENTQUANTITY",payload:id})}
+                            onClick={()=>dispatch({type:"INCREMENT_QUANTITY",payload:id})}
                         >
                             +
                         </button>
                     </div>
                     <button 
                         className={`${classes["button-solid"]} ${classes["button-solid-secondary"]}`}
-                        onClick={()=>dispatch({type:"REMOVEFROMCART",payload:id})}
+                        onClick={()=>dispatch({type:"REMOVE_FROM_CART",payload:id})}
                     >
                     Remove from cart
                     </button>

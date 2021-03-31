@@ -59,7 +59,7 @@ const WishlistCard=({id,name,image,hasDiscount,price,discount,rating,pixmartChoi
                         </button>:
                         <button 
                             className={`${classes["button-solid"]} ${classes["button-primary"]}`}
-                            onClick={()=>dispatch({type:"ADDTOCART",payload:id})}
+                            onClick={()=>dispatch({type:"ADD_TO_CART",payload:id})}
                         >
                         Add to cart
                         </button>:
@@ -70,7 +70,7 @@ const WishlistCard=({id,name,image,hasDiscount,price,discount,rating,pixmartChoi
                     
                     <button 
                             className={`${classes["button-outline"]} ${classes["button-secondary"]}`}
-                            onClick={()=>dispatch({type:"REMOVEFROMWISHLIST",payload:id})}
+                            onClick={()=>dispatch({type:"REMOVE_FROM_WISHLIST",payload:id})}
                         >
                         Remove from wishlist
                     </button>

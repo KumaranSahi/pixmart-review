@@ -10,7 +10,7 @@ const CartPage=()=>{
     const {dispatch:checkoutDispatch}=useContext(CheckoutContext)
 
     useEffect(()=>{
-        dispatch({type:"CALCULATETOTALCOST"})
+        dispatch({type:"CALCULATE_TOTAL_COST"})
     },[dispatch,cartItems.length])
     return(
         <div className={classes["cart-section"]}>
@@ -23,7 +23,7 @@ const CartPage=()=>{
                 <button 
                     className={`${classes["button-solid"]} ${classes["button-primary"]}`}
                     onClick={()=>checkoutDispatch({
-                        type:"MOVETOADDRESS"
+                        type:"MOVE_TO_ADDRESS"
                     })}
                 >
                     <Link to="/checkout">

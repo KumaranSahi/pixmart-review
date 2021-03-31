@@ -58,7 +58,7 @@ const OrderSummary=()=>{
                 className={`${classes["button-solid"]} ${classes["button-primary"]}`}
                 type="submit"
                 onClick={()=>dispatch({
-                    type:"PLACEORDER"
+                    type:"PLACE_ORDER"
                 })}
             >
                 Checkout

@@ -8,7 +8,7 @@ const BestDeals=()=>{
 
     return(
         <div className={classes["best-deals-container"]}
-            onClick={()=>dispatch({type:"FILTERBYHASDISCOUNT"})}
+            onClick={()=>dispatch({type:"FILTER_BY_HAS_DISCOUNT"})}
             >
             <Link to="/product" >
                 <div className={classes["best-deals"]}>

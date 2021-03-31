@@ -6,32 +6,32 @@ export const CheckoutContextProvider=({children})=>{
 
     const checkoutActions=(state,action)=>{
         switch (action.type) {
-            case "ADDADDRESS":
+            case "ADD_ADDRESS":
                 return{
                     ...state,
                     address:{...action.payload}
                 }
-            case "MOVETOADDRESS":
+            case "MOVE_TO_ADDRESS":
                 return{
                     ...state,
                     currentState:"ADDRESSPAGE"
                 }
-            case "MOVETOPAYMENT":
+            case "MOVE_TO_PAYMENT":
                 return{
                     ...state,
                     currentState:"PAYMENTPAGE"
                 }
-            case "MOVETORDERSUMMARY":
+            case "MOVE_TO_ORDER_SUMMARY":
                 return{
                     ...state,
                     currentState:"ORDERSUMMARY"
                 }
-            case "ADDPAYMENTDETAILS":
+            case "ADD_PAYMENT_DETAILS":
                 return{
                     ...state,
                     paymentDetails:{...action.payload}
                 }
-            case "PLACEORDER":
+            case "PLACE_ORDER":
                 return{
                     ...state,
                     currentState:"ORDERPLACED"
