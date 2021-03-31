@@ -1,0 +1,35 @@
+.card-details{
+    padding: 1rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.expiry-cvv{
+    display: flex;
+    justify-content: space-between;
+}
+
+.expiry-cvv .textbox{
+    width: 6.5rem;
+}
+
+.textbox{
+    padding: 1rem;
+    outline: 0px;
+    border:0px;
+    letter-spacing: 1px;
+    /* background-color: var(--neutral-mild); */
+    border-bottom: 2px solid var(--primary);
+    margin-top: 0.5rem;
+}
+
+
+@media (min-width:700px){
+    .card-details{
+        width: 30rem;
+    }
+    .expiry-cvv .textbox{
+        width: 10rem;
+    }
+}
