@@ -135,7 +135,12 @@ export const ProductsContextProvider=({children})=>{
                         inCart:false,
                         quantity:0
                     })),
-                    cartItems:[]
+                    cartItems:[],
+                    wishListItems:state.wishListItems.map(item=>({
+                        ...item,
+                        inCart:false,
+                        quantity:0
+                    }))
                 }
             default:
                 return state;
