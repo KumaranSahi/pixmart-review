@@ -20,7 +20,7 @@ const OrderPlacedModal=()=>{
                 <div className={classes['modal-buttons-container']}>
                     <Link to="/"
                         onClick={
-                            ()=>dispatch({type:"CLEARCART"})
+                            ()=>dispatch({type:"CLEAR_CART"})
                         }
                     >
                         <button className={`${classes["btn-solid"]} ${classes["btn-primary"]}`}>

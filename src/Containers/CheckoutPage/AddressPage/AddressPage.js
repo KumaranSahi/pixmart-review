@@ -26,13 +26,13 @@ const AddressPage=()=>{
                 onSubmit={event=>{
                     event.preventDefault();
                     dispatch({
-                        type:"ADDADDRESS",
+                        type:"ADD_ADDRESS",
                         payload:{
                             name,number,pin,address,landmark
                         }
                     })
                     dispatch({
-                        type:"MOVETOPAYMENT",
+                        type:"MOVE_TO_PAYMENT",
                     })
                 }}
             >

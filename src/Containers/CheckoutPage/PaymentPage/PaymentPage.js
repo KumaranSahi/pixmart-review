@@ -33,7 +33,7 @@ const PaymentPage=()=>{
             <form onSubmit={event=>{
                 event.preventDefault();
                 dispatch({
-                    type:"ADDPAYMENTDETAILS",
+                    type:"ADD_PAYMENT_DETAILS",
                     payload:{
                         paymentMode,
                         nameOnCard,
@@ -43,7 +43,7 @@ const PaymentPage=()=>{
                     }
                 })
                 dispatch({
-                    type:"MOVETORDERSUMMARY"
+                    type:"MOVE_TO_ORDER_SUMMARY"
                 })
             }}>
                 <div className={classes["form-container"]}>

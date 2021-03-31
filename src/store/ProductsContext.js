@@ -7,13 +7,13 @@ export const ProductsContextProvider=({children})=>{
         (async()=>{
             const data=await axios.get("/api/products");
             dispatch ({
-                type:"LOADPRODUCTLIST",
+                type:"LOAD_PRODUCT_LIST",
                 payload:[...data.data.products]
             })
         })()
     },[])
 
-    const calculateTotalCost=(acc,currValue)=>{
+    const CALCULATE_TOTAL_COST=(acc,currValue)=>{
         let actualPrice;
         currValue.hasDiscount?actualPrice=+currValue.price-Math.round((+currValue.price*(currValue.discount/100))):actualPrice=+currValue.price;
         return acc+(actualPrice*currValue.quantity)
@@ -21,113 +21,113 @@ export const ProductsContextProvider=({children})=>{
 
     const productListManipulation=(state,action)=>{
         switch (action.type) {
-            case "LOADPRODUCTLIST":    
+            case "LOAD_PRODUCT_LIST":    
                 return {
                     ...state,
                     products:action.payload.map(item=>({...item,inCart:false,inWishlist:false,quantity:0}))
                 }
-            case "SORTLOWTOHIGH":
+            case "SORT_LOW_TO_HIGH":
                 return{
                     ...state,
-                    sortby:"SORTLOWTOHIGH"
+                    sortby:"SORT_LOW_TO_HIGH"
                 }
-            case "SORTHIGHTOLOW":
+            case "SORT_HIGH_TO_LOW":
                 return{
                     ...state,
-                    sortby:"SORTHIGHTOLOW"
+                    sortby:"SORT_HIGH_TO_LOW"
                 }
-            case "FILTERBYFASTDELIVERY":
+            case "FILTER_BY_FAST_DELIVERY":
                 return{
                     ...state,
                     fastDelivery:!state.fastDelivery
                 }
-            case "FILTERBYINSTOCK":
+            case "FILTER_BY_IN_STOCK":
                 return{
                     ...state,
                     includeOutOfStock:!state.includeOutOfStock
                 }
-            case "FILTERBYPIXMARTCHOICE":
+            case "FILTER_BY_PIXMART_CHOICE":
                 return{
                     ...state,
                     pixmartChoice:!state.pixmartChoice
                 }
-            case "FILTERBYHASDISCOUNT":
+            case "FILTER_BY_HAS_DISCOUNT":
                 return{
                     ...state,
                     hasDiscount:!state.hasDiscount
                 }
-            case "ADDTOCART":
+            case "ADD_TO_CART":
                 return{
                     ...state,
                     cartItems:[...state.cartItems,...state.products.filter(product=>product.id===action.payload).map(item=>({...item,inCart:true,quantity:1}))],
                     products:state.products.map(product=>product.id===action.payload?{...product,inCart:true}:product),
                     wishListItems:state.wishListItems.map(product=>product.id===action.payload?{...product,inCart:true}:product)
                 }
-            case "REMOVEFROMCART":
+            case "REMOVE_FROM_CART":
                 return{
                     ...state,
                     cartItems:state.cartItems.filter(product=>product.id!==action.payload),
                     products:state.products.map(product=>product.id===action.payload?{...product,inCart:false,quantity:0}:product),
                     wishListItems:state.wishListItems.map(product=>product.id===action.payload?{...product,inCart:false,quantity:0}:product)
                 }
-            case "ADDTOWISHLIST":
+            case "ADD_TO_WISHLIST":
                 return{
                     ...state,
                     wishListItems:[...state.wishListItems,...state.products.filter(product=>product.id===action.payload).map(item=>({...item,inWishlist:true}))],
                     products:state.products.map(product=>product.id===action.payload?{...product,inWishlist:true}:product)
                 }
-            case "INCREMENTQUANTITY":
+            case "INCREMENT_QUANTITY":
                 return{
                     ...state,
                     cartItems:state.cartItems.map(product=>product.id===action.payload?{...product,quantity:product.quantity+1}:product)
                 }
-            case "DECREMENTQUANTITY":
+            case "DECREMENT_QUANTITY":
                 return{
                     ...state,
                     cartItems:state.cartItems.map(product=>product.id===action.payload?{...product,quantity:product.quantity>1?product.quantity-1:product.quantity}:product)
                 }
-            case "REMOVEFROMWISHLIST":
+            case "REMOVE_FROM_WISHLIST":
                 return{
                     ...state,
                     wishListItems:state.wishListItems.filter(product=>product.id!==action.payload),
                     products:state.products.map(product=>product.id===action.payload?{...product,inWishlist:false}:product)
                 }
-            case "CALCULATETOTALCOST":
+            case "CALCULATE_TOTAL_COST":
                 return{
                     ...state,
-                    totalCost:state.cartItems.reduce(calculateTotalCost,0)
+                    totalCost:state.cartItems.reduce(CALCULATE_TOTAL_COST,0)
                 }
-            case "FILTERONLYDSLR":
+            case "FILTER_ONLY_DSLR":
                 return{
                     ...state,
-                    filterByCatagory:"FILTERONLYDSLR"
+                    filterByCatagory:"FILTER_ONLY_DSLR"
                 }
-            case "FILTERONLYMIRRORLESS":
+            case "FILTER_ONLY_MIRRORLESS":
                 return{
                     ...state,
-                    filterByCatagory:"FILTERONLYMIRRORLESS"
+                    filterByCatagory:"FILTER_ONLY_MIRRORLESS"
                 }
-            case "FILTERONLYPOINTANDSHOOT":
+            case "FILTER_ONLY_POINT_AND_SHOOT":
                 return{
                     ...state,
-                    filterByCatagory:"FILTERONLYPOINTANDSHOOT"
+                    filterByCatagory:"FILTER_ONLY_POINT_AND_SHOOT"
                 }
-            case "FILTERONLYACCESSORIES":
+            case "FILTER_ONLY_ACCESSORIES":
                 return{
                     ...state,
-                    filterByCatagory:"FILTERONLYACCESSORIES"
+                    filterByCatagory:"FILTER_ONLY_ACCESSORIES"
                 }
-            case "CLEARFILTERS":
+            case "CLEAR_FILTERS":
                 return{
                     ...state,
                     hasDiscount:false,
                     fastDelivery:false,
                     includeOutOfStock:false,
                     pixmartChoice:false,
-                    sortby:"SORTLOWTOHIGH",
+                    sortby:"SORT_LOW_TO_HIGH",
                     filterByCatagory:null,
                 }
-            case "CLEARCART":
+            case "CLEAR_CART":
                 return{
                     ...state,
                     products:state.products.map(item=>({
@@ -155,20 +155,20 @@ export const ProductsContextProvider=({children})=>{
         fastDelivery:false,
         includeOutOfStock:false,
         pixmartChoice:false,
-        sortby:"SORTLOWTOHIGH",
+        sortby:"SORT_LOW_TO_HIGH",
         filterByCatagory:null,
         totalCost:0
     })
 
     const getCatagoricallyFilteredData=(products,filterby)=>{
         if(filterby){
-            if(filterby==="FILTERONLYDSLR")
+            if(filterby==="FILTER_ONLY_DSLR")
                 return products.filter(item=>item.catagory==="DSLR")
-            if(filterby==="FILTERONLYMIRRORLESS")
+            if(filterby==="FILTER_ONLY_MIRRORLESS")
                 return products.filter(item=>item.catagory==="MIRRORLESS")
-            if(filterby==="FILTERONLYPOINTANDSHOOT")
+            if(filterby==="FILTER_ONLY_POINT_AND_SHOOT")
                 return products.filter(item=>item.catagory==="POINTANDSHOOT")
-            if(filterby==="FILTERONLYACCESSORIES")
+            if(filterby==="FILTER_ONLY_ACCESSORIES")
                 return products.filter(item=>item.catagory==="ACCESSORIES")
         }else{
             return products;
@@ -176,9 +176,9 @@ export const ProductsContextProvider=({children})=>{
     }
 
     const getSortedData=(products,sortby)=>{
-        if (products&&sortby === "SORTLOWTOHIGH")
+        if (products&&sortby === "SORT_LOW_TO_HIGH")
             return products.sort((a, b) => a.price - b.price);
-        if (products&&sortby === "SORTHIGHTOLOW")
+        if (products&&sortby === "SORT_HIGH_TO_LOW")
             return products.sort((a, b) => b.price - a.price);
         return products;
     }

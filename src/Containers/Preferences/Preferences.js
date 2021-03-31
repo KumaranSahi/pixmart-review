@@ -12,8 +12,8 @@ const Preferences=()=>{
                 <RadioGroup aria-label="sort by cost" name="sortbycost" value={sortby} onChange={event=>dispatch({
                     type:event.target.value
                 })}>
-                    <FormControlLabel value="SORTLOWTOHIGH" control={<Radio color="primary"/>} label="Low to high"/>
-                    <FormControlLabel value="SORTHIGHTOLOW" control={<Radio color="primary"/>} label="High to low"/>
+                    <FormControlLabel value="SORT_LOW_TO_HIGH" control={<Radio color="primary"/>} label="Low to high"/>
+                    <FormControlLabel value="SORT_HIGH_TO_LOW" control={<Radio color="primary"/>} label="High to low"/>
                 </RadioGroup>
             </FormControl>
             <h2 className={classes['field-title']}>Preferences:</h2>
@@ -23,7 +23,7 @@ const Preferences=()=>{
                     <Checkbox
                         checked={fastDelivery}
                         onChange={()=>dispatch({
-                            type:"FILTERBYFASTDELIVERY"
+                            type:"FILTER_BY_FAST_DELIVERY"
                         })}
                         name="checkedB"
                         color="primary"
@@ -36,7 +36,7 @@ const Preferences=()=>{
                     <Checkbox
                         checked={includeOutOfStock}
                         onChange={()=>dispatch({
-                            type:"FILTERBYINSTOCK"
+                            type:"FILTER_BY_IN_STOCK"
                         })}
                         name="checkedB"
                         color="primary"
@@ -49,7 +49,7 @@ const Preferences=()=>{
                     <Checkbox
                         checked={pixmartChoice}
                         onChange={()=>dispatch({
-                            type:"FILTERBYPIXMARTCHOICE"
+                            type:"FILTER_BY_PIXMART_CHOICE"
                         })}
                         name="checkedB"
                         color="primary"
@@ -62,7 +62,7 @@ const Preferences=()=>{
                     <Checkbox
                         checked={hasDiscount}
                         onChange={()=>dispatch({
-                            type:"FILTERBYHASDISCOUNT"
+                            type:"FILTER_BY_HAS_DISCOUNT"
                         })}
                         name="checkedB"
                         color="primary"
@@ -76,9 +76,9 @@ const Preferences=()=>{
                 <FormControlLabel
                     control={
                     <Checkbox
-                        checked={filterByCatagory==="FILTERONLYDSLR"}
+                        checked={filterByCatagory==="FILTER_ONLY_DSLR"}
                         onChange={()=>dispatch({
-                            type:"FILTERONLYDSLR"
+                            type:"FILTER_ONLY_DSLR"
                         })}
                         name="checkedB"
                         color="primary"
@@ -89,9 +89,9 @@ const Preferences=()=>{
                 <FormControlLabel
                     control={
                     <Checkbox
-                        checked={filterByCatagory==="FILTERONLYMIRRORLESS"}
+                        checked={filterByCatagory==="FILTER_ONLY_MIRRORLESS"}
                         onChange={()=>dispatch({
-                            type:"FILTERONLYMIRRORLESS"
+                            type:"FILTER_ONLY_MIRRORLESS"
                         })}
                         name="checkedB"
                         color="primary"
@@ -102,9 +102,9 @@ const Preferences=()=>{
                 <FormControlLabel
                     control={
                     <Checkbox
-                        checked={filterByCatagory==="FILTERONLYPOINTANDSHOOT"}
+                        checked={filterByCatagory==="FILTER_ONLY_POINT_AND_SHOOT"}
                         onChange={()=>dispatch({
-                            type:"FILTERONLYPOINTANDSHOOT"
+                            type:"FILTER_ONLY_POINT_AND_SHOOT"
                         })}
                         name="checkedB"
                         color="primary"
@@ -115,9 +115,9 @@ const Preferences=()=>{
                 <FormControlLabel
                     control={
                     <Checkbox
-                        checked={filterByCatagory==="FILTERONLYACCESSORIES"}
+                        checked={filterByCatagory==="FILTER_ONLY_ACCESSORIES"}
                         onChange={()=>dispatch({
-                            type:"FILTERONLYACCESSORIES"
+                            type:"FILTER_ONLY_ACCESSORIES"
                         })}
                         name="checkedB"
                         color="primary"

@@ -15,7 +15,7 @@ const MobileNavBar=()=>{
                     <FontAwesomeIcon icon={faHome}/>
                 </NavLink>
             </p>
-            <p className={classes["nav-button"]} onClick={()=>dispatch({type:"CLEARFILTERS"})}>
+            <p className={classes["nav-button"]} onClick={()=>dispatch({type:"CLEAR_FILTERS"})}>
                 <NavLink to="/product" exact activeClassName={classes["active-mobile"]}>
                     <FontAwesomeIcon icon={faCameraRetro}/>
                 </NavLink>
