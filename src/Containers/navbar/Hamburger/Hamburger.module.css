@@ -22,8 +22,8 @@
     transform:rotate(-45deg) translateX(-1px) translateY(1px);
     transform-origin:top right;
     margin-bottom:9px;
-    background-color: #FA9141;
-    border: 1px solid #FA9141;
+    background-color: var(--primary);
+    border: 1px solid var(--primary);
     width: 32px;
 }
 
