@@ -4,6 +4,7 @@ import {ProductsContext} from '../../store/ProductsContext';
 import ProductCard from './ProductCard/ProductCard';
 import Preferences from '../Preferences/Preferences';
 
+
 const ProductPage=()=>{
     const {products}=useContext(ProductsContext);
     

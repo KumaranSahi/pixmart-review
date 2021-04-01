@@ -13,7 +13,7 @@ const CardDetails=({nameOnCard,setNameOnCard,cardNumber,setCardNumber,expiration
                 onChange={setNameOnCard}
             />
             <input 
-                type="text" 
+                type="number" 
                 className={classes["textbox"]} 
                 placeholder="Card number" 
                 value={cardNumber}
@@ -21,14 +21,14 @@ const CardDetails=({nameOnCard,setNameOnCard,cardNumber,setCardNumber,expiration
             />
             <div className={classes["expiry-cvv"]}>
                 <input 
-                    type="text" 
+                    type="number" 
                     className={classes["textbox"]} 
-                    placeholder="Expiration date" 
+                    placeholder="Expiration date"
                     value={expirationDate}
                     onChange={setExpirationDate}
                 />
                 <input 
-                    type="text" 
+                    type="number" 
                     className={classes["textbox"]} 
                     placeholder="CVV" 
                     value={cvv}

@@ -4,6 +4,7 @@ import {faStar,faCheckCircle,faHeart} from '@fortawesome/free-solid-svg-icons';
 import {ProductsContext} from '../../../store/ProductsContext'
 import { useContext } from 'react';
 import {Link} from 'react-router-dom'
+import {successToast,warningToast} from '../../../UI/Toast/Toast'
 
 const WishlistCard=({id,name,image,hasDiscount,price,discount,rating,pixmartChoice,inCart,inWishlist,inStock})=>{
     const {dispatch}=useContext(ProductsContext);
@@ -59,7 +60,10 @@ const WishlistCard=({id,name,image,hasDiscount,price,discount,rating,pixmartChoi
                         </button>:
                         <button 
                             className={`${classes["button-solid"]} ${classes["button-primary"]}`}
-                            onClick={()=>dispatch({type:"ADD_TO_CART",payload:id})}
+                            onClick={()=>{
+                                dispatch({type:"ADD_TO_CART",payload:id})
+                                successToast(`${name} Added to Cart`)
+                            }}
                         >
                         Add to cart
                         </button>:
@@ -70,7 +74,10 @@ const WishlistCard=({id,name,image,hasDiscount,price,discount,rating,pixmartChoi
                     
                     <button 
                             className={`${classes["button-outline"]} ${classes["button-secondary"]}`}
-                            onClick={()=>dispatch({type:"REMOVE_FROM_WISHLIST",payload:id})}
+                            onClick={()=>{
+                                dispatch({type:"REMOVE_FROM_WISHLIST",payload:id})
+                                warningToast(`${name} Removed from Wishlist`)
+                            }}
                         >
                         Remove from wishlist
                     </button>

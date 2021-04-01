@@ -4,6 +4,7 @@ import {faStar,faCheckCircle,faHeart} from '@fortawesome/free-solid-svg-icons';
 import {ProductsContext} from '../../../store/ProductsContext'
 import { useContext } from 'react';
 import {Link} from 'react-router-dom'
+import {successToast,infoToast} from '../../../UI/Toast/Toast'
 
 const ProductCard=({id,name,image,hasDiscount,price,discount,rating,pixmartChoice,inCart,inWishlist,inStock})=>{
     const {dispatch}=useContext(ProductsContext);
@@ -59,7 +60,10 @@ const ProductCard=({id,name,image,hasDiscount,price,discount,rating,pixmartChoic
                         </button>:
                         <button 
                             className={`${classes["button-solid"]} ${classes["button-primary"]}`}
-                            onClick={()=>dispatch({type:"ADD_TO_CART",payload:id})}
+                            onClick={()=>{
+                                successToast(`${name} Added to cart`)
+                                dispatch({type:"ADD_TO_CART",payload:id})
+                            }}
                         >
                         Add to cart
                         </button>:
@@ -76,7 +80,10 @@ const ProductCard=({id,name,image,hasDiscount,price,discount,rating,pixmartChoic
                             </Link>
                         </button>:<button 
                             className={`${classes["button-outline"]} ${classes["button-secondary"]}`}
-                            onClick={()=>dispatch({type:"ADD_TO_WISHLIST",payload:id})}
+                            onClick={()=>{
+                                dispatch({type:"ADD_TO_WISHLIST",payload:id})
+                                infoToast(`${name} Added to wishlist`)
+                            }}
                         >
                         Add to wishlist
                     </button>}

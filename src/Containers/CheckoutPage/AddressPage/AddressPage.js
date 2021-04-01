@@ -44,26 +44,29 @@ const AddressPage=()=>{
                         placeholder="Full Name" 
                         ref={nameRef}
                         value={name}
+                        required
                         onChange={event=>setName(event.target.value)}
                     />
                 </label>
                 <label className={classes["form-field"]}>
                     <span>Mobile Number:</span>
                     <input 
-                        type="text" 
+                        type="number" 
                         className={classes["textbox"]} 
                         placeholder="Mobile Number"
                         value={number}
+                        required
                         onChange={event=>setNumber(event.target.value)}
                     />
                 </label>
                 <label className={classes["form-field"]}>
                     <span>PIN code:</span>
                     <input 
-                        type="text" 
+                        type="number" 
                         className={classes["textbox"]} 
                         placeholder="PIN code"
                         value={pin}
+                        required
                         onChange={event=>setPin(event.target.value)}
                     />
                 </label>
@@ -73,6 +76,7 @@ const AddressPage=()=>{
                         className={classes['textarea']}
                         placeholder="Address"
                         value={address}
+                        required
                         onChange={event=>setAddress(event.target.value)}
                     ></textarea>
                 </label>
@@ -83,6 +87,7 @@ const AddressPage=()=>{
                         className={classes["textbox"]} 
                         placeholder="Landmark"
                         value={landmark}
+                        required
                         onChange={event=>setLandmark(event.target.value)}
                     />
                 </label>

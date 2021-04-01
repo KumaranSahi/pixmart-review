@@ -27,6 +27,7 @@ export default function setupMockServer() {
           name: name,
           image: image,
           price: price,
+          description:faker.commerce.productDescription,
           catagory:catagory,
           rating:faker.random.float({'min':1,'max':5}).toFixed(1),
           hasDiscount:faker.random.boolean(),
