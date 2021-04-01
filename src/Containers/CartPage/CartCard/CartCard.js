@@ -3,6 +3,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faStar,faCheckCircle,faHeart} from '@fortawesome/free-solid-svg-icons';
 import {ProductsContext} from '../../../store/ProductsContext'
 import { useContext,useEffect } from 'react';
+import {warningToast} from '../../../UI/Toast/Toast'
 
 const CartCard=({id,name,image,hasDiscount,price,discount,rating,pixmartChoice,inCart,inWishlist,quantity})=>{
 
@@ -71,7 +72,10 @@ const CartCard=({id,name,image,hasDiscount,price,discount,rating,pixmartChoice,i
                     </div>
                     <button 
                         className={`${classes["button-solid"]} ${classes["button-solid-secondary"]}`}
-                        onClick={()=>dispatch({type:"REMOVE_FROM_CART",payload:id})}
+                        onClick={()=>{
+                            dispatch({type:"REMOVE_FROM_CART",payload:id})
+                            warningToast(`${name} Removed from cart`)
+                        }}
                     >
                     Remove from cart
                     </button>

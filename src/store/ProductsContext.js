@@ -1,5 +1,6 @@
 import {createContext,useEffect,useReducer} from 'react';
 import axios from 'axios';
+
 export const ProductsContext=createContext();
 
 export const ProductsContextProvider=({children})=>{
@@ -57,6 +58,7 @@ export const ProductsContextProvider=({children})=>{
                     hasDiscount:!state.hasDiscount
                 }
             case "ADD_TO_CART":
+                
                 return{
                     ...state,
                     cartItems:[...state.cartItems,...state.products.filter(product=>product.id===action.payload).map(item=>({...item,inCart:true,quantity:1}))],

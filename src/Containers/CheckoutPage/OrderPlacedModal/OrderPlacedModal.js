@@ -2,6 +2,7 @@ import classes from './OrderPlacedModal.module.css'
 import {Link} from 'react-router-dom'
 import {ProductsContext} from '../../../store/ProductsContext'
 import { useContext } from 'react'
+import {successToast} from '../../../UI/Toast/Toast'
 
 const OrderPlacedModal=()=>{
     const {dispatch}=useContext(ProductsContext)
@@ -20,7 +21,10 @@ const OrderPlacedModal=()=>{
                 <div className={classes['modal-buttons-container']}>
                     <Link to="/"
                         onClick={
-                            ()=>dispatch({type:"CLEAR_CART"})
+                            ()=>{
+                                dispatch({type:"CLEAR_CART"})
+                                successToast("Order Placed Successfully!!")
+                            }
                         }
                     >
                         <button className={`${classes["btn-solid"]} ${classes["btn-primary"]}`}>
