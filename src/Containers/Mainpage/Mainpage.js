@@ -4,6 +4,7 @@ import CartPage from '../CartPage/CartPage';
 import WishlistPage from '../WishlistPage/WishlistPage'
 import LandingPage from '../LandingPage/LandingPage'
 import CheckoutPage from '../CheckoutPage/CheckoutPage'
+import LoginPage from '../LoginPage/LoginPage'
 
 import {ProductsContextProvider} from '../../store/ProductsContext';
 import {Route,Switch} from 'react-router-dom'
@@ -21,6 +22,7 @@ const Mainpage=()=>{
                         <Route path="/wishlist" exact component={WishlistPage}/>
                         <Route path="/product" exact component={ProductPage}/>
                         <Route path="/checkout" exact component={CheckoutPage}/>
+                        <Route path="/login" exact component={LoginPage}/>
                         <Route path="/" exact component={LandingPage}/>
                     </Switch>
                 </CheckoutContextProvider>

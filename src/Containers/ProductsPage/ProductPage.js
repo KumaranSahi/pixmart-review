@@ -16,11 +16,11 @@ const ProductPage=()=>{
             <div className={classes["product-section"]}>
                 <ul>
                     {
-                        products&&products.map(({id,name,image,price,rating,hasDiscount,discount
+                        products&&products.map(({_id,name,image,price,rating,hasDiscount,discount
                             ,fastDelivery,inStock,pixmartChoice,inCart,inWishlist})=>(
-                            <li key={id}>
+                            <li key={_id}>
                                 <ProductCard
-                                    id={id}
+                                    id={_id}
                                     name={name}
                                     image={image}
                                     price= {price}

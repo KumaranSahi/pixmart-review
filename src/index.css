@@ -26,6 +26,10 @@ a{
   text-decoration: none;
 }
 
+*{
+  box-sizing: border-box;
+}
+
 :root {
   --primary: #FA9141;
   --secondary: #333c3a;

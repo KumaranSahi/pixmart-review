@@ -1,20 +1,27 @@
 import {createContext,useEffect,useReducer} from 'react';
 import axios from 'axios';
+import { warningToast } from '../UI/Toast/Toast';
 
 export const ProductsContext=createContext();
 
 export const ProductsContextProvider=({children})=>{
     useEffect(()=>{
         (async()=>{
-            const data=await axios.get("/api/products");
-            dispatch ({
-                type:"LOAD_PRODUCT_LIST",
-                payload:[...data.data.products]
-            })
+            try{
+            const {data:{data,ok}}=await axios.get("/api/products");
+            if(ok)
+                dispatch ({
+                    type:"LOAD_PRODUCT_LIST",
+                    payload:[...data]
+                })
+            }catch(error){
+                console.log(error)
+                warningToast("Failed to load products")
+            }
         })()
     },[])
 
-    const CALCULATE_TOTAL_COST=(acc,currValue)=>{
+    const calculateTotalCost=(acc,currValue)=>{
         let actualPrice;
         currValue.hasDiscount?actualPrice=+currValue.price-Math.round((+currValue.price*(currValue.discount/100))):actualPrice=+currValue.price;
         return acc+(actualPrice*currValue.quantity)
@@ -97,7 +104,7 @@ export const ProductsContextProvider=({children})=>{
             case "CALCULATE_TOTAL_COST":
                 return{
                     ...state,
-                    totalCost:state.cartItems.reduce(CALCULATE_TOTAL_COST,0)
+                    totalCost:state.cartItems.reduce(calculateTotalCost,0)
                 }
             case "FILTER_ONLY_DSLR":
                 return{
