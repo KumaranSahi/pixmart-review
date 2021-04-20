@@ -1,10 +1,95 @@
 import {createContext,useEffect,useReducer} from 'react';
 import axios from 'axios';
-import { warningToast } from '../UI/Toast/Toast';
+import { infoToast, successToast, warningToast } from '../UI/Toast/Toast';
+import {AuthContext} from './AuthContext'
+import {useContext} from 'react'
+import {useHistory} from 'react-router-dom'
 
 export const ProductsContext=createContext();
 
 export const ProductsContextProvider=({children})=>{
+    const {userId,token}=useContext(AuthContext)
+    const {push}=useHistory()
+    const config = {
+        headers: {
+            Authorization: "Bearer " + token
+        }
+    }
+    const addItemToCart=async(productId)=>{
+        try{
+            if(token){
+            const {data:{data,ok}}=await axios.post(`/api/carts/${userId}`,{
+                productId:productId
+            },config)
+            if(ok){
+                dispatch({type:"ADD_TO_CART",payload:[...data]})
+                successToast("Item added to cart")
+            }
+            }else{
+                infoToast("Please login to proceed further")
+                push("/login")
+            }
+        }catch(error){
+            console.log(error)
+            warningToast("cannot add item to cart")
+        }
+    }
+
+    const removeItemFromCart=async (productId)=>{
+        try{
+            if(token){
+            const {data:{data,ok}}=await axios.delete(`/api/carts/${userId}/products/${productId}`,config)
+            if(ok){
+                dispatch({type:"ADD_TO_CART",payload:[...data]})
+                successToast("Item removed from cart")
+            }
+            }else{
+                infoToast("Please login to proceed further")
+                push("/login")
+            }
+        }catch(error){
+            console.log(error)
+            warningToast("Cannot remove item from cart")
+        }
+    }
+
+    const changeQuantity=async (productId,quantity)=>{
+        try{
+            if(token){
+            const {data:{data,ok}}=await axios.put(`/api/carts/${userId}/products/${productId}`,{quantity:quantity},config)
+            if(ok){
+                dispatch({type:"ADD_TO_CART",payload:[...data]})
+                successToast("Cart item updated")
+            }
+            }else{
+                infoToast("Please login to proceed further")
+                push("/login")
+            }
+        }catch(error){
+            console.log(error)
+            warningToast("Cannot update cart item")
+        }
+    }
+
+    useEffect(()=>{
+        (async()=>{
+            try{
+                if(token){
+                    const {data:{data,ok}}=await axios.get(`/api/carts/${userId}`,config)
+                    if(ok){
+                        dispatch({
+                            type:"ADD_TO_CART",
+                            payload:[...data]
+                        })
+                    }
+                }
+            }catch(error){
+                console.log(error)
+                warningToast("Failed to load cart")
+            }
+        })()
+    },[token,userId])
+
     useEffect(()=>{
         (async()=>{
             try{
@@ -21,10 +106,10 @@ export const ProductsContextProvider=({children})=>{
         })()
     },[])
 
-    const calculateTotalCost=(acc,currValue)=>{
+    const calculateTotalCost=(acc,{product:{hasDiscount,price,discount},quantity})=>{
         let actualPrice;
-        currValue.hasDiscount?actualPrice=+currValue.price-Math.round((+currValue.price*(currValue.discount/100))):actualPrice=+currValue.price;
-        return acc+(actualPrice*currValue.quantity)
+        hasDiscount?actualPrice=+price-Math.round((+price*(discount/100))):actualPrice=+price;
+        return acc+(actualPrice*quantity)
     }
 
     const productListManipulation=(state,action)=>{
@@ -65,35 +150,15 @@ export const ProductsContextProvider=({children})=>{
                     hasDiscount:!state.hasDiscount
                 }
             case "ADD_TO_CART":
-                
                 return{
                     ...state,
-                    cartItems:[...state.cartItems,...state.products.filter(product=>product.id===action.payload).map(item=>({...item,inCart:true,quantity:1}))],
-                    products:state.products.map(product=>product.id===action.payload?{...product,inCart:true}:product),
-                    wishListItems:state.wishListItems.map(product=>product.id===action.payload?{...product,inCart:true}:product)
-                }
-            case "REMOVE_FROM_CART":
-                return{
-                    ...state,
-                    cartItems:state.cartItems.filter(product=>product.id!==action.payload),
-                    products:state.products.map(product=>product.id===action.payload?{...product,inCart:false,quantity:0}:product),
-                    wishListItems:state.wishListItems.map(product=>product.id===action.payload?{...product,inCart:false,quantity:0}:product)
+                    cartItems:[...action.payload]
                 }
             case "ADD_TO_WISHLIST":
                 return{
                     ...state,
                     wishListItems:[...state.wishListItems,...state.products.filter(product=>product.id===action.payload).map(item=>({...item,inWishlist:true}))],
                     products:state.products.map(product=>product.id===action.payload?{...product,inWishlist:true}:product)
-                }
-            case "INCREMENT_QUANTITY":
-                return{
-                    ...state,
-                    cartItems:state.cartItems.map(product=>product.id===action.payload?{...product,quantity:product.quantity+1}:product)
-                }
-            case "DECREMENT_QUANTITY":
-                return{
-                    ...state,
-                    cartItems:state.cartItems.map(product=>product.id===action.payload?{...product,quantity:product.quantity>1?product.quantity-1:product.quantity}:product)
                 }
             case "REMOVE_FROM_WISHLIST":
                 return{
@@ -218,7 +283,10 @@ export const ProductsContextProvider=({children})=>{
                 pixmartChoice:state.pixmartChoice,
                 sortby:state.sortby,
                 totalCost:state.totalCost,
-                filterByCatagory:state.filterByCatagory
+                filterByCatagory:state.filterByCatagory,
+                addItemToCart:addItemToCart,
+                removeItemFromCart:removeItemFromCart,
+                changeQuantity:changeQuantity
             }}
         >
             {children}

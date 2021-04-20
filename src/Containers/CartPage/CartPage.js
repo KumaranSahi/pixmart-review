@@ -33,8 +33,8 @@ const CartPage=()=>{
             </div>
             <ul>
                 {
-                    cartItems.map(({id,name,image,price,rating,hasDiscount,discount
-                            ,pixmartChoice,inWishlist,quantity})=>
+                    cartItems.map(({product:{_id:id,name,image,price,rating,hasDiscount,discount
+                            ,pixmartChoice,inWishlist},quantity})=>
                         (<li key={id}>
                             <CartCard
                                 id={id}

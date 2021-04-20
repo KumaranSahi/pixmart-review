@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom'
 import {successToast,infoToast} from '../../../UI/Toast/Toast'
 
 const ProductCard=({id,name,image,hasDiscount,price,discount,rating,pixmartChoice,inCart,inWishlist,inStock})=>{
-    const {dispatch}=useContext(ProductsContext);
+    const {dispatch,addItemToCart}=useContext(ProductsContext);
 
     const calculateDiscount=(price,discount)=>{
         let discountedAmount=price-Math.round((price*(discount/100)));
@@ -61,8 +61,7 @@ const ProductCard=({id,name,image,hasDiscount,price,discount,rating,pixmartChoic
                         <button 
                             className={`${classes["button-solid"]} ${classes["button-primary"]}`}
                             onClick={()=>{
-                                successToast(`${name} Added to cart`)
-                                dispatch({type:"ADD_TO_CART",payload:id})
+                                addItemToCart(id)
                             }}
                         >
                         Add to cart
