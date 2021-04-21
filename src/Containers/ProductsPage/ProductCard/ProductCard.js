@@ -4,10 +4,9 @@ import {faStar,faCheckCircle,faHeart} from '@fortawesome/free-solid-svg-icons';
 import {ProductsContext} from '../../../store/ProductsContext'
 import { useContext } from 'react';
 import {Link} from 'react-router-dom'
-import {successToast,infoToast} from '../../../UI/Toast/Toast'
 
 const ProductCard=({id,name,image,hasDiscount,price,discount,rating,pixmartChoice,inCart,inWishlist,inStock})=>{
-    const {dispatch,addItemToCart}=useContext(ProductsContext);
+    const {addItemToCart,addWishlist,wishListItems,cartItems}=useContext(ProductsContext);
 
     const calculateDiscount=(price,discount)=>{
         let discountedAmount=price-Math.round((price*(discount/100)));
@@ -50,7 +49,7 @@ const ProductCard=({id,name,image,hasDiscount,price,discount,rating,pixmartChoic
                 </div>
                 <hr/>
                 <div className={classes['action-buttons']}>
-                    {inStock?inCart?
+                    {inStock?cartItems.some(({product:{_id}})=>_id===id)?
                         <button 
                             className={`${classes["button-solid"]} ${classes["button-solid-secondary"]}`}
                         >
@@ -71,7 +70,7 @@ const ProductCard=({id,name,image,hasDiscount,price,discount,rating,pixmartChoic
                         </div>
                         }
                     
-                    {inWishlist?<button 
+                    {wishListItems.some(({_id})=>_id===id)?<button 
                             className={`${classes["button-solid"]} ${classes["button-solid-secondary"]}`}
                         >
                             <Link to="/wishlist">
@@ -80,8 +79,7 @@ const ProductCard=({id,name,image,hasDiscount,price,discount,rating,pixmartChoic
                         </button>:<button 
                             className={`${classes["button-outline"]} ${classes["button-secondary"]}`}
                             onClick={()=>{
-                                dispatch({type:"ADD_TO_WISHLIST",payload:id})
-                                infoToast(`${name} Added to wishlist`)
+                                addWishlist(id)
                             }}
                         >
                         Add to wishlist

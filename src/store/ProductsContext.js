@@ -71,6 +71,42 @@ export const ProductsContextProvider=({children})=>{
         }
     }
 
+    const addWishlist=async(productId)=>{
+        try{
+            if(token){
+                const {data:{data,ok}}=await axios.post(`/api/wishlists/${userId}`,{productId:productId},config)
+                if(ok){
+                    dispatch({type:"ADD_TO_WISHLIST",payload:[...data]})
+                    successToast("Item added to Wishlist")
+                }
+                }else{
+                    infoToast("Please login to proceed further")
+                    push("/login")
+                }
+        }catch(error){
+            console.log(error)
+            warningToast("Cannot add item to wishlist")
+        }
+    }
+
+    const removeItemFromWishlist=async (productId)=>{
+        try{
+            if(token){
+                const {data:{data,ok}}=await axios.delete(`/api/wishlists/${userId}/products/${productId}`,config)
+            if(ok){
+                dispatch({type:"ADD_TO_WISHLIST",payload:[...data]})
+                successToast("Item removed from cart")
+            }
+            }else{
+                infoToast("Please login to proceed further")
+                push("/login")
+            }
+        }catch(error){
+            console.log(error)
+            warningToast("Cannot add item to wishlist")
+        }
+    }
+
     useEffect(()=>{
         (async()=>{
             try{
@@ -86,6 +122,25 @@ export const ProductsContextProvider=({children})=>{
             }catch(error){
                 console.log(error)
                 warningToast("Failed to load cart")
+            }
+        })()
+    },[token,userId])
+
+    useEffect(()=>{
+        (async()=>{
+            try{
+                if(token){
+                    const {data:{data,ok}}=await axios.get(`/api/wishlists/${userId}`,config)
+                    if(ok){
+                        dispatch({
+                            type:"ADD_TO_WISHLIST",
+                            payload:[...data]
+                        })
+                    }
+                }
+            }catch(error){
+                console.log(error)
+                warningToast("Failed to load wishlist")
             }
         })()
     },[token,userId])
@@ -157,14 +212,7 @@ export const ProductsContextProvider=({children})=>{
             case "ADD_TO_WISHLIST":
                 return{
                     ...state,
-                    wishListItems:[...state.wishListItems,...state.products.filter(product=>product.id===action.payload).map(item=>({...item,inWishlist:true}))],
-                    products:state.products.map(product=>product.id===action.payload?{...product,inWishlist:true}:product)
-                }
-            case "REMOVE_FROM_WISHLIST":
-                return{
-                    ...state,
-                    wishListItems:state.wishListItems.filter(product=>product.id!==action.payload),
-                    products:state.products.map(product=>product.id===action.payload?{...product,inWishlist:false}:product)
+                    wishListItems:[...action.payload]
                 }
             case "CALCULATE_TOTAL_COST":
                 return{
@@ -286,7 +334,9 @@ export const ProductsContextProvider=({children})=>{
                 filterByCatagory:state.filterByCatagory,
                 addItemToCart:addItemToCart,
                 removeItemFromCart:removeItemFromCart,
-                changeQuantity:changeQuantity
+                changeQuantity:changeQuantity,
+                addWishlist:addWishlist,
+                removeItemFromWishlist:removeItemFromWishlist
             }}
         >
             {children}
