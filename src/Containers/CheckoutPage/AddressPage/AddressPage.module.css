@@ -1,7 +1,7 @@
 .address-container{
     box-shadow: 1px 1px 18px 11px var(--secondary);
     width: 95%;
-    height: 48rem;
+    min-height: 48rem;
     margin-top: 2rem;
     padding: 0.5rem;
     box-sizing: border-box;
@@ -12,45 +12,13 @@
     font-weight: 300;
 }
 
-.textbox{
-    padding: 0.5rem;
-    outline: 0px;
-    border:0px;
-    letter-spacing: 1px;
-    background-color: var(--neutral-mild);
-    margin-top: 0.5rem;
-}
-
-.textbox:focus{
-    border: 2px solid var(--black);
-}
-
-.textarea{
-    padding: 0.5rem;
-    outline: 0px;
-    border:0px;
-    max-width: 25rem;
-    height: 10rem;
-    resize: none;
-    letter-spacing: 1px;
-    background-color: var(--neutral-mild);
-    outline: 0px;
-    margin-top: 0.5rem;
-}
-
-.textarea:focus{
-    border: 2px solid var(--black);
-}
-
-.form-field{
-    display: flex;
-    flex-direction: column;
-    padding: 0.5rem;
-}
-
-.form-field span{
-    font-weight: 100;
-    letter-spacing: 0.1rem;
+.address{
+    width: 100%;
+    border:1px solid gray;
+    padding:1rem;
+    background-color: white;
+    border-radius:1rem;
+    margin-top: 1rem;
 }
 
 .button-solid{
@@ -58,18 +26,28 @@
     outline: none;
     border: 0px;
     margin-top: 1rem;
-    width: 100%;
-    padding: 1rem;
+    padding: 0.5rem;
     font-size: 1rem;
 }
 
+.button-secondary{
+    background-color: var(--secondary);
+}
+
 .button-primary{
+    display: block;
+    margin: auto;
+    margin-top: 1rem;
+    padding: 1rem;
     background-color: var(--primary);
 }
 
 @media (min-width:700px){
     .address-container{
         width: 45rem;
-        height: 100%;
+        min-height: 100vh;
+    }
+    .address{
+        width: 35rem;
     }
 }

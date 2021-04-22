@@ -9,7 +9,7 @@ const Navbar=()=>{
     let {pathname}=useLocation();
     return(
         <nav className={classes["navbar"]}>
-            {pathname==="/product"?<div></div>:<Logo/>}
+            {pathname==="/product"?<div className={classes["desktop-spacer"]}></div>:<Logo/>}
             <DesktopNavMenu/>
             {pathname==="/product"?<Hamburger/>:null}
             <Avatar/>

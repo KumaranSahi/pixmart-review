@@ -6,7 +6,7 @@ import { useContext } from 'react';
 import {Link} from 'react-router-dom'
 
 const WishlistCard=({id,name,image,hasDiscount,price,discount,rating,pixmartChoice,inCart,inWishlist,inStock})=>{
-    const {addItemToCart,removeItemFromWishlist}=useContext(ProductsContext);
+    const {addItemToCart,removeItemFromWishlist,cartItems}=useContext(ProductsContext);
 
     const calculateDiscount=(price,discount)=>{
         let discountedAmount=price-Math.round((price*(discount/100)));
@@ -49,7 +49,7 @@ const WishlistCard=({id,name,image,hasDiscount,price,discount,rating,pixmartChoi
                 </div>
                 <hr/>
                 <div className={classes['action-buttons']}>
-                    {inStock?inCart?
+                    {inStock?cartItems.some(({product:{_id}})=>_id===id)?
                         <button 
                             className={`${classes["button-solid"]} ${classes["button-solid-secondary"]}`}
                         >

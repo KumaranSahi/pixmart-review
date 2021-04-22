@@ -1,5 +1,5 @@
 import classes from './LoginPage.module.css';
-import {useState,useContext} from 'react'
+import {useState,useContext,} from 'react'
 import {AuthContext} from '../../store/AuthContext'
 import { warningToast } from '../../UI/Toast/Toast';
 
@@ -90,7 +90,7 @@ const LoginPage=()=>{
                         </div>
                         <div>
                             <input type="email" 
-                                className={classes["textbox"]} 
+                                className={classes["textbox"]}
                                 placeholder="Email"
                                 required
                                 value={email}
