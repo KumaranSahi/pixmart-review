@@ -47,7 +47,7 @@ const PaymentPage=()=>{
                         }}>
                         <FormControlLabel value="CREDITCARD" control={<Radio color="primary"/>} label="Credit Card"/>
                         {paymentMode==="CREDITCARD"&&<FormControl component="fieldset">
-                            <RadioGroup aria-label="select payment" name="selectPayment" value={paymentDetails} onChange={paymentSelected}>
+                            <RadioGroup aria-label="select payment" name="selectPayment" value={paymentDetails&&paymentDetails!=="COD"&&paymentDetails._id} onChange={paymentSelected}>
                             {
                                 userPaymentDetails.map(payment=>(
                                     payment.paymentType==="CREDITCARD"?<FormControlLabel key={payment._id} value={payment._id} control={<Radio color="primary"/>} label={
@@ -75,7 +75,7 @@ const PaymentPage=()=>{
                         {(addPayment&&paymentMode==="CREDITCARD")&&<CardDetails setAddpayment={()=>setAddpayment(false)} paymentMode={paymentMode} />}
                         <FormControlLabel value="DEBITCARD" control={<Radio color="primary"/>} label="Debit Card"/>
                             {paymentMode==="DEBITCARD"&&<FormControl component="fieldset">
-                                <RadioGroup aria-label="select payment" name="selectPayment" value={paymentDetails} onChange={paymentSelected}>
+                                <RadioGroup aria-label="select payment" name="selectPayment" value={paymentDetails&&paymentDetails!=="COD"&&paymentDetails._id} onChange={paymentSelected}>
                                 {
                                     userPaymentDetails.map(payment=>(
                                         payment.paymentType==="DEBITCARD"?<FormControlLabel key={payment._id} value={payment._id} control={<Radio color="primary"/>} label={

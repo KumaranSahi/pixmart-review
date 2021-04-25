@@ -214,6 +214,11 @@ export const ProductsContextProvider=({children})=>{
                     ...state,
                     wishListItems:[...action.payload]
                 }
+            case "CLEAR_CART":
+                return{
+                    ...state,
+                    cartItems:[]
+                }
             case "CALCULATE_TOTAL_COST":
                 return{
                     ...state,

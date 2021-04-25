@@ -7,8 +7,8 @@ import AddressDetails from './AddressDetails/AddressDetails'
 import PaymentDetails from './PaymentDetails/PaymentDetails'
 
 const OrderSummary=()=>{
-    const {cartItems,totalCost}=useContext(ProductsContext);
-    const {paymentDetails,address,dispatch}=useContext(CheckoutContext);
+    const {cartItems,totalCost,dispatch}=useContext(ProductsContext);
+    const {paymentDetails,address,placeOrder}=useContext(CheckoutContext);
 
     return(
         <div className={classes["order-summary-container"]}>
@@ -21,7 +21,7 @@ const OrderSummary=()=>{
             </h2>
             <ul>
                 {
-                    cartItems.map(({id,name,quantity,image})=>(
+                    cartItems.map(({product:{_id:id,name,image},quantity})=>(
                         <li key={id}>
                             <OrderSummaryCard
                                 name={name}
@@ -57,9 +57,11 @@ const OrderSummary=()=>{
             <button
                 className={`${classes["button-solid"]} ${classes["button-primary"]}`}
                 type="submit"
-                onClick={()=>dispatch({
-                    type:"PLACE_ORDER"
-                })}
+                onClick={()=>{
+                    const products=cartItems.map(({product:{_id},quantity})=>({product:_id,quantity:quantity}));
+                    placeOrder({products:products,totalCost:totalCost})
+                    dispatch({type:"CLEAR_CART"})
+                }}
             >
                 Checkout
             </button>

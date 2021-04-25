@@ -23,7 +23,7 @@ const AddressPage=()=>{
             <hr/>
 
             <FormControl component="fieldset">
-                <RadioGroup aria-label="select address" name="selectAddress" value={address} onChange={addressSelected}>
+                <RadioGroup aria-label="select address" name="selectAddress" value={address&&address._id} onChange={addressSelected}>
                     {
                         userAddresses.map(address=>(
                             <FormControlLabel key={address._id} value={address._id} control={<Radio color="primary"/>} label={

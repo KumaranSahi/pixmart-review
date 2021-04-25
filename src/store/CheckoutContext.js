@@ -98,6 +98,17 @@ export const CheckoutContextProvider=({children})=>{
         }
     }
 
+    const placeOrder=async (body)=>{
+        try{
+            await axios.post(`/api/orders/${userId}`,body,config)
+            dispatch({type:"PLACE_ORDER"})
+            successToast("Order placed successfully")
+        }catch(error){
+            console.log(error);
+            warningToast("Unable to delete Payment detail")
+        }
+    }
+
     const checkoutActions=(state,action)=>{
         switch (action.type) {
             case "ADD_USER_ADDRESSES":
@@ -113,7 +124,7 @@ export const CheckoutContextProvider=({children})=>{
             case "ADD_ADDRESS":
                 return{
                     ...state,
-                    address:action.payload
+                    address:state.userAddresses.filter(({_id})=>_id===action.payload)[0]
                 }
             case "MOVE_TO_ADDRESS":
                 return{
@@ -133,7 +144,7 @@ export const CheckoutContextProvider=({children})=>{
             case "ADD_PAYMENT_DETAILS":
                 return{
                     ...state,
-                    paymentDetails:action.payload
+                    paymentDetails:action.payload==="COD"?"COD":state.userPaymentDetails.filter(({_id})=>_id===action.payload)[0]
                 }
             case "PLACE_ORDER":
                 return{
@@ -166,7 +177,8 @@ export const CheckoutContextProvider=({children})=>{
                 addNewAddress:addNewAddress,
                 deleteAddress:deleteAddress,
                 addNewPayment:addNewPayment,
-                deletePaymentDetails:deletePaymentDetails
+                deletePaymentDetails:deletePaymentDetails,
+                placeOrder:placeOrder
             }}
         >
             {children}
