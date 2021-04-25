@@ -2,7 +2,6 @@
     box-shadow: 1px 1px 18px 11px var(--secondary);
     width: 95%;
     min-height: 48rem;
-    margin-top: 2rem;
     padding: 0.5rem;
     box-sizing: border-box;
     background-color: whitesmoke;
@@ -42,10 +41,17 @@
     background-color: var(--primary);
 }
 
+.proceed-further-button{
+    width: 100%;
+    margin-bottom: 5rem;
+    cursor: pointer;
+}
+
 @media (min-width:700px){
     .address-container{
         width: 45rem;
         min-height: 100vh;
+        margin-top: 2rem;
     }
     .address{
         width: 35rem;

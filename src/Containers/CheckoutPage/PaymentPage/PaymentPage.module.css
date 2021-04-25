@@ -1,8 +1,7 @@
 .payment-container{
     box-shadow: 1px 1px 18px 11px var(--secondary);
     width: 95%;
-    height: 39rem;
-    margin-top: 2rem;
+    min-height: 45rem;
     padding: 0.5rem;
     box-sizing: border-box;
     background-color: whitesmoke;
@@ -17,8 +16,6 @@
     outline: none;
     border: 0px;
     margin-top: 1rem;
-    width: 100%;
-    padding: 1rem;
     font-size: 1rem;
 }
 
@@ -26,16 +23,42 @@
     background-color: var(--primary);
 }
 
+.button-continue{    
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 5rem;
+}
+
+.button-add-new-payment{
+    padding: 0.5rem;
+    width: 15rem;
+}
+
+.button-secondary{
+    background-color: var(--secondary);
+    padding: 0.5rem;
+}
+
+
 .form-container{
-    height: 19.5rem;
+    min-height: 30rem;
+}
+
+.payment{
+    width: 100%;
+    border:1px solid gray;
+    padding:1rem;
+    background-color: white;
+    border-radius:0.5rem;
+    margin-top: 1rem;
 }
 
 @media (min-width:700px){
     .payment-container{
         width: 45rem;
-        height: 100%;
+        min-height: 50rem;
     }
     .form-container{
-        height: 24rem;
+        min-height: auto;
     }
 }

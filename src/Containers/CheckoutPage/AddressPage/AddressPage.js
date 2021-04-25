@@ -44,6 +44,14 @@ const AddressPage=()=>{
                 Add new address
             </button>
             {addNewAddress && <NewAddress addressAdded={()=>setAddNewAddress(false)}/>}
+            {address&&<button 
+                className={`${classes["button-solid"]} ${classes["button-primary"]} ${classes["proceed-further-button"]}`} 
+                onClick={()=>{
+                    dispatch({
+                        type:"MOVE_TO_PAYMENT"
+                    })
+                }}
+            >Proceed to payment</button>}
         </div>
     )
 }

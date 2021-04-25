@@ -28,6 +28,20 @@ export const CheckoutContextProvider=({children})=>{
         )()
     },[token,userId])
 
+    useEffect(()=>{
+        (
+            async ()=>{
+                if(token){
+                    const {data:{data}}=await axios.get(`/api/payments/${userId}`,config)
+                    dispatch({
+                        type:"ADD_USER_PAYMENTS",
+                        payload:[...data]
+                    })
+                }
+            }
+        )()
+    },[token,userId])
+
     const addNewAddress=async (body)=>{
         try{
             const {data:{data}}=await axios.post(`/api/addresses/${userId}`,body,config)
@@ -52,7 +66,35 @@ export const CheckoutContextProvider=({children})=>{
             successToast("Address deleted")
         }catch(error){
             console.log(error);
-            warningToast("Address deleted successfully")
+            warningToast("unable to delete address")
+        }
+    }
+
+    const addNewPayment=async (body)=>{
+        try{
+            const {data:{data}}=await axios.post(`/api/payments/${userId}`,body,config)
+            dispatch({
+                type:"ADD_USER_PAYMENTS",
+                payload:[...data]
+            })
+            successToast("Payment detail added")
+        }catch(error){
+            console.log(error);
+            warningToast("Unable to add Payment detail")
+        }
+    }
+
+    const deletePaymentDetails=async (paymentId)=>{
+        try{
+            const {data:{data}}=await axios.delete(`/api/payments/${paymentId}/users/${userId}`,config)
+            dispatch({
+                type:"ADD_USER_PAYMENTS",
+                payload:[...data]
+            })
+            successToast("Payment detail deleted")
+        }catch(error){
+            console.log(error);
+            warningToast("Unable to delete Payment detail")
         }
     }
 
@@ -62,6 +104,11 @@ export const CheckoutContextProvider=({children})=>{
                 return{
                     ...state,
                     userAddresses:[...action.payload]
+                }
+            case "ADD_USER_PAYMENTS":
+                return{
+                    ...state,
+                    userPaymentDetails:[...action.payload]
                 }
             case "ADD_ADDRESS":
                 return{
@@ -86,7 +133,7 @@ export const CheckoutContextProvider=({children})=>{
             case "ADD_PAYMENT_DETAILS":
                 return{
                     ...state,
-                    paymentDetails:{...action.payload}
+                    paymentDetails:action.payload
                 }
             case "PLACE_ORDER":
                 return{
@@ -103,7 +150,8 @@ export const CheckoutContextProvider=({children})=>{
         address:null,
         paymentDetails:null,
         currentState:"ADDRESSPAGE",
-        userAddresses:[]
+        userAddresses:[],
+        userPaymentDetails:[]
     })
 
     return(
@@ -112,10 +160,13 @@ export const CheckoutContextProvider=({children})=>{
                 dispatch:dispatch,
                 address:state.address,
                 userAddresses:state.userAddresses,
+                userPaymentDetails:state.userPaymentDetails,
                 paymentDetails:state.paymentDetails,
                 currentState:state.currentState,
                 addNewAddress:addNewAddress,
-                deleteAddress:deleteAddress
+                deleteAddress:deleteAddress,
+                addNewPayment:addNewPayment,
+                deletePaymentDetails:deletePaymentDetails
             }}
         >
             {children}
