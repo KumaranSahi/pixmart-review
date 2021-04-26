@@ -1,14 +1,13 @@
 import classes from './OrderSummary.module.css'
-import {useContext} from 'react';
-import {CheckoutContext} from '../../../store/CheckoutContext';
-import {ProductsContext} from '../../../store/ProductsContext';
+import {useCheckout} from '../../../store/CheckoutContext';
+import {useProducts} from '../../../store/ProductsContext';
 import OrderSummaryCard from './OrderSummaryCard/OrderSummaryCard'
 import AddressDetails from './AddressDetails/AddressDetails'
 import PaymentDetails from './PaymentDetails/PaymentDetails'
 
 const OrderSummary=()=>{
-    const {cartItems,totalCost,dispatch}=useContext(ProductsContext);
-    const {paymentDetails,address,placeOrder}=useContext(CheckoutContext);
+    const {cartItems,totalCost,dispatch}=useCheckout();
+    const {paymentDetails,address,placeOrder}=useProducts();
 
     return(
         <div className={classes["order-summary-container"]}>

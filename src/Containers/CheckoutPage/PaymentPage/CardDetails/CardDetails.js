@@ -1,6 +1,6 @@
 import classes from './CardDetails.module.css'
-import {useState,useContext} from 'react'
-import {CheckoutContext} from '../../../../store/CheckoutContext'
+import {useState} from 'react'
+import {useCheckout} from '../../../../store/CheckoutContext'
 
 const CardDetails=({paymentMode,setAddpayment})=>{
     const [nameOnCard,setNameOnCard]=useState("");
@@ -15,7 +15,7 @@ const CardDetails=({paymentMode,setAddpayment})=>{
     const [cvv,setCvv]=useState("");
     const [cvvValid,setCvvValid]=useState(true)
 
-    const {addNewPayment}=useContext(CheckoutContext)
+    const {addNewPayment}=useCheckout()
 
     const cardNumberEntered=(event)=>{
         if(!isNaN(event))

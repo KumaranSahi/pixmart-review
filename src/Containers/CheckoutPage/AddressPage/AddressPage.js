@@ -1,11 +1,11 @@
 import classes from './AddressPage.module.css'
-import {useContext,useState} from 'react';
-import {CheckoutContext} from '../../../store/CheckoutContext';
+import {useState} from 'react';
+import {useCheckout} from '../../../store/CheckoutContext';
 import NewAddress from './NewAddress/NewAddress'
 import {Radio, FormControlLabel, FormControl,RadioGroup} from '@material-ui/core';
 
 const AddressPage=()=>{
-    const {dispatch,userAddresses,address,deleteAddress}=useContext(CheckoutContext);
+    const {dispatch,userAddresses,address,deleteAddress}=useCheckout();
     const [addNewAddress,setAddNewAddress]=useState(false)
 
     const addressSelected=(event)=>{

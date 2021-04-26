@@ -1,11 +1,10 @@
 import classes from './OrderPlacedModal.module.css'
 import {Link} from 'react-router-dom'
-import {ProductsContext} from '../../../store/ProductsContext'
-import { useContext } from 'react'
+import {useProducts} from '../../../store/ProductsContext'
 import {successToast} from '../../../UI/Toast/Toast'
 
 const OrderPlacedModal=()=>{
-    const {dispatch}=useContext(ProductsContext)
+    const {dispatch}=useProducts()
     
     return(
         <div className={classes["modal-page-container"]}>

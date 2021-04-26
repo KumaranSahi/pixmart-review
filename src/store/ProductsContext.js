@@ -1,14 +1,16 @@
-import {createContext,useEffect,useReducer} from 'react';
-import axios from 'axios';
+import {createContext,useEffect,useReducer,useContext,useState} from 'react';
+import axios from '../useAxios';
 import { infoToast, successToast, warningToast } from '../UI/Toast/Toast';
-import {AuthContext} from './AuthContext'
-import {useContext} from 'react'
+import {useAuth} from './AuthContext'
 import {useHistory} from 'react-router-dom'
 
 export const ProductsContext=createContext();
 
+export const useProducts=()=>useContext(ProductsContext)
+
 export const ProductsContextProvider=({children})=>{
-    const {userId,token}=useContext(AuthContext)
+    const [loading,setLoading]=useState(false)
+    const {userId,token}=useAuth()
     const {push}=useHistory()
     const config = {
         headers: {
@@ -16,6 +18,7 @@ export const ProductsContextProvider=({children})=>{
         }
     }
     const addItemToCart=async(productId)=>{
+        setLoading(true)
         try{
             if(token){
             const {data:{data,ok}}=await axios.post(`/api/carts/${userId}`,{
@@ -29,13 +32,16 @@ export const ProductsContextProvider=({children})=>{
                 infoToast("Please login to proceed further")
                 push("/login")
             }
+            setLoading(false)
         }catch(error){
             console.log(error)
             warningToast("cannot add item to cart")
+            setLoading(false)
         }
     }
 
     const removeItemFromCart=async (productId)=>{
+        setLoading(true)
         try{
             if(token){
             const {data:{data,ok}}=await axios.delete(`/api/carts/${userId}/products/${productId}`,config)
@@ -47,13 +53,16 @@ export const ProductsContextProvider=({children})=>{
                 infoToast("Please login to proceed further")
                 push("/login")
             }
+            setLoading(false)
         }catch(error){
             console.log(error)
             warningToast("Cannot remove item from cart")
+            setLoading(false)
         }
     }
 
     const changeQuantity=async (productId,quantity)=>{
+        setLoading(true)
         try{
             if(token){
             const {data:{data,ok}}=await axios.put(`/api/carts/${userId}/products/${productId}`,{quantity:quantity},config)
@@ -65,13 +74,16 @@ export const ProductsContextProvider=({children})=>{
                 infoToast("Please login to proceed further")
                 push("/login")
             }
+            setLoading(false)
         }catch(error){
             console.log(error)
             warningToast("Cannot update cart item")
+            setLoading(false)
         }
     }
 
     const addWishlist=async(productId)=>{
+        setLoading(true)
         try{
             if(token){
                 const {data:{data,ok}}=await axios.post(`/api/wishlists/${userId}`,{productId:productId},config)
@@ -83,13 +95,16 @@ export const ProductsContextProvider=({children})=>{
                     infoToast("Please login to proceed further")
                     push("/login")
                 }
+                setLoading(false)
         }catch(error){
             console.log(error)
             warningToast("Cannot add item to wishlist")
+            setLoading(false)
         }
     }
 
     const removeItemFromWishlist=async (productId)=>{
+        setLoading(true)
         try{
             if(token){
                 const {data:{data,ok}}=await axios.delete(`/api/wishlists/${userId}/products/${productId}`,config)
@@ -101,9 +116,11 @@ export const ProductsContextProvider=({children})=>{
                 infoToast("Please login to proceed further")
                 push("/login")
             }
+            setLoading(false)
         }catch(error){
             console.log(error)
             warningToast("Cannot add item to wishlist")
+            setLoading(false)
         }
     }
 
@@ -254,21 +271,6 @@ export const ProductsContextProvider=({children})=>{
                     sortby:"SORT_LOW_TO_HIGH",
                     filterByCatagory:null,
                 }
-            case "CLEAR_CART":
-                return{
-                    ...state,
-                    products:state.products.map(item=>({
-                        ...item,
-                        inCart:false,
-                        quantity:0
-                    })),
-                    cartItems:[],
-                    wishListItems:state.wishListItems.map(item=>({
-                        ...item,
-                        inCart:false,
-                        quantity:0
-                    }))
-                }
             default:
                 return state;
         }
@@ -341,7 +343,8 @@ export const ProductsContextProvider=({children})=>{
                 removeItemFromCart:removeItemFromCart,
                 changeQuantity:changeQuantity,
                 addWishlist:addWishlist,
-                removeItemFromWishlist:removeItemFromWishlist
+                removeItemFromWishlist:removeItemFromWishlist,
+                productLoading:loading
             }}
         >
             {children}

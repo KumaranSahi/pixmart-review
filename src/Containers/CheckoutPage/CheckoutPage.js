@@ -1,13 +1,12 @@
 import classes from './CheckoutPage.module.css';
-import {CheckoutContext} from '../../store/CheckoutContext'
-import { useContext } from 'react';
+import {useCheckout} from '../../store/CheckoutContext'
 import AddressPage from './AddressPage/AddressPage'
 import PaymentPage from './PaymentPage/PaymentPage'
 import OrderPlacedModal from './OrderPlacedModal/OrderPlacedModal'
 import OrderSummary from './OrderSummary/OrderSummary';
 
 const CheckoutPage=()=>{
-    const {currentState}=useContext(CheckoutContext);
+    const {currentState}=useCheckout();
     return(
         <div className={classes["checkout-container"]}>
             {currentState==="ADDRESSPAGE"&&<AddressPage/>}

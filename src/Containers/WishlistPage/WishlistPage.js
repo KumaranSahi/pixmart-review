@@ -1,10 +1,9 @@
 import classes from './WishlistPage.module.css'
-import {useContext} from 'react'
-import {ProductsContext} from '../../store/ProductsContext'
+import {useProducts} from '../../store/ProductsContext'
 import WishlistCard from './WishlistCard/WishlistCard'
 
 const WishlistPage=()=>{
-    const {wishListItems}=useContext(ProductsContext)
+    const {wishListItems}=useProducts()
     return(
         <div className={classes["wishlist-section"]}>
             {wishListItems.length>0?<ul>

@@ -1,11 +1,11 @@
 import classes from './LoginPage.module.css';
-import {useState,useContext,} from 'react'
-import {AuthContext} from '../../store/AuthContext'
+import {useState} from 'react'
+import {useAuth} from '../../store/AuthContext'
 import { warningToast } from '../../UI/Toast/Toast';
 
 const LoginPage=()=>{
 
-    const {signUpUser,signInUser,currentPage,setCurrentPage,changePassword}=useContext(AuthContext)
+    const {signUpUser,signInUser,currentPage,setCurrentPage,changePassword}=useAuth()
 
     const [userName,setUserName]=useState("")
     const [userNameValid,setUserNameValid]=useState(true)

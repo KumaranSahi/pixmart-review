@@ -1,16 +1,16 @@
 import classes from './PaymentPage.module.css'
 import {Radio, FormControlLabel, FormControl,RadioGroup} from '@material-ui/core';
-import {CheckoutContext} from '../../../store/CheckoutContext'
-import {ProductsContext} from '../../../store/ProductsContext'
-import {useContext,useState} from 'react'
+import {useCheckout} from '../../../store/CheckoutContext'
+import {useProducts} from '../../../store/ProductsContext'
+import {useState} from 'react'
 import CardDetails from './CardDetails/CardDetails'
 
 const PaymentPage=()=>{
 
     const [paymentMode,setPaymentMode]=useState("CREDITCARD")
 
-    const {userPaymentDetails,paymentDetails,deletePaymentDetails,dispatch}=useContext(CheckoutContext)
-    const {totalCost}=useContext(ProductsContext)
+    const {userPaymentDetails,paymentDetails,deletePaymentDetails,dispatch}=useCheckout()
+    const {totalCost}=useProducts()
     
     const [addPayment,setAddpayment]=useState(false)
 

@@ -1,12 +1,15 @@
-import {useReducer,createContext, useEffect,useContext} from 'react';
-import axios from 'axios'
-import {AuthContext} from './AuthContext'
+import {useReducer,createContext, useEffect,useContext,useState} from 'react';
+import axios from '../useAxios'
+import {useAuth} from './AuthContext'
 import { successToast, warningToast } from '../UI/Toast/Toast';
 
 export const CheckoutContext=createContext();
 
+export const useCheckout=()=>useContext(CheckoutContext)
+
 export const CheckoutContextProvider=({children})=>{
-    const {token,userId}=useContext(AuthContext)
+    const [loading,setLoading]=useState(false)
+    const {token,userId}=useAuth()
     
     const config = {
         headers: {
@@ -43,6 +46,7 @@ export const CheckoutContextProvider=({children})=>{
     },[token,userId])
 
     const addNewAddress=async (body)=>{
+        setLoading(true)
         try{
             const {data:{data}}=await axios.post(`/api/addresses/${userId}`,body,config)
             dispatch({
@@ -50,61 +54,75 @@ export const CheckoutContextProvider=({children})=>{
                 payload:[...data]
             })
             successToast("Address added")
+            setLoading(false)
         }catch(error){
             console.log(error);
             warningToast("Unable to add address")
+            setLoading(false)
         }
     }
 
     const deleteAddress=async (addressId)=>{
+        setLoading(true)
         try{
             const {data:{data}}=await axios.delete(`/api/addresses/${addressId}/users/${userId}`,config)
             dispatch({
                 type:"ADD_USER_ADDRESSES",
                 payload:[...data]
             })
+            setLoading(false)
             successToast("Address deleted")
         }catch(error){
             console.log(error);
+            setLoading(false)
             warningToast("unable to delete address")
         }
     }
 
     const addNewPayment=async (body)=>{
+        setLoading(true)
         try{
             const {data:{data}}=await axios.post(`/api/payments/${userId}`,body,config)
             dispatch({
                 type:"ADD_USER_PAYMENTS",
                 payload:[...data]
             })
+            setLoading(false)
             successToast("Payment detail added")
         }catch(error){
             console.log(error);
+            setLoading(false)
             warningToast("Unable to add Payment detail")
         }
     }
 
     const deletePaymentDetails=async (paymentId)=>{
+        setLoading(true)
         try{
             const {data:{data}}=await axios.delete(`/api/payments/${paymentId}/users/${userId}`,config)
             dispatch({
                 type:"ADD_USER_PAYMENTS",
                 payload:[...data]
             })
+            setLoading(false)
             successToast("Payment detail deleted")
         }catch(error){
             console.log(error);
+            setLoading(false)
             warningToast("Unable to delete Payment detail")
         }
     }
 
     const placeOrder=async (body)=>{
+        setLoading(true)
         try{
             await axios.post(`/api/orders/${userId}`,body,config)
             dispatch({type:"PLACE_ORDER"})
+            setLoading(false)
             successToast("Order placed successfully")
         }catch(error){
             console.log(error);
+            setLoading(false)
             warningToast("Unable to delete Payment detail")
         }
     }
@@ -178,7 +196,8 @@ export const CheckoutContextProvider=({children})=>{
                 deleteAddress:deleteAddress,
                 addNewPayment:addNewPayment,
                 deletePaymentDetails:deletePaymentDetails,
-                placeOrder:placeOrder
+                placeOrder:placeOrder,
+                checkoutLoading:loading
             }}
         >
             {children}

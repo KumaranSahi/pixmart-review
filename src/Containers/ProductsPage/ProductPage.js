@@ -1,12 +1,11 @@
-import { useContext } from 'react';
 import classes from './ProductPage.module.css';
-import {ProductsContext} from '../../store/ProductsContext';
+import {useProducts} from '../../store/ProductsContext';
 import ProductCard from './ProductCard/ProductCard';
 import Preferences from '../Preferences/Preferences';
 
 
 const ProductPage=()=>{
-    const {products}=useContext(ProductsContext);
+    const {products}=useProducts();
     
     return(
         <div className={classes["main-section"]}>

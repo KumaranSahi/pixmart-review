@@ -1,11 +1,11 @@
 import classes from './Avatar.module.css';
-import {useContext, useState} from 'react'
-import {AuthContext} from '../../../store/AuthContext'
+import {useState} from 'react'
+import {useAuth} from '../../../store/AuthContext'
 import profileImage from '../../../Assets/profileimage.jpg'
 import {Link,useLocation} from 'react-router-dom'
 
 const Avatar=()=>{
-    const {userName,signOutUser}=useContext(AuthContext)
+    const {userName,signOutUser}=useAuth()
 
     const [openDropdown,setOpenDropdown]=useState(false)
 

@@ -1,10 +1,9 @@
 import classes from "./Preferences.module.css";
 import {Radio, FormControlLabel, FormControl,Checkbox,RadioGroup} from '@material-ui/core';
-import {ProductsContext} from '../../store/ProductsContext'
-import { useContext } from "react";
+import {useProducts} from '../../store/ProductsContext'
 
 const Preferences=()=>{
-    const { hasDiscount, fastDelivery, includeOutOfStock,pixmartChoice,sortby,dispatch,filterByCatagory}=useContext(ProductsContext)
+    const { hasDiscount, fastDelivery, includeOutOfStock,pixmartChoice,sortby,dispatch,filterByCatagory}=useProducts()
     return(
         <>
             <FormControl component="fieldset">

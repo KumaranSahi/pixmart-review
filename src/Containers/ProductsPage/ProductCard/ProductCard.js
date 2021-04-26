@@ -1,12 +1,11 @@
 import classes from './ProductCard.module.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faStar,faCheckCircle,faHeart} from '@fortawesome/free-solid-svg-icons';
-import {ProductsContext} from '../../../store/ProductsContext'
-import { useContext } from 'react';
+import {useProducts} from '../../../store/ProductsContext'
 import {Link} from 'react-router-dom'
 
 const ProductCard=({id,name,image,hasDiscount,price,discount,rating,pixmartChoice,inCart,inWishlist,inStock})=>{
-    const {addItemToCart,addWishlist,wishListItems,cartItems}=useContext(ProductsContext);
+    const {addItemToCart,addWishlist,wishListItems,cartItems}=useProducts();
 
     const calculateDiscount=(price,discount)=>{
         let discountedAmount=price-Math.round((price*(discount/100)));

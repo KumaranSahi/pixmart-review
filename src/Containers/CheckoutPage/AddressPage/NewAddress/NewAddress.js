@@ -1,11 +1,11 @@
-import {useContext,useState,useRef,useEffect} from 'react'
+import {useState,useRef,useEffect} from 'react'
 import classes from './NewAddress.module.css'
-import {CheckoutContext} from '../../../../store/CheckoutContext';
+import {useCheckout} from '../../../../store/CheckoutContext';
 
 const NewAddress=({addressAdded})=>{
     const nameRef=useRef()
     
-    const {addNewAddress}=useContext(CheckoutContext);
+    const {addNewAddress}=useCheckout();
 
     const [name,setName]=useState("")
     const [nameValid,setNameValid]=useState(true)
