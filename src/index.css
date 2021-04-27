@@ -42,4 +42,7 @@ a{
   --neutral-mild:lightgrey;
   --white:white;
   --black:black;
+  --z-index-high:200;
+  --z-index-mid:100;
+  --z-index-low:1;
 }

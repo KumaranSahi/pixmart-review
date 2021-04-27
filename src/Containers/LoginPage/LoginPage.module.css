@@ -1,5 +1,5 @@
 .login-container{
-    margin-top: 70px;
+    margin-top: 4.375rem;
     height: 100%;
 }
 
@@ -66,7 +66,7 @@
 
 .error-text{
     font-style: italic;
-    color: red;
+    color: var(--failure);
     margin: 0;
 }
 
