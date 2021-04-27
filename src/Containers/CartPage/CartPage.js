@@ -1,13 +1,13 @@
 import classes from './CartPage.module.css';
-import {ProductsContext} from '../../store/ProductsContext'
-import { useContext, useEffect } from 'react';
+import {useProducts} from '../../store/ProductsContext'
+import { useEffect } from 'react';
 import CartCard from './CartCard/CartCard';
 import {Link} from 'react-router-dom'
-import {CheckoutContext} from '../../store/CheckoutContext'
+import {useCheckout} from '../../store/CheckoutContext'
 
 const CartPage=()=>{
-    const {cartItems,totalCost,dispatch}=useContext(ProductsContext)
-    const {dispatch:checkoutDispatch}=useContext(CheckoutContext)
+    const {cartItems,totalCost,dispatch}=useProducts()
+    const {dispatch:checkoutDispatch}=useCheckout()
 
     useEffect(()=>{
         dispatch({type:"CALCULATE_TOTAL_COST"})
