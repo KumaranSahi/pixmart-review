@@ -2,11 +2,10 @@ import classes from './MobileNavBar.module.css';
 import {faHome,faCartPlus,faHeart,faCameraRetro} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {NavLink} from 'react-router-dom';
-import {ProductsContext} from '../../../store/ProductsContext'
-import { useContext } from 'react';
+import {useProducts} from '../../../store/ProductsContext'
 
 const MobileNavBar=()=>{
-    const {cartItems,wishListItems,dispatch}=useContext(ProductsContext)
+    const {cartItems,wishListItems,dispatch}=useProducts()
 
     return (
         <div className={classes["mobile-nav-bar"]}>

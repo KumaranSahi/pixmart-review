@@ -1,12 +1,11 @@
-import { useContext } from 'react';
 import classes from './ProductPage.module.css';
-import {ProductsContext} from '../../store/ProductsContext';
+import {useProducts} from '../../store/ProductsContext';
 import ProductCard from './ProductCard/ProductCard';
 import Preferences from '../Preferences/Preferences';
 
 
 const ProductPage=()=>{
-    const {products}=useContext(ProductsContext);
+    const {products}=useProducts();
     
     return(
         <div className={classes["main-section"]}>
@@ -16,11 +15,11 @@ const ProductPage=()=>{
             <div className={classes["product-section"]}>
                 <ul>
                     {
-                        products&&products.map(({id,name,image,price,rating,hasDiscount,discount
+                        products&&products.map(({_id,name,image,price,rating,hasDiscount,discount
                             ,fastDelivery,inStock,pixmartChoice,inCart,inWishlist})=>(
-                            <li key={id}>
+                            <li key={_id}>
                                 <ProductCard
-                                    id={id}
+                                    id={_id}
                                     name={name}
                                     image={image}
                                     price= {price}

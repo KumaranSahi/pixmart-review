@@ -1,10 +1,9 @@
 import classes from './CatagoricalCard.module.css';
-import {ProductsContext} from '../../../../store/ProductsContext'
-import { useContext } from 'react';
+import {useProducts} from '../../../../store/ProductsContext'
 import {Link} from 'react-router-dom'
 
 const CatagoricalCard=({children,type,image})=>{
-    const {dispatch}=useContext(ProductsContext)
+    const {dispatch}=useProducts()
     
     return(
         <Link to="/product"

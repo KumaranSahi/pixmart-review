@@ -2,3 +2,7 @@
     padding: 1rem;
     padding-top: 0rem;
 }
+
+.payment-details h2{
+    font-weight: 300;
+}

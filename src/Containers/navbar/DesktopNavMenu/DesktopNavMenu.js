@@ -1,10 +1,9 @@
 import classes from './DesktopNavMenu.module.css'
 import {NavLink} from 'react-router-dom'
-import {useContext} from 'react';
-import {ProductsContext} from '../../../store/ProductsContext'
+import {useProducts} from '../../../store/ProductsContext'
 
 const DesktopNavMenu=()=>{
-    const {cartItems,wishListItems,dispatch}= useContext(ProductsContext)
+    const {cartItems,wishListItems,dispatch}= useProducts()
     return(
         <div className={classes["navigation-items-desktop"]}>
                 <p className={classes["nav-button"]}>

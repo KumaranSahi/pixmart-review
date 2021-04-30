@@ -1,19 +1,18 @@
 import classes from './WishlistPage.module.css'
-import {useContext} from 'react'
-import {ProductsContext} from '../../store/ProductsContext'
+import {useProducts} from '../../store/ProductsContext'
 import WishlistCard from './WishlistCard/WishlistCard'
 
 const WishlistPage=()=>{
-    const {wishListItems}=useContext(ProductsContext)
+    const {wishListItems}=useProducts()
     return(
         <div className={classes["wishlist-section"]}>
             {wishListItems.length>0?<ul>
                 {
-                    wishListItems.map(({id,name,image,price,rating,hasDiscount,discount
+                    wishListItems.map(({_id,name,image,price,rating,hasDiscount,discount
                             ,pixmartChoice,inWishlist,quantity,inCart,inStock})=>
-                        (<li key={id}>
+                        (<li key={_id}>
                             <WishlistCard
-                                id={id}
+                                id={_id}
                                 name={name}
                                 image={image}
                                 price={price}

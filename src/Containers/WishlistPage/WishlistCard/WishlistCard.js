@@ -1,13 +1,11 @@
 import classes from './WishlistCard.module.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faStar,faCheckCircle,faHeart} from '@fortawesome/free-solid-svg-icons';
-import {ProductsContext} from '../../../store/ProductsContext'
-import { useContext } from 'react';
+import {useProducts} from '../../../store/ProductsContext'
 import {Link} from 'react-router-dom'
-import {successToast,warningToast} from '../../../UI/Toast/Toast'
 
 const WishlistCard=({id,name,image,hasDiscount,price,discount,rating,pixmartChoice,inCart,inWishlist,inStock})=>{
-    const {dispatch}=useContext(ProductsContext);
+    const {addItemToCart,removeItemFromWishlist,cartItems}=useProducts();
 
     const calculateDiscount=(price,discount)=>{
         let discountedAmount=price-Math.round((price*(discount/100)));
@@ -50,7 +48,7 @@ const WishlistCard=({id,name,image,hasDiscount,price,discount,rating,pixmartChoi
                 </div>
                 <hr/>
                 <div className={classes['action-buttons']}>
-                    {inStock?inCart?
+                    {inStock?cartItems.some(({product:{_id}})=>_id===id)?
                         <button 
                             className={`${classes["button-solid"]} ${classes["button-solid-secondary"]}`}
                         >
@@ -61,8 +59,7 @@ const WishlistCard=({id,name,image,hasDiscount,price,discount,rating,pixmartChoi
                         <button 
                             className={`${classes["button-solid"]} ${classes["button-primary"]}`}
                             onClick={()=>{
-                                dispatch({type:"ADD_TO_CART",payload:id})
-                                successToast(`${name} Added to Cart`)
+                                addItemToCart(id)
                             }}
                         >
                         Add to cart
@@ -75,8 +72,7 @@ const WishlistCard=({id,name,image,hasDiscount,price,discount,rating,pixmartChoi
                     <button 
                             className={`${classes["button-outline"]} ${classes["button-secondary"]}`}
                             onClick={()=>{
-                                dispatch({type:"REMOVE_FROM_WISHLIST",payload:id})
-                                warningToast(`${name} Removed from Wishlist`)
+                                removeItemFromWishlist(id)
                             }}
                         >
                         Remove from wishlist

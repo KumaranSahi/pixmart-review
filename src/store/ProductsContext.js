@@ -1,23 +1,187 @@
-import {createContext,useEffect,useReducer} from 'react';
-import axios from 'axios';
+import {createContext,useEffect,useReducer,useContext,useState} from 'react';
+import axios from '../useAxios';
+import { infoToast, successToast, warningToast } from '../UI/Toast/Toast';
+import {useAuth} from './AuthContext'
+import {useHistory} from 'react-router-dom'
 
 export const ProductsContext=createContext();
 
+export const useProducts=()=>useContext(ProductsContext)
+
 export const ProductsContextProvider=({children})=>{
+    const [loading,setLoading]=useState(false)
+    const {userId,token}=useAuth()
+    const {push}=useHistory()
+    const config = {
+        headers: {
+            Authorization: "Bearer " + token
+        }
+    }
+    const addItemToCart=async(productId)=>{
+        setLoading(true)
+        try{
+            if(token){
+            const {data:{data,ok}}=await axios.post(`/api/carts/${userId}`,{
+                productId:productId
+            },config)
+            if(ok){
+                dispatch({type:"ADD_TO_CART",payload:[...data]})
+                successToast("Item added to cart")
+            }
+            }else{
+                infoToast("Please login to proceed further")
+                push("/login")
+            }
+            setLoading(false)
+        }catch(error){
+            console.log(error)
+            warningToast("cannot add item to cart")
+            setLoading(false)
+        }
+    }
+
+    const removeItemFromCart=async (productId)=>{
+        setLoading(true)
+        try{
+            if(token){
+            const {data:{data,ok}}=await axios.delete(`/api/carts/${userId}/products/${productId}`,config)
+            if(ok){
+                dispatch({type:"ADD_TO_CART",payload:[...data]})
+                successToast("Item removed from cart")
+            }
+            }else{
+                infoToast("Please login to proceed further")
+                push("/login")
+            }
+            setLoading(false)
+        }catch(error){
+            console.log(error)
+            warningToast("Cannot remove item from cart")
+            setLoading(false)
+        }
+    }
+
+    const changeQuantity=async (productId,quantity)=>{
+        setLoading(true)
+        try{
+            if(token){
+            const {data:{data,ok}}=await axios.put(`/api/carts/${userId}/products/${productId}`,{quantity:quantity},config)
+            if(ok){
+                dispatch({type:"ADD_TO_CART",payload:[...data]})
+                successToast("Cart item updated")
+            }
+            }else{
+                infoToast("Please login to proceed further")
+                push("/login")
+            }
+            setLoading(false)
+        }catch(error){
+            console.log(error)
+            warningToast("Cannot update cart item")
+            setLoading(false)
+        }
+    }
+
+    const addWishlist=async(productId)=>{
+        setLoading(true)
+        try{
+            if(token){
+                const {data:{data,ok}}=await axios.post(`/api/wishlists/${userId}`,{productId:productId},config)
+                if(ok){
+                    dispatch({type:"ADD_TO_WISHLIST",payload:[...data]})
+                    successToast("Item added to Wishlist")
+                }
+                }else{
+                    infoToast("Please login to proceed further")
+                    push("/login")
+                }
+                setLoading(false)
+        }catch(error){
+            console.log(error)
+            warningToast("Cannot add item to wishlist")
+            setLoading(false)
+        }
+    }
+
+    const removeItemFromWishlist=async (productId)=>{
+        setLoading(true)
+        try{
+            if(token){
+                const {data:{data,ok}}=await axios.delete(`/api/wishlists/${userId}/products/${productId}`,config)
+            if(ok){
+                dispatch({type:"ADD_TO_WISHLIST",payload:[...data]})
+                successToast("Item removed from cart")
+            }
+            }else{
+                infoToast("Please login to proceed further")
+                push("/login")
+            }
+            setLoading(false)
+        }catch(error){
+            console.log(error)
+            warningToast("Cannot add item to wishlist")
+            setLoading(false)
+        }
+    }
+
     useEffect(()=>{
         (async()=>{
-            const data=await axios.get("/api/products");
-            dispatch ({
-                type:"LOAD_PRODUCT_LIST",
-                payload:[...data.data.products]
-            })
+            try{
+                if(token){
+                    const {data:{data,ok}}=await axios.get(`/api/carts/${userId}`,config)
+                    if(ok){
+                        dispatch({
+                            type:"ADD_TO_CART",
+                            payload:[...data]
+                        })
+                    }
+                }
+            }catch(error){
+                console.log(error)
+                warningToast("Failed to load cart")
+            }
+        })()
+    },[token,userId])
+
+    useEffect(()=>{
+        (async()=>{
+            try{
+                if(token){
+                    const {data:{data,ok}}=await axios.get(`/api/wishlists/${userId}`,config)
+                    if(ok){
+                        dispatch({
+                            type:"ADD_TO_WISHLIST",
+                            payload:[...data]
+                        })
+                    }
+                }
+            }catch(error){
+                console.log(error)
+                warningToast("Failed to load wishlist")
+            }
+        })()
+    },[token,userId])
+
+    useEffect(()=>{
+        (async()=>{
+            try{
+            const {data:{data,ok}}=await axios.get("/api/products");
+            if(ok)
+                dispatch ({
+                    type:"LOAD_PRODUCT_LIST",
+                    payload:[...data]
+                })
+            }catch(error){
+                console.log(error)
+                warningToast("Failed to load products")
+            }
         })()
     },[])
 
-    const CALCULATE_TOTAL_COST=(acc,currValue)=>{
+    const calculateTotalCost=(acc,{product:{hasDiscount,price,discount},quantity})=>{
         let actualPrice;
-        currValue.hasDiscount?actualPrice=+currValue.price-Math.round((+currValue.price*(currValue.discount/100))):actualPrice=+currValue.price;
-        return acc+(actualPrice*currValue.quantity)
+        hasDiscount?actualPrice=+price-Math.round((+price*(discount/100))):actualPrice=+price;
+        return acc+(actualPrice*quantity)
     }
 
     const productListManipulation=(state,action)=>{
@@ -58,46 +222,24 @@ export const ProductsContextProvider=({children})=>{
                     hasDiscount:!state.hasDiscount
                 }
             case "ADD_TO_CART":
-                
                 return{
                     ...state,
-                    cartItems:[...state.cartItems,...state.products.filter(product=>product.id===action.payload).map(item=>({...item,inCart:true,quantity:1}))],
-                    products:state.products.map(product=>product.id===action.payload?{...product,inCart:true}:product),
-                    wishListItems:state.wishListItems.map(product=>product.id===action.payload?{...product,inCart:true}:product)
-                }
-            case "REMOVE_FROM_CART":
-                return{
-                    ...state,
-                    cartItems:state.cartItems.filter(product=>product.id!==action.payload),
-                    products:state.products.map(product=>product.id===action.payload?{...product,inCart:false,quantity:0}:product),
-                    wishListItems:state.wishListItems.map(product=>product.id===action.payload?{...product,inCart:false,quantity:0}:product)
+                    cartItems:[...action.payload]
                 }
             case "ADD_TO_WISHLIST":
                 return{
                     ...state,
-                    wishListItems:[...state.wishListItems,...state.products.filter(product=>product.id===action.payload).map(item=>({...item,inWishlist:true}))],
-                    products:state.products.map(product=>product.id===action.payload?{...product,inWishlist:true}:product)
+                    wishListItems:[...action.payload]
                 }
-            case "INCREMENT_QUANTITY":
+            case "CLEAR_CART":
                 return{
                     ...state,
-                    cartItems:state.cartItems.map(product=>product.id===action.payload?{...product,quantity:product.quantity+1}:product)
-                }
-            case "DECREMENT_QUANTITY":
-                return{
-                    ...state,
-                    cartItems:state.cartItems.map(product=>product.id===action.payload?{...product,quantity:product.quantity>1?product.quantity-1:product.quantity}:product)
-                }
-            case "REMOVE_FROM_WISHLIST":
-                return{
-                    ...state,
-                    wishListItems:state.wishListItems.filter(product=>product.id!==action.payload),
-                    products:state.products.map(product=>product.id===action.payload?{...product,inWishlist:false}:product)
+                    cartItems:[]
                 }
             case "CALCULATE_TOTAL_COST":
                 return{
                     ...state,
-                    totalCost:state.cartItems.reduce(CALCULATE_TOTAL_COST,0)
+                    totalCost:state.cartItems.reduce(calculateTotalCost,0)
                 }
             case "FILTER_ONLY_DSLR":
                 return{
@@ -128,21 +270,6 @@ export const ProductsContextProvider=({children})=>{
                     pixmartChoice:false,
                     sortby:"SORT_LOW_TO_HIGH",
                     filterByCatagory:null,
-                }
-            case "CLEAR_CART":
-                return{
-                    ...state,
-                    products:state.products.map(item=>({
-                        ...item,
-                        inCart:false,
-                        quantity:0
-                    })),
-                    cartItems:[],
-                    wishListItems:state.wishListItems.map(item=>({
-                        ...item,
-                        inCart:false,
-                        quantity:0
-                    }))
                 }
             default:
                 return state;
@@ -211,7 +338,13 @@ export const ProductsContextProvider=({children})=>{
                 pixmartChoice:state.pixmartChoice,
                 sortby:state.sortby,
                 totalCost:state.totalCost,
-                filterByCatagory:state.filterByCatagory
+                filterByCatagory:state.filterByCatagory,
+                addItemToCart:addItemToCart,
+                removeItemFromCart:removeItemFromCart,
+                changeQuantity:changeQuantity,
+                addWishlist:addWishlist,
+                removeItemFromWishlist:removeItemFromWishlist,
+                productLoading:loading
             }}
         >
             {children}

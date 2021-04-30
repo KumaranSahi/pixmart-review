@@ -3,11 +3,10 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faStar,faCheckCircle,faHeart} from '@fortawesome/free-solid-svg-icons';
 import {ProductsContext} from '../../../store/ProductsContext'
 import { useContext,useEffect } from 'react';
-import {warningToast} from '../../../UI/Toast/Toast'
 
 const CartCard=({id,name,image,hasDiscount,price,discount,rating,pixmartChoice,inCart,inWishlist,quantity})=>{
 
-    const {dispatch}=useContext(ProductsContext);
+    const {dispatch,removeItemFromCart,changeQuantity}=useContext(ProductsContext);
     useEffect(()=>{
         dispatch({type:"CALCULATE_TOTAL_COST"})
     },[quantity,dispatch])
@@ -56,7 +55,7 @@ const CartCard=({id,name,image,hasDiscount,price,discount,rating,pixmartChoice,i
                     <div className={classes['quantity-buttons']}>
                         <button 
                             className={`${classes["button-solid"]} ${classes["button-primary"]}`}
-                            onClick={()=>dispatch({type:"DECREMENT_QUANTITY",payload:id})}
+                            onClick={()=>quantity>1&&changeQuantity(id,quantity-1)}
                         >
                             -
                         </button>
@@ -65,7 +64,7 @@ const CartCard=({id,name,image,hasDiscount,price,discount,rating,pixmartChoice,i
                         </p>
                         <button 
                             className={`${classes["button-solid"]} ${classes["button-primary"]}`}
-                            onClick={()=>dispatch({type:"INCREMENT_QUANTITY",payload:id})}
+                            onClick={()=>changeQuantity(id,quantity+1)}
                         >
                             +
                         </button>
@@ -73,8 +72,7 @@ const CartCard=({id,name,image,hasDiscount,price,discount,rating,pixmartChoice,i
                     <button 
                         className={`${classes["button-solid"]} ${classes["button-solid-secondary"]}`}
                         onClick={()=>{
-                            dispatch({type:"REMOVE_FROM_CART",payload:id})
-                            warningToast(`${name} Removed from cart`)
+                            removeItemFromCart(id)
                         }}
                     >
                     Remove from cart

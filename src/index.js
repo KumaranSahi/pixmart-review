@@ -4,10 +4,8 @@ import 'react-toastify/dist/ReactToastify.css'
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import setupMockServer from './api/mock.server'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
-setupMockServer();
 
 const theme = createMuiTheme({
   palette: {
