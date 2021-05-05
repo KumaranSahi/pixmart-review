@@ -22,7 +22,8 @@ export const ProductsContextProvider=({children})=>{
         try{
             if(token){
             const {data:{data,ok}}=await axios.post(`/api/carts/${userId}`,{
-                productId:productId
+                productId:productId,
+                quantity:1
             },config)
             if(ok){
                 dispatch({type:"ADD_TO_CART",payload:[...data]})
