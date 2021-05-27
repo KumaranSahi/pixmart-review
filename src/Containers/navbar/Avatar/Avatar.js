@@ -43,9 +43,9 @@ const Avatar = () => {
       </div>
     );
   } else {
-    avatar = pathname !== "/login" && (
+    avatar = pathname !== "/signin" && (
       <div className={classes["name-avatar-container"]}>
-        <Link to="/login">Login</Link>
+        <Link to="/signin">Login</Link>
       </div>
     );
   }

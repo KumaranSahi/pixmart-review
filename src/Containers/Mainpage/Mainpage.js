@@ -4,7 +4,7 @@ import CartPage from "../CartPage/CartPage";
 import WishlistPage from "../WishlistPage/WishlistPage";
 import LandingPage from "../LandingPage/LandingPage";
 import CheckoutPage from "../CheckoutPage/CheckoutPage";
-import LoginPage from "../LoginPage/LoginPage";
+import {SigninPage} from "../SigninPage/SigninPage";
 
 import { Route, Switch, Redirect } from "react-router-dom";
 import MobileNavBar from "./MobileNavBar/MobileNavBar";
@@ -13,6 +13,7 @@ import { useCheckout } from "../../Store/CheckoutContext";
 import { useProducts } from "../../Store/ProductsContext";
 
 import Spinner from "../../UI/Spinner/Spinner";
+import classes from "./Mainpage.module.css"
 
 const PrivateLink = ({ ...props }) => {
   const { token } = useAuth();
@@ -32,15 +33,17 @@ const Mainpage = () => {
     <div>
       {(authLoading || checkoutLoading || productLoading) && <Spinner />}
       <Navbar />
-      <Switch>
-        <PrivateLink path="/cart" exact component={CartPage} />
-        <PrivateLink path="/wishlist" exact component={WishlistPage} />
-        <PrivateLink path="/checkout" exact component={CheckoutPage} />
-        <LockLogin path="/login" exact component={LoginPage} />
-        <Route path="/product" exact component={ProductPage} />
-        <Route path="/" exact component={LandingPage} />
-      </Switch>
-      <MobileNavBar />
+      <div className={classes["main-container"]}>
+        <Switch>
+          <PrivateLink path="/cart" exact component={CartPage} />
+          <PrivateLink path="/wishlist" exact component={WishlistPage} />
+          <PrivateLink path="/checkout" exact component={CheckoutPage} />
+          <LockLogin path="/signin" exact component={SigninPage} />
+          <Route path="/product" exact component={ProductPage} />
+          <Route path="/" exact component={LandingPage} />
+        </Switch>
+        <MobileNavBar />
+      </div>
     </div>
   );
 };
