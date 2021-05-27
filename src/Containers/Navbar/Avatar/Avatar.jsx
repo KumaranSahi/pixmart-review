@@ -14,7 +14,7 @@ export const Avatar = () => {
   
   let avatar = pathname !== "/signin" && (
     <div className={classes["name-avatar-container"]}>
-      <Link to="/signin">Login</Link>
+      <Link to="/signin" style={{marginTop:"1.5rem"}}>Login</Link>
     </div>
   );
 

@@ -2,7 +2,7 @@ import classes from "./CatagoricalCard.module.css";
 import { useProducts } from "../../../../Store/ProductsContext";
 import { Link } from "react-router-dom";
 
-const CatagoricalCard = ({ children, type, image }) => {
+export const CatagoricalCard = ({ children, type, image }) => {
   const { dispatch } = useProducts();
 
   return (
@@ -16,5 +16,3 @@ const CatagoricalCard = ({ children, type, image }) => {
     </Link>
   );
 };
-
-export default CatagoricalCard;

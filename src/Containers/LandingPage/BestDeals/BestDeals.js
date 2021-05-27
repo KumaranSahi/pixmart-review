@@ -2,7 +2,7 @@ import classes from "./BestDeals.module.css";
 import { Link } from "react-router-dom";
 import { useProducts } from "../../../Store/ProductsContext";
 
-const BestDeals = () => {
+export const BestDeals = () => {
   const { dispatch } = useProducts();
 
   return (
@@ -18,5 +18,3 @@ const BestDeals = () => {
     </div>
   );
 };
-
-export default BestDeals;

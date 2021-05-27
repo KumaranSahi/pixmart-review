@@ -2,7 +2,7 @@ import classes from './LandingImage.module.css'
 import logo from '../../../Assets/mk logo finD.png'
 import {Link} from 'react-router-dom'
 
-const LandingImage=()=>{
+export const LandingImage=()=>{
     return(
         <div className={classes["landing-image"]}>
             <h1>
@@ -20,5 +20,3 @@ const LandingImage=()=>{
         </div>
     )
 }
-
-export default LandingImage;
