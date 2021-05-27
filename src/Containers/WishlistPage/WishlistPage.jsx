@@ -1,8 +1,8 @@
 import classes from "./WishlistPage.module.css";
 import { useProducts } from "../../Store";
-import WishlistCard from "./WishlistCard/WishlistCard";
+import {WishlistCard} from "./WishlistCard/WishlistCard";
 
-const WishlistPage = () => {
+export const WishlistPage = () => {
   const { wishListItems } = useProducts();
   return (
     <div className={classes["wishlist-section"]}>
@@ -48,5 +48,3 @@ const WishlistPage = () => {
     </div>
   );
 };
-
-export default WishlistPage;

@@ -9,7 +9,7 @@ import { useProducts } from "../../../Store";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../../Store";
 
-const WishlistCard = ({
+export const WishlistCard = ({
   id,
   name,
   image,
@@ -130,5 +130,3 @@ const WishlistCard = ({
     </div>
   );
 };
-
-export default WishlistCard;
