@@ -1,21 +1,21 @@
-import './App.css';
-import MainPage from './Containers/Mainpage/Mainpage'
-import {BrowserRouter} from 'react-router-dom'
-import {AuthProvider} from './store/AuthContext'
-import {ToastContainer} from 'react-toastify'
+import "./App.css";
+import MainPage from "./Containers/Mainpage/Mainpage";
+import { BrowserRouter } from "react-router-dom";
+import { AuthProvider } from "./Store/AuthReducer/AuthContext";
+import { ToastContainer } from "react-toastify";
 
-import {ProductsContextProvider} from './store/ProductsContext'
-import {CheckoutContextProvider} from './store/CheckoutContext'
+import { ProductsContextProvider } from "./Store/ProductsContext";
+import { CheckoutContextProvider } from "./Store/CheckoutContext";
 
 function App() {
   return (
     <BrowserRouter>
-    <AuthProvider>
+      <AuthProvider>
         <ProductsContextProvider>
           <CheckoutContextProvider>
             <div>
-              <MainPage/>
-              <ToastContainer/>
+              <MainPage />
+              <ToastContainer />
             </div>
           </CheckoutContextProvider>
         </ProductsContextProvider>

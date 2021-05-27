@@ -1,6 +1,6 @@
 import {useReducer,createContext, useEffect,useContext,useState} from 'react';
 import axios from '../useAxios'
-import {useAuth} from './AuthContext'
+import {useAuth} from './AuthReducer/AuthContext'
 import { successToast, warningToast } from '../UI/Toast/Toast';
 
 export const CheckoutContext=createContext();

@@ -1,7 +1,7 @@
 import {createContext,useEffect,useReducer,useContext,useState} from 'react';
 import axios from '../useAxios';
 import { infoToast, successToast, warningToast } from '../UI/Toast/Toast';
-import {useAuth} from './AuthContext'
+import {useAuth} from './AuthReducer/AuthContext'
 import {useHistory} from 'react-router-dom'
 
 export const ProductsContext=createContext();
