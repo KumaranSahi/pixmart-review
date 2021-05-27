@@ -1,7 +1,7 @@
 import classes from "./ProductPage.module.css";
 import { useProducts } from "../../Store";
 import ProductCard from "./ProductCard/ProductCard";
-import Preferences from "../Preferences/Preferences";
+import {Preferences} from "../Preferences/Preferences";
 
 const ProductPage = () => {
   const { products } = useProducts();

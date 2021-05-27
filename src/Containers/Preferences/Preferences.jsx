@@ -8,7 +8,7 @@ import {
 } from "@material-ui/core";
 import { useProducts } from "../../Store";
 
-const Preferences = () => {
+export const Preferences = () => {
   const {
     hasDiscount,
     fastDelivery,
@@ -20,6 +20,16 @@ const Preferences = () => {
   } = useProducts();
   return (
     <>
+      <button
+        className={`${classes["button-solid"]} ${classes["button-primary"]}`}
+        onClick={() =>
+          productDispatch({
+            type: "CLEAR_FILTERS",
+          })
+        }
+      >
+        Clear Filters
+      </button>
       <FormControl component="fieldset">
         <h2 className={classes["field-title"]}>Sort by price:</h2>
         <RadioGroup
@@ -173,5 +183,3 @@ const Preferences = () => {
     </>
   );
 };
-
-export default Preferences;
