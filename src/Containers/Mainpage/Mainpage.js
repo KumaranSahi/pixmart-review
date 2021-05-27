@@ -1,10 +1,10 @@
-import {Navbar} from "../Navbar/Navbar";
+import { Navbar } from "../Navbar/Navbar";
 import ProductPage from "../ProductsPage/ProductPage";
-import CartPage from "../CartPage/CartPage";
+import { CartPage } from "../CartPage/CartPage";
 import WishlistPage from "../WishlistPage/WishlistPage";
-import {LandingPage} from "../LandingPage/LandingPage";
+import { LandingPage } from "../LandingPage/LandingPage";
 import CheckoutPage from "../CheckoutPage/CheckoutPage";
-import {SigninPage} from "../SigninPage/SigninPage";
+import { SigninPage } from "../SigninPage/SigninPage";
 
 import { Route, Switch, Redirect } from "react-router-dom";
 import MobileNavBar from "./MobileNavBar/MobileNavBar";
@@ -13,7 +13,7 @@ import { useCheckout } from "../../Store";
 import { useProducts } from "../../Store";
 
 import Spinner from "../../UI/Spinner/Spinner";
-import classes from "./Mainpage.module.css"
+import classes from "./Mainpage.module.css";
 
 const PrivateLink = ({ ...props }) => {
   const { token } = useAuth();

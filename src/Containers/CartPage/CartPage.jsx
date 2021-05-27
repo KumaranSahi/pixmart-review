@@ -1,11 +1,10 @@
 import classes from "./CartPage.module.css";
-import { useProducts } from "../../Store";
 import { useEffect } from "react";
-import CartCard from "./CartCard/CartCard";
+import { CartCard } from "./CartCard/CartCard";
 import { Link } from "react-router-dom";
-import { useCheckout } from "../../Store";
+import { useCheckout, useProducts } from "../../Store";
 
-const CartPage = () => {
+export const CartPage = () => {
   const { cartItems, totalCost, productDispatch } = useProducts();
   const { checkoutDispatch } = useCheckout();
 
@@ -71,5 +70,3 @@ const CartPage = () => {
     </div>
   );
 };
-
-export default CartPage;
