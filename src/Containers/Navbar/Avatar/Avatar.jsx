@@ -4,13 +4,20 @@ import { useAuth } from "../../../Store/AuthReducer/AuthContext";
 import profileImage from "../../../Assets/profileimage.jpg";
 import { Link, useLocation } from "react-router-dom";
 
-const Avatar = () => {
-  const { userName, signOutUser,authDispatch } = useAuth();
+export const Avatar = () => {
+  const { userName, signOutUser, authDispatch } = useAuth();
 
   const [openDropdown, setOpenDropdown] = useState(false);
 
-  let avatar = null;
   let { pathname } = useLocation();
+
+  
+  let avatar = pathname !== "/signin" && (
+    <div className={classes["name-avatar-container"]}>
+      <Link to="/signin">Login</Link>
+    </div>
+  );
+
   if (userName) {
     avatar = (
       <div className={classes["name-avatar-container"]}>
@@ -42,15 +49,7 @@ const Avatar = () => {
         </div>
       </div>
     );
-  } else {
-    avatar = pathname !== "/signin" && (
-      <div className={classes["name-avatar-container"]}>
-        <Link to="/signin">Login</Link>
-      </div>
-    );
   }
 
   return <div>{avatar}</div>;
 };
-
-export default Avatar;

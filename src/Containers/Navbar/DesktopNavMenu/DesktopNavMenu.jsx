@@ -2,7 +2,7 @@ import classes from "./DesktopNavMenu.module.css";
 import { NavLink } from "react-router-dom";
 import { useProducts } from "../../../Store/ProductsContext";
 
-const DesktopNavMenu = () => {
+export const DesktopNavMenu = () => {
   const { cartItems, wishListItems, dispatch } = useProducts();
   return (
     <div className={classes["navigation-items-desktop"]}>
@@ -40,5 +40,3 @@ const DesktopNavMenu = () => {
     </div>
   );
 };
-
-export default DesktopNavMenu;

@@ -1,4 +1,4 @@
-import Navbar from "../navbar/navbar";
+import {Navbar} from "../Navbar/Navbar";
 import ProductPage from "../ProductsPage/ProductPage";
 import CartPage from "../CartPage/CartPage";
 import WishlistPage from "../WishlistPage/WishlistPage";
@@ -17,10 +17,10 @@ import classes from "./Mainpage.module.css"
 
 const PrivateLink = ({ ...props }) => {
   const { token } = useAuth();
-  return token ? <Route {...props} /> : <Redirect to="/login" />;
+  return token ? <Route {...props} /> : <Redirect to="/signin" />;
 };
 
-const LockLogin = ({ ...props }) => {
+const LockSignin = ({ ...props }) => {
   const { token } = useAuth();
   return token ? <Redirect to="/" /> : <Route {...props} />;
 };
@@ -38,7 +38,7 @@ const Mainpage = () => {
           <PrivateLink path="/cart" exact component={CartPage} />
           <PrivateLink path="/wishlist" exact component={WishlistPage} />
           <PrivateLink path="/checkout" exact component={CheckoutPage} />
-          <LockLogin path="/signin" exact component={SigninPage} />
+          <LockSignin path="/signin" exact component={SigninPage} />
           <Route path="/product" exact component={ProductPage} />
           <Route path="/" exact component={LandingPage} />
         </Switch>
