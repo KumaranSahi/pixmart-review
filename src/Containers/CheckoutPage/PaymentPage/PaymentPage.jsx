@@ -18,6 +18,7 @@ export const PaymentPage = () => {
     deletePaymentDetails,
     checkoutDispatch,
     setCheckoutLoading,
+    checkoutLoading
   } = useCheckout();
   const { totalCost } = useProducts();
   const { token } = useAuth();
@@ -87,6 +88,7 @@ export const PaymentPage = () => {
                             <p>{payment.cvv}</p>
                             <button
                               className={`${classes["button-solid"]} ${classes["button-secondary"]}`}
+                              disabled={checkoutLoading}
                               onClick={() =>
                                 deletePaymentDetails({
                                   paymentId: payment._id,
@@ -109,6 +111,7 @@ export const PaymentPage = () => {
             {paymentMode === "CREDITCARD" && (
               <button
                 onClick={() => setAddpayment((flag) => !flag)}
+                disabled={checkoutLoading}
                 className={`${classes["button-solid"]} ${classes["button-primary"]} ${classes["button-add-new-payment"]}`}
               >
                 Add new payment
@@ -151,6 +154,7 @@ export const PaymentPage = () => {
                             <p>{payment.cvv}</p>
                             <button
                               className={`${classes["button-solid"]} ${classes["button-secondary"]}`}
+                              disabled={checkoutLoading}
                               onClick={() =>
                                 deletePaymentDetails({
                                   paymentId: payment._id,
@@ -173,6 +177,7 @@ export const PaymentPage = () => {
             {paymentMode === "DEBITCARD" && (
               <button
                 onClick={() => setAddpayment((flag) => !flag)}
+                disabled={checkoutLoading}
                 className={`${classes["button-solid"]} ${classes["button-primary"]} ${classes["button-add-new-payment"]}`}
               >
                 Add new payment
@@ -195,6 +200,7 @@ export const PaymentPage = () => {
       {paymentDetails && (
         <button
           className={`${classes["button-solid"]} ${classes["button-primary"]} ${classes["button-continue"]}`}
+          disabled={checkoutLoading}
           onClick={() => checkoutDispatch({ type: "MOVE_TO_ORDER_SUMMARY" })}
         >
           Continue

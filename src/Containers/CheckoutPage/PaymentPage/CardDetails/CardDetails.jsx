@@ -15,7 +15,12 @@ const CardDetails = ({ paymentMode, setAddpayment }) => {
     cardDetailsDispatch,
   } = useCardDetailsReducer();
 
-  const { addNewPayment, checkoutDispatch, setCheckoutLoading } = useCheckout();
+  const {
+    addNewPayment,
+    checkoutDispatch,
+    setCheckoutLoading,
+    checkoutLoading,
+  } = useCheckout();
   const { token } = useAuth();
 
   const cardNumberEntered = (event) => {
@@ -34,7 +39,7 @@ const CardDetails = ({ paymentMode, setAddpayment }) => {
   const expirationDateAdded = (event) => {
     if (!isNaN(event))
       cardDetailsDispatch({ type: "ADD_EXPIRATION_DATE", payload: event });
-    if(expirationDate.length===4)
+    if (expirationDate.length === 4)
       cardDetailsDispatch({
         type: "ADD_EXPIRATION_DATE",
         payload: expirationDate.replace(/^(\d{2})(\d{2})$/, "$1/$2"),
@@ -159,6 +164,7 @@ const CardDetails = ({ paymentMode, setAddpayment }) => {
       )}
       <button
         type="submit"
+        disabled={checkoutLoading}
         className={`${classes["button-solid"]} ${classes["button-secondary"]}`}
       >
         Add
