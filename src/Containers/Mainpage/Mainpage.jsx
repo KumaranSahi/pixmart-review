@@ -1,5 +1,5 @@
 import { Navbar } from "../Navbar/Navbar";
-import ProductPage from "../ProductsPage/ProductPage";
+import { ProductPage } from "../ProductsPage/ProductPage";
 import { CartPage } from "../CartPage/CartPage";
 import WishlistPage from "../WishlistPage/WishlistPage";
 import { LandingPage } from "../LandingPage/LandingPage";

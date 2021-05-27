@@ -9,7 +9,7 @@ import { useProducts } from "../../../Store";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../../Store";
 
-const ProductCard = ({
+export const ProductCard = ({
   id,
   name,
   image,
@@ -18,7 +18,6 @@ const ProductCard = ({
   discount,
   rating,
   pixmartChoice,
-  inCart,
   inWishlist,
   inStock,
 }) => {
@@ -139,5 +138,3 @@ const ProductCard = ({
     </div>
   );
 };
-
-export default ProductCard;

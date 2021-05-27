@@ -1,9 +1,9 @@
 import classes from "./ProductPage.module.css";
 import { useProducts } from "../../Store";
-import ProductCard from "./ProductCard/ProductCard";
-import {Preferences} from "../Preferences/Preferences";
+import { ProductCard } from "./ProductCard/ProductCard";
+import { Preferences } from "../Preferences/Preferences";
 
-const ProductPage = () => {
+export const ProductPage = () => {
   const { products } = useProducts();
   return (
     <div className={classes["main-section"]}>
@@ -51,5 +51,3 @@ const ProductPage = () => {
     </div>
   );
 };
-
-export default ProductPage;
