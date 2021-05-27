@@ -25,6 +25,7 @@ export const CartCard = ({
     changeQuantity,
     setProductsLoading,
     productDispatch,
+    productLoading,
   } = useProducts();
   const { token } = useAuth();
 
@@ -86,6 +87,7 @@ export const CartCard = ({
           <div className={classes["quantity-buttons"]}>
             <button
               className={`${classes["button-solid"]} ${classes["button-primary"]}`}
+              disabled={productLoading}
               onClick={() =>
                 quantity > 1 &&
                 changeQuantity({
@@ -102,6 +104,7 @@ export const CartCard = ({
             <p>{quantity}</p>
             <button
               className={`${classes["button-solid"]} ${classes["button-primary"]}`}
+              disabled={productLoading}
               onClick={() =>
                 changeQuantity({
                   productId: id,
@@ -117,6 +120,7 @@ export const CartCard = ({
           </div>
           <button
             className={`${classes["button-solid"]} ${classes["button-solid-secondary"]}`}
+            disabled={productLoading}
             onClick={() => {
               removeItemFromCart({
                 productId: id,

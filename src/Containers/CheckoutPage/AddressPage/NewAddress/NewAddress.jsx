@@ -6,7 +6,12 @@ import { useNewAddressReducer } from "./NewAddressReducer";
 const NewAddress = ({ addressAdded }) => {
   const nameRef = useRef();
 
-  const { addNewAddress, setCheckoutLoading, checkoutDispatch } = useCheckout();
+  const {
+    addNewAddress,
+    setCheckoutLoading,
+    checkoutDispatch,
+    checkoutLoading,
+  } = useCheckout();
   const { token } = useAuth();
 
   const {
@@ -236,6 +241,7 @@ const NewAddress = ({ addressAdded }) => {
       </label>
       <button
         className={`${classes["button-solid"]} ${classes["button-primary"]}`}
+        disabled={checkoutLoading}
         type="submit"
       >
         Add Address

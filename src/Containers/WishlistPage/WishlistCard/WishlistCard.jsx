@@ -18,7 +18,6 @@ export const WishlistCard = ({
   discount,
   rating,
   pixmartChoice,
-  inCart,
   inWishlist,
   inStock,
 }) => {
@@ -28,6 +27,7 @@ export const WishlistCard = ({
     cartItems,
     productDispatch,
     setProductsLoading,
+    productLoading,
   } = useProducts();
   const { token } = useAuth();
 
@@ -91,6 +91,7 @@ export const WishlistCard = ({
               </button>
             ) : (
               <button
+                disabled={productLoading}
                 className={`${classes["button-solid"]} ${classes["button-primary"]}`}
                 onClick={() => {
                   addItemToCart({
@@ -114,6 +115,7 @@ export const WishlistCard = ({
 
           <button
             className={`${classes["button-outline"]} ${classes["button-secondary"]}`}
+            disabled={productLoading}
             onClick={() => {
               removeItemFromWishlist({
                 productId: id,

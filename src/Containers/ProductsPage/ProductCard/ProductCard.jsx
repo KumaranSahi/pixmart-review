@@ -28,6 +28,7 @@ export const ProductCard = ({
     cartItems,
     productDispatch,
     setProductsLoading,
+    productLoading,
   } = useProducts();
   const { token } = useAuth();
 
@@ -91,6 +92,7 @@ export const ProductCard = ({
               </button>
             ) : (
               <button
+                disabled={productLoading}
                 className={`${classes["button-solid"]} ${classes["button-primary"]}`}
                 onClick={() => {
                   addItemToCart({
@@ -120,6 +122,7 @@ export const ProductCard = ({
             </button>
           ) : (
             <button
+              disabled={productLoading}
               className={`${classes["button-outline"]} ${classes["button-secondary"]}`}
               onClick={() => {
                 addWishlist({

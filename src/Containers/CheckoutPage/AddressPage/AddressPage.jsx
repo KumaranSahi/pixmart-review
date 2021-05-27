@@ -16,6 +16,7 @@ export const AddressPage = () => {
     address,
     deleteAddress,
     setCheckoutLoading,
+    checkoutLoading,
   } = useCheckout();
   const [addNewAddress, setAddNewAddress] = useState(false);
   const { token } = useAuth();
@@ -50,6 +51,7 @@ export const AddressPage = () => {
                   <p>{address.address}</p>
                   <p>{address.landmark}</p>
                   <button
+                    disabled={checkoutLoading}
                     className={`${classes["button-solid"]} ${classes["button-secondary"]}`}
                     onClick={() =>
                       deleteAddress({
@@ -69,6 +71,7 @@ export const AddressPage = () => {
         </RadioGroup>
       </FormControl>
       <button
+        disabled={checkoutLoading}
         className={`${classes["button-solid"]} ${classes["button-primary"]}`}
         onClick={() => setAddNewAddress((status) => !status)}
       >
@@ -79,6 +82,7 @@ export const AddressPage = () => {
       )}
       {address && (
         <button
+          disabled={checkoutLoading}
           className={`${classes["button-solid"]} ${classes["button-primary"]} ${classes["proceed-further-button"]}`}
           onClick={() => {
             checkoutDispatch({
