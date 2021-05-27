@@ -1,27 +1,27 @@
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import classes from "./NewAddress.module.css";
 import { useAuth, useCheckout } from "../../../../Store";
+import { useNewAddressReducer } from "./NewAddressReducer";
 
 const NewAddress = ({ addressAdded }) => {
   const nameRef = useRef();
 
   const { addNewAddress, setCheckoutLoading, checkoutDispatch } = useCheckout();
-  const {token}=useAuth()
+  const { token } = useAuth();
 
-  const [name, setName] = useState("");
-  const [nameValid, setNameValid] = useState(true);
-
-  const [number, setNumber] = useState("");
-  const [numberValid, setNumberValid] = useState(true);
-
-  const [pin, setPin] = useState("");
-  const [pinValid, setPinValid] = useState(true);
-
-  const [address, setAddress] = useState("");
-  const [addressValid, setAddressValid] = useState(true);
-
-  const [landmark, setLandmark] = useState("");
-  const [landmarkValid, setLandmarkValid] = useState(true);
+  const {
+    name,
+    nameValid,
+    number,
+    numberValid,
+    pin,
+    pinValid,
+    address,
+    addressValid,
+    landmark,
+    landmarkValid,
+    newAddressDispatch,
+  } = useNewAddressReducer();
 
   useEffect(() => {
     nameRef.current.focus();
@@ -29,46 +29,76 @@ const NewAddress = ({ addressAdded }) => {
 
   const validateName = (value) => {
     if (value.length > 0) {
-      setNameValid(true);
+      newAddressDispatch({
+        type: "SET_NAME_VALID",
+        payload: true,
+      });
       return true;
     }
-    setNameValid(false);
+    newAddressDispatch({
+      type: "SET_NAME_VALID",
+      payload: false,
+    });
     return false;
   };
 
   const validateNumber = (value) => {
     if (value.length === 10) {
-      setNumberValid(true);
+      newAddressDispatch({
+        type: "SET_NUMBER_VALID",
+        payload: true,
+      });
       return true;
     }
-    setNumberValid(false);
+    newAddressDispatch({
+      type: "SET_NUMBER_VALID",
+      payload: false,
+    });
     return false;
   };
 
   const validatePin = (value) => {
     if (value.length === 6) {
-      setPinValid(true);
+      newAddressDispatch({
+        type: "SET_PIN_VALID",
+        payload: true,
+      });
       return true;
     }
-    setPinValid(false);
+    newAddressDispatch({
+      type: "SET_PIN_VALID",
+      payload: false,
+    });
     return false;
   };
 
   const validateAddress = (value) => {
     if (value.length >= 20) {
-      setAddressValid(true);
+      newAddressDispatch({
+        type: "SET_ADDRESS_VALID",
+        payload: true,
+      });
       return true;
     }
-    setAddressValid(false);
+    newAddressDispatch({
+      type: "SET_ADDRESS_VALID",
+      payload: false,
+    });
     return false;
   };
 
   const validateLandmark = (value) => {
     if (value.length >= 5) {
-      setLandmarkValid(true);
+      newAddressDispatch({
+        type: "SET_LANDMARK_VALID",
+        payload: true,
+      });
       return true;
     }
-    setLandmarkValid(false);
+    newAddressDispatch({
+      type: "SET_LANDMARK_VALID",
+      payload: false,
+    });
     return false;
   };
 
@@ -92,7 +122,7 @@ const NewAddress = ({ addressAdded }) => {
           },
           setLoading: setCheckoutLoading,
           dispatch: checkoutDispatch,
-          token:token,
+          token: token,
         });
         addressAdded();
       }
@@ -110,7 +140,12 @@ const NewAddress = ({ addressAdded }) => {
           ref={nameRef}
           value={name}
           required
-          onChange={(event) => setName(event.target.value)}
+          onChange={(event) =>
+            newAddressDispatch({
+              type: "ADD_NAME",
+              payload: event.target.value,
+            })
+          }
         />
         {!nameValid && (
           <p className={classes["error-text"]}>Please enter a valid name</p>
@@ -124,7 +159,12 @@ const NewAddress = ({ addressAdded }) => {
           placeholder="Mobile Number"
           value={number}
           required
-          onChange={(event) => setNumber(event.target.value)}
+          onChange={(event) =>
+            newAddressDispatch({
+              type: "ADD_NUMBER",
+              payload: event.target.value,
+            })
+          }
         />
         {!numberValid && (
           <p className={classes["error-text"]}>
@@ -140,7 +180,12 @@ const NewAddress = ({ addressAdded }) => {
           placeholder="PIN code"
           value={pin}
           required
-          onChange={(event) => setPin(event.target.value)}
+          onChange={(event) =>
+            newAddressDispatch({
+              type: "ADD_PIN",
+              payload: event.target.value,
+            })
+          }
         />
         {!pinValid && (
           <p className={classes["error-text"]}>
@@ -155,7 +200,12 @@ const NewAddress = ({ addressAdded }) => {
           placeholder="Address"
           value={address}
           required
-          onChange={(event) => setAddress(event.target.value)}
+          onChange={(event) =>
+            newAddressDispatch({
+              type: "ADD_ADDRESS",
+              payload: event.target.value,
+            })
+          }
         ></textarea>
         {!addressValid && (
           <p className={classes["error-text"]}>
@@ -171,7 +221,12 @@ const NewAddress = ({ addressAdded }) => {
           placeholder="Landmark"
           value={landmark}
           required
-          onChange={(event) => setLandmark(event.target.value)}
+          onChange={(event) =>
+            newAddressDispatch({
+              type: "ADD_LANDMARK",
+              payload: event.target.value,
+            })
+          }
         />
         {!landmarkValid && (
           <p className={classes["error-text"]}>

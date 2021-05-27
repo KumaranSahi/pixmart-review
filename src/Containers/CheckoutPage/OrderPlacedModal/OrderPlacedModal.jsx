@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useProducts } from "../../../Store";
 import { successToast } from "../../../UI/Toast/Toast";
 
-const OrderPlacedModal = () => {
+export const OrderPlacedModal = () => {
   const { productDispatch } = useProducts();
 
   return (
@@ -35,5 +35,3 @@ const OrderPlacedModal = () => {
     </div>
   );
 };
-
-export default OrderPlacedModal;

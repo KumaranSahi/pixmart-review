@@ -1,6 +1,6 @@
 import classes from "./AddressPage.module.css";
 import { useState } from "react";
-import { useCheckout,useAuth } from "../../../Store";
+import { useCheckout, useAuth } from "../../../Store";
 import NewAddress from "./NewAddress/NewAddress";
 import {
   Radio,
@@ -9,10 +9,16 @@ import {
   RadioGroup,
 } from "@material-ui/core";
 
-const AddressPage = () => {
-  const { checkoutDispatch, userAddresses, address, deleteAddress,setCheckoutLoading } = useCheckout();
+export const AddressPage = () => {
+  const {
+    checkoutDispatch,
+    userAddresses,
+    address,
+    deleteAddress,
+    setCheckoutLoading,
+  } = useCheckout();
   const [addNewAddress, setAddNewAddress] = useState(false);
-  const {token}=useAuth()
+  const { token } = useAuth();
   const addressSelected = (event) => {
     checkoutDispatch({
       type: "ADD_ADDRESS",
@@ -49,8 +55,8 @@ const AddressPage = () => {
                       deleteAddress({
                         addressId: address._id,
                         setLoading: setCheckoutLoading,
-                        dispatch:checkoutDispatch,
-                        token:token,
+                        dispatch: checkoutDispatch,
+                        token: token,
                       })
                     }
                   >
@@ -86,5 +92,3 @@ const AddressPage = () => {
     </div>
   );
 };
-
-export default AddressPage;
