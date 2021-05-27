@@ -1,6 +1,6 @@
 import classes from "./BestDeals.module.css";
 import { Link } from "react-router-dom";
-import { useProducts } from "../../../Store/ProductsContext";
+import { useProducts } from "../../../Store";
 
 export const BestDeals = () => {
   const { dispatch } = useProducts();

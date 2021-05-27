@@ -1,6 +1,6 @@
 import classes from "./OrderSummary.module.css";
 import { useCheckout } from "../../../Store/CheckoutContext";
-import { useProducts } from "../../../Store/ProductsContext";
+import { useProducts } from "../../../Store";
 import OrderSummaryCard from "./OrderSummaryCard/OrderSummaryCard";
 import AddressDetails from "./AddressDetails/AddressDetails";
 import PaymentDetails from "./PaymentDetails/PaymentDetails";

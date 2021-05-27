@@ -6,7 +6,7 @@ import {
   Checkbox,
   RadioGroup,
 } from "@material-ui/core";
-import { useProducts } from "../../Store/ProductsContext";
+import { useProducts } from "../../Store";
 
 const Preferences = () => {
   const {
@@ -15,7 +15,7 @@ const Preferences = () => {
     includeOutOfStock,
     pixmartChoice,
     sortby,
-    dispatch,
+    productsDispatch,
     filterByCatagory,
   } = useProducts();
   return (
@@ -27,7 +27,7 @@ const Preferences = () => {
           name="sortbycost"
           value={sortby}
           onChange={(event) =>
-            dispatch({
+            productsDispatch({
               type: event.target.value,
             })
           }
@@ -51,7 +51,7 @@ const Preferences = () => {
             <Checkbox
               checked={fastDelivery}
               onChange={() =>
-                dispatch({
+                productsDispatch({
                   type: "FILTER_BY_FAST_DELIVERY",
                 })
               }
@@ -66,7 +66,7 @@ const Preferences = () => {
             <Checkbox
               checked={includeOutOfStock}
               onChange={() =>
-                dispatch({
+                productsDispatch({
                   type: "FILTER_BY_IN_STOCK",
                 })
               }
@@ -81,7 +81,7 @@ const Preferences = () => {
             <Checkbox
               checked={pixmartChoice}
               onChange={() =>
-                dispatch({
+                productsDispatch({
                   type: "FILTER_BY_PIXMART_CHOICE",
                 })
               }
@@ -96,7 +96,7 @@ const Preferences = () => {
             <Checkbox
               checked={hasDiscount}
               onChange={() =>
-                dispatch({
+                productsDispatch({
                   type: "FILTER_BY_HAS_DISCOUNT",
                 })
               }
@@ -114,7 +114,7 @@ const Preferences = () => {
             <Checkbox
               checked={filterByCatagory === "FILTER_ONLY_DSLR"}
               onChange={() =>
-                dispatch({
+                productsDispatch({
                   type: "FILTER_ONLY_DSLR",
                 })
               }
@@ -129,7 +129,7 @@ const Preferences = () => {
             <Checkbox
               checked={filterByCatagory === "FILTER_ONLY_MIRRORLESS"}
               onChange={() =>
-                dispatch({
+                productsDispatch({
                   type: "FILTER_ONLY_MIRRORLESS",
                 })
               }
@@ -144,7 +144,7 @@ const Preferences = () => {
             <Checkbox
               checked={filterByCatagory === "FILTER_ONLY_POINT_AND_SHOOT"}
               onChange={() =>
-                dispatch({
+                productsDispatch({
                   type: "FILTER_ONLY_POINT_AND_SHOOT",
                 })
               }
@@ -159,7 +159,7 @@ const Preferences = () => {
             <Checkbox
               checked={filterByCatagory === "FILTER_ONLY_ACCESSORIES"}
               onChange={() =>
-                dispatch({
+                productsDispatch({
                   type: "FILTER_ONLY_ACCESSORIES",
                 })
               }

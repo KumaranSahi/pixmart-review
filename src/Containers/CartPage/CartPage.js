@@ -1,17 +1,17 @@
 import classes from "./CartPage.module.css";
-import { useProducts } from "../../Store/ProductsContext";
+import { useProducts } from "../../Store";
 import { useEffect } from "react";
 import CartCard from "./CartCard/CartCard";
 import { Link } from "react-router-dom";
 import { useCheckout } from "../../Store/CheckoutContext";
 
 const CartPage = () => {
-  const { cartItems, totalCost, dispatch } = useProducts();
+  const { cartItems, totalCost, productsDispatch } = useProducts();
   const { dispatch: checkoutDispatch } = useCheckout();
 
   useEffect(() => {
-    dispatch({ type: "CALCULATE_TOTAL_COST" });
-  }, [dispatch, cartItems.length]);
+    productsDispatch({ type: "CALCULATE_TOTAL_COST" });
+  }, [productsDispatch, cartItems.length]);
   return (
     <div className={classes["cart-section"]}>
       {cartItems.length > 0 ? (

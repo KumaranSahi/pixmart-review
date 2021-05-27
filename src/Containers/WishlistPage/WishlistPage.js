@@ -1,5 +1,5 @@
 import classes from "./WishlistPage.module.css";
-import { useProducts } from "../../Store/ProductsContext";
+import { useProducts } from "../../Store";
 import WishlistCard from "./WishlistCard/WishlistCard";
 
 const WishlistPage = () => {

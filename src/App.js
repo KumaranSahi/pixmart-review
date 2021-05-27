@@ -1,16 +1,16 @@
 import "./App.css";
 import MainPage from "./Containers/Mainpage/Mainpage";
 import { BrowserRouter } from "react-router-dom";
-import { AuthProvider } from "./Store/AuthReducer/AuthContext";
+import { AuthContextProvider } from "./Store";
 import { ToastContainer } from "react-toastify";
 
-import { ProductsContextProvider } from "./Store/ProductsContext";
+import { ProductsContextProvider } from "./Store";
 import { CheckoutContextProvider } from "./Store/CheckoutContext";
 
 function App() {
   return (
     <BrowserRouter>
-      <AuthProvider>
+      <AuthContextProvider>
         <ProductsContextProvider>
           <CheckoutContextProvider>
             <div>
@@ -19,7 +19,7 @@ function App() {
             </div>
           </CheckoutContextProvider>
         </ProductsContextProvider>
-      </AuthProvider>
+      </AuthContextProvider>
     </BrowserRouter>
   );
 }

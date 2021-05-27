@@ -1,11 +1,10 @@
 import classes from "./ProductPage.module.css";
-import { useProducts } from "../../Store/ProductsContext";
+import { useProducts } from "../../Store";
 import ProductCard from "./ProductCard/ProductCard";
 import Preferences from "../Preferences/Preferences";
 
 const ProductPage = () => {
   const { products } = useProducts();
-
   return (
     <div className={classes["main-section"]}>
       <div className={classes["side-bar"]}>

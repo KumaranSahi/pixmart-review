@@ -18,7 +18,7 @@ export const AuthContext = createContext();
 
 export const useAuth = () => useContext(AuthContext);
 
-export const AuthProvider = ({ children }) => {
+export const AuthContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState("SIGNIN_PAGE");
 
@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    onReload(dispatch);
+    onReload({dispatch});
   }, []);
 
   return (

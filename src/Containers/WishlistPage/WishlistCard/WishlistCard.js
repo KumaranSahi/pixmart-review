@@ -5,8 +5,9 @@ import {
   faCheckCircle,
   faHeart,
 } from "@fortawesome/free-solid-svg-icons";
-import { useProducts } from "../../../Store/ProductsContext";
+import { useProducts } from "../../../Store";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../../Store";
 
 const WishlistCard = ({
   id,
@@ -21,7 +22,14 @@ const WishlistCard = ({
   inWishlist,
   inStock,
 }) => {
-  const { addItemToCart, removeItemFromWishlist, cartItems } = useProducts();
+  const {
+    addItemToCart,
+    removeItemFromWishlist,
+    cartItems,
+    productsDispatch,
+    setProductsLoading,
+  } = useProducts();
+  const { token } = useAuth();
 
   const calculateDiscount = (price, discount) => {
     let discountedAmount = price - Math.round(price * (discount / 100));
@@ -85,7 +93,12 @@ const WishlistCard = ({
               <button
                 className={`${classes["button-solid"]} ${classes["button-primary"]}`}
                 onClick={() => {
-                  addItemToCart(id);
+                  addItemToCart({
+                    productId: id,
+                    token: token,
+                    dispatch: productsDispatch,
+                    setLoading: setProductsLoading,
+                  });
                 }}
               >
                 Add to cart
@@ -102,7 +115,12 @@ const WishlistCard = ({
           <button
             className={`${classes["button-outline"]} ${classes["button-secondary"]}`}
             onClick={() => {
-              removeItemFromWishlist(id);
+              removeItemFromWishlist({
+                productId: id,
+                token: token,
+                setLoading: setProductsLoading,
+                dispatch: productsDispatch,
+              });
             }}
           >
             Remove from wishlist

@@ -1,6 +1,6 @@
 import classes from "./Avatar.module.css";
 import { useState } from "react";
-import { useAuth } from "../../../Store/AuthReducer/AuthContext";
+import { useAuth } from "../../../Store";
 import profileImage from "../../../Assets/profileimage.jpg";
 import { Link, useLocation } from "react-router-dom";
 
@@ -38,7 +38,7 @@ export const Avatar = () => {
             <ul className={classes["signout-dropdown"]}>
               <li
                 onClick={() => {
-                  signOutUser(authDispatch);
+                  signOutUser({dispatch:authDispatch});
                   setOpenDropdown(false);
                 }}
               >

@@ -1,9 +1,9 @@
 import classes from "./DesktopNavMenu.module.css";
 import { NavLink } from "react-router-dom";
-import { useProducts } from "../../../Store/ProductsContext";
+import { useProducts } from "../../../Store";
 
 export const DesktopNavMenu = () => {
-  const { cartItems, wishListItems, dispatch } = useProducts();
+  const { cartItems, wishListItems, productsDispatch } = useProducts();
   return (
     <div className={classes["navigation-items-desktop"]}>
       <p className={classes["nav-button"]}>
@@ -13,7 +13,7 @@ export const DesktopNavMenu = () => {
       </p>
       <p
         className={classes["nav-button"]}
-        onClick={() => dispatch({ type: "CLEAR_FILTERS" })}
+        onClick={() => productsDispatch({ type: "CLEAR_FILTERS" })}
       >
         <NavLink
           to="/product"

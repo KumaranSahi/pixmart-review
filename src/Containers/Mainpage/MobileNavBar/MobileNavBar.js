@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
-import { useProducts } from "../../../Store/ProductsContext";
+import { useProducts } from "../../../Store";
 
 const MobileNavBar = () => {
   const { cartItems, wishListItems, dispatch } = useProducts();

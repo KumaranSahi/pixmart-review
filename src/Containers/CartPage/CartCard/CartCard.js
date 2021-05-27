@@ -5,8 +5,9 @@ import {
   faCheckCircle,
   faHeart,
 } from "@fortawesome/free-solid-svg-icons";
-import { ProductsContext } from "../../../Store/ProductsContext";
-import { useContext, useEffect } from "react";
+import { useProducts } from "../../../Store";
+import { useEffect } from "react";
+import { useAuth } from "../../../Store";
 
 const CartCard = ({
   id,
@@ -21,11 +22,18 @@ const CartCard = ({
   inWishlist,
   quantity,
 }) => {
-  const { dispatch, removeItemFromCart, changeQuantity } =
-    useContext(ProductsContext);
+  const {
+    dispatch,
+    removeItemFromCart,
+    changeQuantity,
+    setProductsLoading,
+    productsDispatch,
+  } = useProducts();
+  const { token } = useAuth();
+
   useEffect(() => {
-    dispatch({ type: "CALCULATE_TOTAL_COST" });
-  }, [quantity, dispatch]);
+    productsDispatch({ type: "CALCULATE_TOTAL_COST" });
+  }, [quantity, productsDispatch]);
 
   const calculateDiscount = (price, discount) => {
     let discountedAmount = price - Math.round(price * (discount / 100));
@@ -81,14 +89,31 @@ const CartCard = ({
           <div className={classes["quantity-buttons"]}>
             <button
               className={`${classes["button-solid"]} ${classes["button-primary"]}`}
-              onClick={() => quantity > 1 && changeQuantity(id, quantity - 1)}
+              onClick={() =>
+                quantity > 1 &&
+                changeQuantity({
+                  productId: id,
+                  quantity: quantity - 1,
+                  setLoading: setProductsLoading,
+                  token: token,
+                  dispatch: productsDispatch,
+                })
+              }
             >
               -
             </button>
             <p>{quantity}</p>
             <button
               className={`${classes["button-solid"]} ${classes["button-primary"]}`}
-              onClick={() => changeQuantity(id, quantity + 1)}
+              onClick={() =>
+                changeQuantity({
+                  productId: id,
+                  quantity: quantity + 1,
+                  setLoading: setProductsLoading,
+                  token: token,
+                  dispatch: productsDispatch,
+                })
+              }
             >
               +
             </button>
@@ -96,7 +121,12 @@ const CartCard = ({
           <button
             className={`${classes["button-solid"]} ${classes["button-solid-secondary"]}`}
             onClick={() => {
-              removeItemFromCart(id);
+              removeItemFromCart({
+                productId: id,
+                setLoading: setProductsLoading,
+                token: token,
+                dispatch: productsDispatch,
+              });
             }}
           >
             Remove from cart

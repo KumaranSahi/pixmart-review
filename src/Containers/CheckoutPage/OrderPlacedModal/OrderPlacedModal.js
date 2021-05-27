@@ -1,6 +1,6 @@
 import classes from "./OrderPlacedModal.module.css";
 import { Link } from "react-router-dom";
-import { useProducts } from "../../../Store/ProductsContext";
+import { useProducts } from "../../../Store";
 import { successToast } from "../../../UI/Toast/Toast";
 
 const OrderPlacedModal = () => {

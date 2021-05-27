@@ -1,5 +1,5 @@
 import classes from "./SigninPage.module.css";
-import { useAuth } from "../../Store/AuthReducer/AuthContext";
+import { useAuth } from "../../Store";
 import { warningToast } from "../../UI/Toast/Toast";
 import { useSigninPageReducer } from "./SiginPageReducer";
 import {
@@ -49,15 +49,15 @@ export const SigninPage = () => {
     validateUserName();
     validateEmail();
     if (userNameValid && emailValid) {
-      signUpUser(
-        {
+      signUpUser({
+        userData: {
           name: userName,
           email: email,
           password: password,
         },
-        setAuthLoading,
-        setAuthCurrentPage
-      );
+        setLoading: setAuthLoading,
+        setCurrentPage: setAuthCurrentPage,
+      });
     }
   };
 
@@ -65,29 +65,29 @@ export const SigninPage = () => {
     event.preventDefault();
     validateEmail();
     if (emailValid)
-      signInUser(
-        {
+      signInUser({
+        userData: {
           email: email,
           password: password,
         },
-        setAuthLoading,
-        authDispatch
-      );
+        setLoading: setAuthLoading,
+        dispatch:authDispatch,
+      });
   };
 
   const changePasswordSubmit = async (event) => {
     event.preventDefault();
     validateEmail();
     if (password === confirmPassword) {
-      changePassword(
-        {
+      changePassword({
+        userData: {
           email: email,
           password: password,
           confirmPassword: confirmPassword,
         },
-        setAuthLoading,
-        setAuthCurrentPage
-      );
+        setLoading: setAuthLoading,
+        setCurrentPage:setAuthCurrentPage,
+      });
     } else {
       warningToast("Passwords do not match");
     }
