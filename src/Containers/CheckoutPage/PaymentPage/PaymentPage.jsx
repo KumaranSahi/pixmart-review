@@ -5,17 +5,22 @@ import {
   FormControl,
   RadioGroup,
 } from "@material-ui/core";
-import { useCheckout, useProducts,useAuth } from "../../../Store";
+import { useCheckout, useProducts, useAuth } from "../../../Store";
 import { useState } from "react";
 import CardDetails from "./CardDetails/CardDetails";
 
-const PaymentPage = () => {
+export const PaymentPage = () => {
   const [paymentMode, setPaymentMode] = useState("CREDITCARD");
 
-  const { userPaymentDetails, paymentDetails, deletePaymentDetails, checkoutDispatch ,setCheckoutLoading} =
-    useCheckout();
+  const {
+    userPaymentDetails,
+    paymentDetails,
+    deletePaymentDetails,
+    checkoutDispatch,
+    setCheckoutLoading,
+  } = useCheckout();
   const { totalCost } = useProducts();
-  const {token}=useAuth();
+  const { token } = useAuth();
 
   const [addPayment, setAddpayment] = useState(false);
 
@@ -198,5 +203,3 @@ const PaymentPage = () => {
     </div>
   );
 };
-
-export default PaymentPage;

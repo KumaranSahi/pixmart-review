@@ -1,72 +1,84 @@
 import classes from "./CardDetails.module.css";
-import { useState } from "react";
 import { useCheckout, useAuth } from "../../../../Store";
+import { useCardDetailsReducer } from "./CardDetailsReducer";
 
 const CardDetails = ({ paymentMode, setAddpayment }) => {
-  const [nameOnCard, setNameOnCard] = useState("");
-  const [nameValid, setNameValid] = useState(true);
-
-  const [cardNumber, setCardNumber] = useState("");
-  const [cardNumberValid, setCardNumberValid] = useState(true);
-
-  const [expirationDate, setExpirationDate] = useState("");
-  const [expirationDateValid, setExpirationDateValid] = useState(true);
-
-  const [cvv, setCvv] = useState("");
-  const [cvvValid, setCvvValid] = useState(true);
+  const {
+    nameOnCard,
+    cardNumber,
+    expirationDate,
+    cvv,
+    nameValid,
+    cardNumberValid,
+    expirationDateValid,
+    cvvValid,
+    cardDetailsDispatch,
+  } = useCardDetailsReducer();
 
   const { addNewPayment, checkoutDispatch, setCheckoutLoading } = useCheckout();
   const { token } = useAuth();
 
   const cardNumberEntered = (event) => {
-    if (!isNaN(event)) setCardNumber(event);
-    setCardNumber((number) =>
-      number.replace(/^(\d{4})(\d{4})(\d{4})(\d{4})$/, "$1 $2 $3 $4")
-    );
+    if (!isNaN(event))
+      cardDetailsDispatch({ type: "ADD_CARD_NUMBER", payload: event });
+    if (cardNumber.length === 16)
+      cardDetailsDispatch({
+        type: "ADD_CARD_NUMBER",
+        payload: cardNumber.replace(
+          /^(\d{4})(\d{4})(\d{4})(\d{4})$/,
+          "$1 $2 $3 $4"
+        ),
+      });
   };
 
   const expirationDateAdded = (event) => {
-    if (!isNaN(event)) setExpirationDate(event);
-    setExpirationDate((number) => number.replace(/^(\d{2})(\d{2})$/, "$1/$2"));
+    if (!isNaN(event))
+      cardDetailsDispatch({ type: "ADD_EXPIRATION_DATE", payload: event });
+    if(expirationDate.length===4)
+      cardDetailsDispatch({
+        type: "ADD_EXPIRATION_DATE",
+        payload: expirationDate.replace(/^(\d{2})(\d{2})$/, "$1/$2"),
+      });
   };
 
   const cvvEntered = (event) => {
-    if (cvv.length < 3) setCvv(event);
+    if (cvv.length < 3)
+      cardDetailsDispatch({ type: "ADD_CVV", payload: event });
   };
 
   const checkName = (value) => {
     if (value && value.length > 0) {
-      setNameValid(true);
+      cardDetailsDispatch({ type: "SET_NAME_ON_CARD_VALID", payload: true });
       return true;
     }
-    setNameValid(false);
+    cardDetailsDispatch({ type: "SET_NAME_ON_CARD_VALID", payload: false });
     return false;
   };
 
   const checkNumber = (value) => {
     if (value && value.length === 19) {
-      setCardNumberValid(true);
+      cardDetailsDispatch({ type: "SET_CARD_NUMBER_VALID", payload: true });
       return true;
     }
-    setCardNumberValid(false);
+    cardDetailsDispatch({ type: "SET_CARD_NUMBER_VALID", payload: false });
     return false;
   };
 
   const checkExpirationDate = (value) => {
     if (value && value.length === 5) {
-      setExpirationDateValid(true);
+      cardDetailsDispatch({ type: "SET_EXPIRATION_DATE_VALID", payload: true });
       return true;
     }
-    setExpirationDateValid(false);
+    cardDetailsDispatch({ type: "SET_EXPIRATION_DATE_VALID", payload: false });
     return false;
   };
 
   const checkCvv = (value) => {
     if (value && value.length === 3) {
-      setCvvValid(true);
+      cardDetailsDispatch({ type: "SET_CVV_VALID", payload: true });
       return true;
     }
-    setCvvValid(false);
+    cardDetailsDispatch({ type: "SET_CVV_VALID", payload: true });
     return false;
   };
 
@@ -102,7 +114,12 @@ const CardDetails = ({ paymentMode, setAddpayment }) => {
         required
         placeholder="Name on card"
         value={nameOnCard}
-        onChange={(event) => setNameOnCard(event.target.value)}
+        onChange={(event) =>
+          cardDetailsDispatch({
+            type: "ADD_NAME_ON_CARD",
+            payload: event.target.value,
+          })
+        }
       />
       {!nameValid && (
         <p className={classes["error-text"]}>Please enter a valid name</p>
