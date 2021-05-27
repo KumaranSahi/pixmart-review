@@ -1,173 +1,173 @@
-.card-container{
-    margin: auto;
-    max-width: 17rem;
-    min-height: 31rem;
-    display: inline-block;
-    box-sizing: border-box;
-    padding:0.5rem;
-    border-bottom-right-radius: 1rem;
-    box-shadow: 7px 9px 13px 5px var(--neutral-mild);
+.card-container {
+  margin: auto;
+  max-width: 17rem;
+  min-height: 31rem;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0.5rem;
+  border-bottom-right-radius: 1rem;
+  box-shadow: 7px 9px 13px 5px var(--neutral-mild);
 }
 
-.image-container{
-    width: auto;
-    height: auto;
-    position: relative;
-    z-index:  var(--z-index-low);
+.image-container {
+  width: auto;
+  height: auto;
+  position: relative;
+  z-index: var(--z-index-low);
 }
 
-.badge-solid{
-    display: inline-block;
-    background-color: var(--neutral);
-    padding: 0.3rem;
-    border-radius: 1rem;
-    color: var(--white);
+.badge-solid {
+  display: inline-block;
+  background-color: var(--neutral);
+  padding: 0.3rem;
+  border-radius: 1rem;
+  color: white;
 }
 
-.pixsmart-badge{
-    position: absolute;
-    top:5%;
-    right: 5%;
+.pixsmart-badge {
+  position: absolute;
+  top: 5%;
+  right: 5%;
 }
-.wishlist-badge{
-    position: absolute;
-    top:5%;
-    left: 1%;
-    border-radius: 50%;
-    padding: 0.5rem;
-}
-
-.badge-primary{
-    background-color: var(--primary);
+.wishlist-badge {
+  position: absolute;
+  top: 5%;
+  left: 1%;
+  border-radius: 50%;
+  padding: 0.5rem;
 }
 
-.badge-not-instock{
-    background-color: var(--neutral-mild);
-    width: 100%;
-    border-radius: 0px;
-    text-align: center;
-    padding: 0.5rem;
-    margin: 0.25rem;
+.badge-primary {
+  background-color: var(--primary);
 }
 
-.button-solid-secondary{
-    background-color: var(--secondary);
+.badge-not-instock {
+  background-color: var(--neutral-mild);
+  width: 100%;
+  border-radius: 0px;
+  text-align: center;
+  padding: 0.5rem;
+  margin: 0.25rem;
 }
 
-.card-image{
-    width: 15.625rem;
-    height: 15.625rem;
+.button-solid-secondary {
+  background-color: var(--secondary);
 }
 
-.typography{
-    box-sizing: border-box;
-    padding: 0.5rem;
+.card-image {
+  width: 15.625rem;
+  height: 15.625rem;
 }
 
-.typography h4{
-    margin: 0px;
-    padding-bottom: 1rem;
-    width: 60%;
-    min-height: 2.5rem;
+.typography {
+  box-sizing: border-box;
+  padding: 0.5rem;
 }
 
-.name-rating-container{
-    display: flex;
-    box-sizing: border-box;
-    width: 100%;
-    align-items: center;
-    justify-content: space-between;
+.typography h4 {
+  margin: 0px;
+  padding-bottom: 1rem;
+  width: 60%;
+  min-height: 2.5rem;
 }
 
-.rating-container{
-    border: 2px solid var(--black);
-    width: 4.5rem;
-    display: inline-block;
-    padding: 0.2rem;
-    box-sizing: border-box;
+.name-rating-container {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.primary-rating{
-    color: var(--white);
-    border:0;
-    border-radius: 0.5rem;
-    background-color: var(--primary);
+.rating-container {
+  border: 2px solid var(--black);
+  width: 4.5rem;
+  display: inline-block;
+  padding: 0.2rem;
+  box-sizing: border-box;
 }
 
-.rating-container span{
-    margin-left: 0.5rem;
+.primary-rating {
+  color: white;
+  border: 0;
+  border-radius: 0.5rem;
+  background-color: var(--primary);
 }
 
-.pricing{
-    height: 2.5rem;
-    background-color: whitesmoke;
+.rating-container span {
+  margin-left: 0.5rem;
 }
 
-.typography p{
-    width: 15rem;
-    margin: 0;
+.pricing {
+  height: 2.5rem;
+  background-color: whitesmoke;
 }
 
-.original-price{
-    text-decoration: line-through;
+.typography p {
+  width: 15rem;
+  margin: 0;
 }
 
-.discount-rate{
-    color: var(--primary);
-    font-weight: bold;
+.original-price {
+  text-decoration: line-through;
 }
 
-.action-buttons{
-    width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.discount-rate {
+  color: var(--primary);
+  font-weight: bold;
 }
 
-.button-outline{
-    outline: none;
-    width: 100%;
-    margin: 0.25rem;
-    padding: 0.5rem;
-    font-size: 1rem;
+.action-buttons {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.button-secondary{
-    color:var(--secondary);
-    border: 2px solid var(--secondary);
+.button-outline {
+  outline: none;
+  width: 100%;
+  margin: 0.25rem;
+  padding: 0.5rem;
+  font-size: 1rem;
 }
 
-.button-secondary:hover{
-    color: var(--white);
-    background-color: var(--secondary);
+.button-secondary {
+  color: var(--secondary);
+  border: 2px solid var(--secondary);
 }
 
-.button-solid{
-    color: var(--white);
-    width: 100%;
-    outline: none;
-    margin: 0.25rem;
-    border: 0px;
-    padding: 0.5rem;
-    font-size: 1rem;
+.button-secondary:hover {
+  color: white;
+  background-color: var(--secondary);
 }
 
-.button-solid a{
-    color: var(--white);
-    text-decoration: none;
+.button-solid {
+  color: white;
+  width: 100%;
+  outline: none;
+  margin: 0.25rem;
+  border: 0px;
+  padding: 0.5rem;
+  font-size: 1rem;
 }
 
-.button-primary{
-    background-color: var(--primary);
+.button-solid a {
+  color: white;
+  text-decoration: none;
 }
 
-.badge-failure{
-    background-color: var(--failure);
+.button-primary {
+  background-color: var(--primary);
 }
 
-@media (min-width:700px){
-    .card-container{
-        margin:1rem;
-    }
+.badge-failure {
+  background-color: var(--failure);
+}
+
+@media (min-width: 700px) {
+  .card-container {
+    margin: 1rem;
+  }
 }

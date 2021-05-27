@@ -9,8 +9,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
 import { useProducts } from "../../../Store";
 
-const MobileNavBar = () => {
-  const { cartItems, wishListItems, dispatch } = useProducts();
+export const MobileNavBar = () => {
+  const { cartItems, wishListItems, productDispatch } = useProducts();
 
   return (
     <div className={classes["mobile-nav-bar"]}>
@@ -21,7 +21,7 @@ const MobileNavBar = () => {
       </p>
       <p
         className={classes["nav-button"]}
-        onClick={() => dispatch({ type: "CLEAR_FILTERS" })}
+        onClick={() => productDispatch({ type: "CLEAR_FILTERS" })}
       >
         <NavLink to="/product" exact activeClassName={classes["active-mobile"]}>
           <FontAwesomeIcon icon={faCameraRetro} />
@@ -44,5 +44,3 @@ const MobileNavBar = () => {
     </div>
   );
 };
-
-export default MobileNavBar;

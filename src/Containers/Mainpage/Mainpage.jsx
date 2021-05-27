@@ -3,11 +3,11 @@ import ProductPage from "../ProductsPage/ProductPage";
 import { CartPage } from "../CartPage/CartPage";
 import WishlistPage from "../WishlistPage/WishlistPage";
 import { LandingPage } from "../LandingPage/LandingPage";
-import {CheckoutPage} from "../CheckoutPage/CheckoutPage";
+import { CheckoutPage } from "../CheckoutPage/CheckoutPage";
 import { SigninPage } from "../SigninPage/SigninPage";
 
 import { Route, Switch, Redirect } from "react-router-dom";
-import MobileNavBar from "./MobileNavBar/MobileNavBar";
+import { MobileNavBar } from "./MobileNavBar/MobileNavBar";
 import { useAuth } from "../../Store";
 import { useCheckout } from "../../Store";
 import { useProducts } from "../../Store";
@@ -25,7 +25,7 @@ const LockSignin = ({ ...props }) => {
   return token ? <Redirect to="/" /> : <Route {...props} />;
 };
 
-const Mainpage = () => {
+export const MainPage = () => {
   const { authLoading } = useAuth();
   const { checkoutLoading } = useCheckout();
   const { productLoading } = useProducts();
@@ -47,5 +47,3 @@ const Mainpage = () => {
     </div>
   );
 };
-
-export default Mainpage;

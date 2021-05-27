@@ -51,7 +51,7 @@
 }
 
 .button-solid {
-  color: var(--white);
+  color: white;
   outline: none;
   border: 0px;
   padding: 1rem;

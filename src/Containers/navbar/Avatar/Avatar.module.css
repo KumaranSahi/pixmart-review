@@ -67,7 +67,7 @@
 }
 
 .signout-dropdown li {
-  color: var(--white);
+  color: white;
   z-index: var(--z-index-high);
   padding: 0.5rem;
   margin: 0;

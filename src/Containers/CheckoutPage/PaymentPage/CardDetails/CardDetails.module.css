@@ -24,7 +24,7 @@
 }
 
 .button-solid {
-  color: var(--white);
+  color: white;
   outline: none;
   border: 0;
   margin: 1rem;
