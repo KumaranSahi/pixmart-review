@@ -1,11 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import classes from "./NewAddress.module.css";
-import { useCheckout } from "../../../../Store/CheckoutContext";
+import { useAuth, useCheckout } from "../../../../Store";
 
 const NewAddress = ({ addressAdded }) => {
   const nameRef = useRef();
 
-  const { addNewAddress } = useCheckout();
+  const { addNewAddress, setCheckoutLoading, checkoutDispatch } = useCheckout();
+  const {token}=useAuth()
 
   const [name, setName] = useState("");
   const [nameValid, setNameValid] = useState(true);
@@ -82,11 +83,16 @@ const NewAddress = ({ addressAdded }) => {
         validateLandmark(landmark)
       ) {
         addNewAddress({
-          name: name,
-          number: number,
-          pin: pin,
-          address: address,
-          landmark: landmark,
+          body: {
+            name: name,
+            number: number,
+            pin: pin,
+            address: address,
+            landmark: landmark,
+          },
+          setLoading: setCheckoutLoading,
+          dispatch: checkoutDispatch,
+          token:token,
         });
         addressAdded();
       }

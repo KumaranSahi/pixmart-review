@@ -1,13 +1,23 @@
 import classes from "./OrderSummary.module.css";
-import { useCheckout } from "../../../Store/CheckoutContext";
-import { useProducts } from "../../../Store";
+import { useCheckout,useProducts,useAuth } from "../../../Store";
 import OrderSummaryCard from "./OrderSummaryCard/OrderSummaryCard";
 import AddressDetails from "./AddressDetails/AddressDetails";
 import PaymentDetails from "./PaymentDetails/PaymentDetails";
 
 const OrderSummary = () => {
-  const { cartItems, totalCost, dispatch } = useProducts();
-  const { paymentDetails, address, placeOrder } = useCheckout();
+  const {
+    cartItems,
+    totalCost,
+    productDispatch,
+  } = useProducts();
+  const {
+    paymentDetails,
+    address,
+    placeOrder,
+    setCheckoutLoading,
+    checkoutDispatch,
+  } = useCheckout();
+  const {token}=useAuth()
   return (
     <div className={classes["order-summary-container"]}>
       <h1>Order Summary</h1>
@@ -51,8 +61,13 @@ const OrderSummary = () => {
             product: _id,
             quantity: quantity,
           }));
-          placeOrder({ products: products, totalCost: totalCost });
-          dispatch({ type: "CLEAR_CART" });
+          placeOrder({
+            body: { products: products, totalCost: totalCost },
+            setLoading: setCheckoutLoading,
+            dispatch: checkoutDispatch,
+            token:token,
+          });
+          productDispatch({ type: "CLEAR_CART" });
         }}
       >
         Checkout

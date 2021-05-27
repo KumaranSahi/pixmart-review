@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useProducts } from "../../../Store";
 
 export const DesktopNavMenu = () => {
-  const { cartItems, wishListItems, productsDispatch } = useProducts();
+  const { cartItems, wishListItems, productDispatch } = useProducts();
   return (
     <div className={classes["navigation-items-desktop"]}>
       <p className={classes["nav-button"]}>
@@ -13,7 +13,7 @@ export const DesktopNavMenu = () => {
       </p>
       <p
         className={classes["nav-button"]}
-        onClick={() => productsDispatch({ type: "CLEAR_FILTERS" })}
+        onClick={() => productDispatch({ type: "CLEAR_FILTERS" })}
       >
         <NavLink
           to="/product"

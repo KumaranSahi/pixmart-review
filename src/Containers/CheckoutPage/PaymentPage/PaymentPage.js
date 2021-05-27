@@ -5,22 +5,22 @@ import {
   FormControl,
   RadioGroup,
 } from "@material-ui/core";
-import { useCheckout } from "../../../Store/CheckoutContext";
-import { useProducts } from "../../../Store";
+import { useCheckout, useProducts,useAuth } from "../../../Store";
 import { useState } from "react";
 import CardDetails from "./CardDetails/CardDetails";
 
 const PaymentPage = () => {
   const [paymentMode, setPaymentMode] = useState("CREDITCARD");
 
-  const { userPaymentDetails, paymentDetails, deletePaymentDetails, dispatch } =
+  const { userPaymentDetails, paymentDetails, deletePaymentDetails, checkoutDispatch ,setCheckoutLoading} =
     useCheckout();
   const { totalCost } = useProducts();
+  const {token}=useAuth();
 
   const [addPayment, setAddpayment] = useState(false);
 
   const paymentSelected = (event) => {
-    dispatch({
+    checkoutDispatch({
       type: "ADD_PAYMENT_DETAILS",
       payload: event.target.value,
     });
@@ -40,12 +40,12 @@ const PaymentPage = () => {
             onChange={(event) => {
               setPaymentMode(event.target.value);
               if (event.target.value === "COD")
-                dispatch({
+                checkoutDispatch({
                   type: "ADD_PAYMENT_DETAILS",
                   payload: "COD",
                 });
               else
-                dispatch({
+                checkoutDispatch({
                   type: "ADD_PAYMENT_DETAILS",
                   payload: null,
                 });
@@ -82,7 +82,14 @@ const PaymentPage = () => {
                             <p>{payment.cvv}</p>
                             <button
                               className={`${classes["button-solid"]} ${classes["button-secondary"]}`}
-                              onClick={() => deletePaymentDetails(payment._id)}
+                              onClick={() =>
+                                deletePaymentDetails({
+                                  paymentId: payment._id,
+                                  setLoading: setCheckoutLoading,
+                                  token: token,
+                                  dispatch: checkoutDispatch,
+                                })
+                              }
                             >
                               Delete Payment detail
                             </button>
@@ -139,7 +146,14 @@ const PaymentPage = () => {
                             <p>{payment.cvv}</p>
                             <button
                               className={`${classes["button-solid"]} ${classes["button-secondary"]}`}
-                              onClick={() => deletePaymentDetails(payment._id)}
+                              onClick={() =>
+                                deletePaymentDetails({
+                                  paymentId: payment._id,
+                                  setLoading: setCheckoutLoading,
+                                  token: token,
+                                  dispatch: checkoutDispatch,
+                                })
+                              }
                             >
                               Delete Payment detail
                             </button>
@@ -176,7 +190,7 @@ const PaymentPage = () => {
       {paymentDetails && (
         <button
           className={`${classes["button-solid"]} ${classes["button-primary"]} ${classes["button-continue"]}`}
-          onClick={() => dispatch({ type: "MOVE_TO_ORDER_SUMMARY" })}
+          onClick={() => checkoutDispatch({ type: "MOVE_TO_ORDER_SUMMARY" })}
         >
           Continue
         </button>

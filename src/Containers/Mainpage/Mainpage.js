@@ -9,7 +9,7 @@ import {SigninPage} from "../SigninPage/SigninPage";
 import { Route, Switch, Redirect } from "react-router-dom";
 import MobileNavBar from "./MobileNavBar/MobileNavBar";
 import { useAuth } from "../../Store";
-import { useCheckout } from "../../Store/CheckoutContext";
+import { useCheckout } from "../../Store";
 import { useProducts } from "../../Store";
 
 import Spinner from "../../UI/Spinner/Spinner";

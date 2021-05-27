@@ -5,7 +5,7 @@ import { AuthContextProvider } from "./Store";
 import { ToastContainer } from "react-toastify";
 
 import { ProductsContextProvider } from "./Store";
-import { CheckoutContextProvider } from "./Store/CheckoutContext";
+import { CheckoutContextProvider } from "./Store";
 
 function App() {
   return (

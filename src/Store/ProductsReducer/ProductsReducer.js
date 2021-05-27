@@ -1,5 +1,5 @@
 import axios from "../../useAxios";
-import { infoToast, successToast, warningToast } from "../../UI/Toast/Toast";
+import { successToast, warningToast } from "../../UI/Toast/Toast";
 
 export const productsReducer = (state, action) => {
   switch (action.type) {

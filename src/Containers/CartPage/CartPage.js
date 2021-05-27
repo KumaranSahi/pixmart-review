@@ -3,15 +3,15 @@ import { useProducts } from "../../Store";
 import { useEffect } from "react";
 import CartCard from "./CartCard/CartCard";
 import { Link } from "react-router-dom";
-import { useCheckout } from "../../Store/CheckoutContext";
+import { useCheckout } from "../../Store";
 
 const CartPage = () => {
-  const { cartItems, totalCost, productsDispatch } = useProducts();
-  const { dispatch: checkoutDispatch } = useCheckout();
+  const { cartItems, totalCost, productDispatch } = useProducts();
+  const { checkoutDispatch } = useCheckout();
 
   useEffect(() => {
-    productsDispatch({ type: "CALCULATE_TOTAL_COST" });
-  }, [productsDispatch, cartItems.length]);
+    productDispatch({ type: "CALCULATE_TOTAL_COST" });
+  }, [productDispatch, cartItems.length]);
   return (
     <div className={classes["cart-section"]}>
       {cartItems.length > 0 ? (

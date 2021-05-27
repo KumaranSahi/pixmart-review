@@ -3,10 +3,10 @@ import { useProducts } from "../../../../Store";
 import { Link } from "react-router-dom";
 
 export const CatagoricalCard = ({ children, type, image }) => {
-  const { dispatch } = useProducts();
+  const { productDispatch } = useProducts();
 
   return (
-    <Link to="/product" onClick={() => dispatch({ type: type })}>
+    <Link to="/product" onClick={() => productDispatch({ type: type })}>
       <div
         className={classes["catagory-card"]}
         style={{ backgroundImage: `url("${image}")` }}

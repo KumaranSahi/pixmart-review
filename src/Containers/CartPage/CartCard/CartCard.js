@@ -18,22 +18,20 @@ const CartCard = ({
   discount,
   rating,
   pixmartChoice,
-  inCart,
   inWishlist,
   quantity,
 }) => {
   const {
-    dispatch,
     removeItemFromCart,
     changeQuantity,
     setProductsLoading,
-    productsDispatch,
+    productDispatch,
   } = useProducts();
   const { token } = useAuth();
 
   useEffect(() => {
-    productsDispatch({ type: "CALCULATE_TOTAL_COST" });
-  }, [quantity, productsDispatch]);
+    productDispatch({ type: "CALCULATE_TOTAL_COST" });
+  }, [quantity, productDispatch]);
 
   const calculateDiscount = (price, discount) => {
     let discountedAmount = price - Math.round(price * (discount / 100));
@@ -96,7 +94,7 @@ const CartCard = ({
                   quantity: quantity - 1,
                   setLoading: setProductsLoading,
                   token: token,
-                  dispatch: productsDispatch,
+                  dispatch: productDispatch,
                 })
               }
             >
@@ -111,7 +109,7 @@ const CartCard = ({
                   quantity: quantity + 1,
                   setLoading: setProductsLoading,
                   token: token,
-                  dispatch: productsDispatch,
+                  dispatch: productDispatch,
                 })
               }
             >
@@ -125,7 +123,7 @@ const CartCard = ({
                 productId: id,
                 setLoading: setProductsLoading,
                 token: token,
-                dispatch: productsDispatch,
+                dispatch: productDispatch,
               });
             }}
           >

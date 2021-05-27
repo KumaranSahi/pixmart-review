@@ -27,7 +27,7 @@ const ProductCard = ({
     addWishlist,
     wishListItems,
     cartItems,
-    productsDispatch,
+    productDispatch,
     setProductsLoading,
   } = useProducts();
   const { token } = useAuth();
@@ -97,7 +97,7 @@ const ProductCard = ({
                   addItemToCart({
                     productId: id,
                     token: token,
-                    dispatch: productsDispatch,
+                    dispatch: productDispatch,
                     setLoading: setProductsLoading,
                   });
                 }}
@@ -127,7 +127,7 @@ const ProductCard = ({
                   productId: id,
                   token: token,
                   setLoading: setProductsLoading,
-                  dispatch: productsDispatch,
+                  dispatch: productDispatch,
                 });
               }}
             >

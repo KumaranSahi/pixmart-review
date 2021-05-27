@@ -26,7 +26,7 @@ const WishlistCard = ({
     addItemToCart,
     removeItemFromWishlist,
     cartItems,
-    productsDispatch,
+    productDispatch,
     setProductsLoading,
   } = useProducts();
   const { token } = useAuth();
@@ -96,7 +96,7 @@ const WishlistCard = ({
                   addItemToCart({
                     productId: id,
                     token: token,
-                    dispatch: productsDispatch,
+                    dispatch: productDispatch,
                     setLoading: setProductsLoading,
                   });
                 }}
@@ -119,7 +119,7 @@ const WishlistCard = ({
                 productId: id,
                 token: token,
                 setLoading: setProductsLoading,
-                dispatch: productsDispatch,
+                dispatch: productDispatch,
               });
             }}
           >

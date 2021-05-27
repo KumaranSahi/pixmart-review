@@ -1,6 +1,6 @@
 import classes from "./AddressPage.module.css";
 import { useState } from "react";
-import { useCheckout } from "../../../Store/CheckoutContext";
+import { useCheckout,useAuth } from "../../../Store";
 import NewAddress from "./NewAddress/NewAddress";
 import {
   Radio,
@@ -10,11 +10,11 @@ import {
 } from "@material-ui/core";
 
 const AddressPage = () => {
-  const { dispatch, userAddresses, address, deleteAddress } = useCheckout();
+  const { checkoutDispatch, userAddresses, address, deleteAddress,setCheckoutLoading } = useCheckout();
   const [addNewAddress, setAddNewAddress] = useState(false);
-
+  const {token}=useAuth()
   const addressSelected = (event) => {
-    dispatch({
+    checkoutDispatch({
       type: "ADD_ADDRESS",
       payload: event.target.value,
     });
@@ -45,7 +45,14 @@ const AddressPage = () => {
                   <p>{address.landmark}</p>
                   <button
                     className={`${classes["button-solid"]} ${classes["button-secondary"]}`}
-                    onClick={() => deleteAddress(address._id)}
+                    onClick={() =>
+                      deleteAddress({
+                        addressId: address._id,
+                        setLoading: setCheckoutLoading,
+                        dispatch:checkoutDispatch,
+                        token:token,
+                      })
+                    }
                   >
                     Delete Address
                   </button>
@@ -68,7 +75,7 @@ const AddressPage = () => {
         <button
           className={`${classes["button-solid"]} ${classes["button-primary"]} ${classes["proceed-further-button"]}`}
           onClick={() => {
-            dispatch({
+            checkoutDispatch({
               type: "MOVE_TO_PAYMENT",
             });
           }}

@@ -1,6 +1,6 @@
 import classes from "./CardDetails.module.css";
 import { useState } from "react";
-import { useCheckout } from "../../../../Store/CheckoutContext";
+import { useCheckout, useAuth } from "../../../../Store";
 
 const CardDetails = ({ paymentMode, setAddpayment }) => {
   const [nameOnCard, setNameOnCard] = useState("");
@@ -15,7 +15,8 @@ const CardDetails = ({ paymentMode, setAddpayment }) => {
   const [cvv, setCvv] = useState("");
   const [cvvValid, setCvvValid] = useState(true);
 
-  const { addNewPayment } = useCheckout();
+  const { addNewPayment, checkoutDispatch, setCheckoutLoading } = useCheckout();
+  const { token } = useAuth();
 
   const cardNumberEntered = (event) => {
     if (!isNaN(event)) setCardNumber(event);
@@ -78,11 +79,16 @@ const CardDetails = ({ paymentMode, setAddpayment }) => {
       checkCvv(cvv)
     ) {
       addNewPayment({
-        paymentType: paymentMode,
-        nameOnCard: nameOnCard,
-        cardNumber: cardNumber,
-        expirationDate: expirationDate,
-        cvv: cvv,
+        body: {
+          paymentType: paymentMode,
+          nameOnCard: nameOnCard,
+          cardNumber: cardNumber,
+          expirationDate: expirationDate,
+          cvv: cvv,
+        },
+        setLoading: setCheckoutLoading,
+        dispatch: checkoutDispatch,
+        token: token,
       });
       setAddpayment();
     }

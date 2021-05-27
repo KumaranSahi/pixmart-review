@@ -17,7 +17,7 @@ import {
   getFilteredData,
   removeItemFromCart,
   removeItemFromWishlist,
-  addItemToCart
+  addItemToCart,
 } from "./ProductsReducer";
 
 export const ProductsContext = createContext();
@@ -90,7 +90,7 @@ export const ProductsContextProvider = ({ children }) => {
         products: filteredData,
         cartItems: [...state.cartItems],
         wishListItems: [...state.wishListItems],
-        productsDispatch: dispatch,
+        productDispatch: dispatch,
         hasDiscount: state.hasDiscount,
         fastDelivery: state.fastDelivery,
         includeOutOfStock: state.includeOutOfStock,

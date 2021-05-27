@@ -4,7 +4,7 @@ import { useProducts } from "../../../Store";
 import { successToast } from "../../../UI/Toast/Toast";
 
 const OrderPlacedModal = () => {
-  const { dispatch } = useProducts();
+  const { productDispatch } = useProducts();
 
   return (
     <div className={classes["modal-page-container"]}>
@@ -20,7 +20,7 @@ const OrderPlacedModal = () => {
           <Link
             to="/"
             onClick={() => {
-              dispatch({ type: "CLEAR_CART" });
+              productDispatch({ type: "CLEAR_CART" });
               successToast("Order Placed Successfully!!");
             }}
           >

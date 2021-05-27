@@ -15,7 +15,7 @@ const Preferences = () => {
     includeOutOfStock,
     pixmartChoice,
     sortby,
-    productsDispatch,
+    productDispatch,
     filterByCatagory,
   } = useProducts();
   return (
@@ -27,7 +27,7 @@ const Preferences = () => {
           name="sortbycost"
           value={sortby}
           onChange={(event) =>
-            productsDispatch({
+            productDispatch({
               type: event.target.value,
             })
           }
@@ -51,7 +51,7 @@ const Preferences = () => {
             <Checkbox
               checked={fastDelivery}
               onChange={() =>
-                productsDispatch({
+                productDispatch({
                   type: "FILTER_BY_FAST_DELIVERY",
                 })
               }
@@ -66,7 +66,7 @@ const Preferences = () => {
             <Checkbox
               checked={includeOutOfStock}
               onChange={() =>
-                productsDispatch({
+                productDispatch({
                   type: "FILTER_BY_IN_STOCK",
                 })
               }
@@ -81,7 +81,7 @@ const Preferences = () => {
             <Checkbox
               checked={pixmartChoice}
               onChange={() =>
-                productsDispatch({
+                productDispatch({
                   type: "FILTER_BY_PIXMART_CHOICE",
                 })
               }
@@ -96,7 +96,7 @@ const Preferences = () => {
             <Checkbox
               checked={hasDiscount}
               onChange={() =>
-                productsDispatch({
+                productDispatch({
                   type: "FILTER_BY_HAS_DISCOUNT",
                 })
               }
@@ -114,7 +114,7 @@ const Preferences = () => {
             <Checkbox
               checked={filterByCatagory === "FILTER_ONLY_DSLR"}
               onChange={() =>
-                productsDispatch({
+                productDispatch({
                   type: "FILTER_ONLY_DSLR",
                 })
               }
@@ -129,7 +129,7 @@ const Preferences = () => {
             <Checkbox
               checked={filterByCatagory === "FILTER_ONLY_MIRRORLESS"}
               onChange={() =>
-                productsDispatch({
+                productDispatch({
                   type: "FILTER_ONLY_MIRRORLESS",
                 })
               }
@@ -144,7 +144,7 @@ const Preferences = () => {
             <Checkbox
               checked={filterByCatagory === "FILTER_ONLY_POINT_AND_SHOOT"}
               onChange={() =>
-                productsDispatch({
+                productDispatch({
                   type: "FILTER_ONLY_POINT_AND_SHOOT",
                 })
               }
@@ -159,7 +159,7 @@ const Preferences = () => {
             <Checkbox
               checked={filterByCatagory === "FILTER_ONLY_ACCESSORIES"}
               onChange={() =>
-                productsDispatch({
+                productDispatch({
                   type: "FILTER_ONLY_ACCESSORIES",
                 })
               }
