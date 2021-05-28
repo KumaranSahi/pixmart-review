@@ -1,11 +1,10 @@
-
-.dropdown-menu {
-  position: fixed;
-  top: 4.4rem;
-  right: 0px;
-  width: 100%;
-  height: 90%;
-  background-color: var(--neutral-mild);
-  z-index: 200;
-  box-sizing: border-box;
+.dropdown-menu{
+    position: fixed;
+    top: 4.375rem;
+    right:0px;
+    width: 100%;
+    height: 90%;
+    background-color: var(--neutral-mild);
+    z-index: 200;
+    box-sizing: border-box;
 }
