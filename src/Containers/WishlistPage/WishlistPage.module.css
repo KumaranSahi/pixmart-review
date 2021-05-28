@@ -1,21 +1,22 @@
-.wishlist-section {
-  height: 100%;
-  box-sizing: border-box;
-  padding: 1rem;
-  margin-left: 0rem;
-  background-color: whitesmoke;
-  margin-bottom: 3rem;
+.wishlist-section{
+    height: 100%;
+    box-sizing: border-box;
+    padding: 1rem;
+    margin-top: 4.375rem;
+    margin-left: 0rem;
+    background-color: whitesmoke;
+    margin-bottom: 3rem;
 }
 
-.wishlist-section ul {
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  box-sizing: border-box;
+.wishlist-section ul{
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    box-sizing: border-box;
 }
 
-.wishlist-empty {
-  text-align: center;
-  width: 100%;
-  font-weight: 300;
+.wishlist-empty{
+    text-align: center;
+    width: 100%;
+    font-weight: 300;
 }
