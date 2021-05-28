@@ -1,59 +1,59 @@
-.address-container {
-  box-shadow: 1px 1px 18px 11px var(--secondary);
-  width: 95%;
-  min-height: 48rem;
-  padding: 0.5rem;
-  box-sizing: border-box;
-  background-color: whitesmoke;
+.address-container{
+    box-shadow: 1px 1px 18px 11px var(--secondary);
+    width: 95%;
+    min-height: 48rem;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    background-color: whitesmoke;
 }
 
-.address-container h1 {
-  font-weight: 300;
+.address-container h1{
+    font-weight: 300;
 }
 
-.address {
-  width: 100%;
-  border: 1px solid gray;
-  padding: 1rem;
-  background-color: white;
-  border-radius: 1rem;
-  margin-top: 1rem;
+.address{
+    width: 100%;
+    border:1px solid gray;
+    padding:1rem;
+    background-color: white;
+    border-radius:1rem;
+    margin-top: 1rem;
 }
 
-.button-solid {
-  color: white;
-  outline: none;
-  border: 0px;
-  margin-top: 1rem;
-  padding: 0.5rem;
-  font-size: 1rem;
+.button-solid{
+    color: var(--white);
+    outline: none;
+    border: 0px;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    font-size: 1rem;
 }
 
-.button-secondary {
-  background-color: var(--secondary);
+.button-secondary{
+    background-color: var(--secondary);
 }
 
-.button-primary {
-  display: block;
-  margin: auto;
-  margin-top: 1rem;
-  padding: 1rem;
-  background-color: var(--primary);
+.button-primary{
+    display: block;
+    margin: auto;
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: var(--primary);
 }
 
-.proceed-further-button {
-  width: 100%;
-  margin-bottom: 5rem;
-  cursor: pointer;
+.proceed-further-button{
+    width: 100%;
+    margin-bottom: 5rem;
+    cursor: pointer;
 }
 
-@media (min-width: 700px) {
-  .address-container {
-    width: 45rem;
-    min-height: 100vh;
-    margin-top: 2rem;
-  }
-  .address {
-    width: 35rem;
-  }
+@media (min-width:700px){
+    .address-container{
+        width: 45rem;
+        min-height: 100vh;
+        margin-top: 2rem;
+    }
+    .address{
+        width: 35rem;
+    }
 }

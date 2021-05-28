@@ -1,3 +1,4 @@
+
 .navbar {
   position: fixed;
   top: 0;
@@ -11,15 +12,16 @@
   z-index: var(--z-index-mid);
 }
 
-.desktop-spacer {
-  display: none;
+.desktop-spacer{
+    display: none;
 }
 
-@media (min-width: 700px) {
-  .navbar {
-    padding: 10px;
-  }
-  .desktop-spacer {
-    display: block;
-  }
+@media (min-width:700px){
+    .navbar{
+        padding: 10px;
+    }
+    .desktop-spacer{
+        display: block;
+    }
 }
+

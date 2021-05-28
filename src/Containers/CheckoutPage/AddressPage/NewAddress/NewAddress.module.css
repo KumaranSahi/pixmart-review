@@ -1,64 +1,64 @@
-.error-text {
-  font-style: italic;
-  color: red;
-  margin: 0;
+.error-text{
+    font-style: italic;
+    color: red;
+    margin: 0;
 }
 
-.textbox {
-  padding: 0.5rem;
-  outline: 0px;
-  border: 0px;
-  letter-spacing: 1px;
-  background-color: var(--neutral-mild);
-  margin-top: 0.5rem;
+.textbox{
+    padding: 0.5rem;
+    outline: 0px;
+    border:0px;
+    letter-spacing: 1px;
+    background-color: var(--neutral-mild);
+    margin-top: 0.5rem;
 }
 
-.textbox:focus {
-  border: 2px solid var(--black);
+.textbox:focus{
+    border: 2px solid var(--black);
 }
 
-.textarea {
-  padding: 0.5rem;
-  outline: 0px;
-  border: 0px;
-  max-width: 25rem;
-  height: 10rem;
-  resize: none;
-  letter-spacing: 1px;
-  background-color: var(--neutral-mild);
-  outline: 0px;
-  margin-top: 0.5rem;
+.textarea{
+    padding: 0.5rem;
+    outline: 0px;
+    border:0px;
+    max-width: 25rem;
+    height: 10rem;
+    resize: none;
+    letter-spacing: 1px;
+    background-color: var(--neutral-mild);
+    outline: 0px;
+    margin-top: 0.5rem;
 }
 
-.textarea:focus {
-  border: 2px solid var(--black);
+.textarea:focus{
+    border: 2px solid var(--black);
 }
 
-.form-field {
-  display: flex;
-  flex-direction: column;
-  padding: 0.5rem;
+.form-field{
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
 }
 
-.form-field span {
-  font-weight: 100;
-  letter-spacing: 0.1rem;
+.form-field span{
+    font-weight: 100;
+    letter-spacing: 0.1rem;
 }
 
-.button-solid {
-  color: white;
-  outline: none;
-  border: 0px;
-  margin-top: 1rem;
-  width: 100%;
-  padding: 1rem;
-  font-size: 1rem;
+.button-solid{
+    color: var(--white);
+    outline: none;
+    border: 0px;
+    margin-top: 1rem;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
 }
 
-.button-primary {
-  background-color: var(--primary);
+.button-primary{
+    background-color: var(--primary);
 }
 
-.add-new-address {
-  margin-bottom: 5rem;
+.add-new-address{
+    margin-bottom: 5rem;
 }
