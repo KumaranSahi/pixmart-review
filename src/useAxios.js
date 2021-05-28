@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const instance=axios.create({
-//     baseURL:"https://pixmart-api.herokuapp.com/"
-// })
+const instance=axios.create({
+    baseURL:"https://pixmart-api.herokuapp.com/"
+})
 
-export default axios;
+export default instance;
