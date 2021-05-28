@@ -1,42 +1,42 @@
-.modal-container {
-  width: 25rem;
-  min-height: 10rem;
-  box-sizing: border-box;
-  border: 1px solid black;
-  background-color: white;
-  border-radius: 0.5rem;
-  padding: 1rem;
-  margin: 1rem;
+.modal-container{
+    width: 25rem;
+    min-height: 10rem;
+    box-sizing: border-box;
+    border:1px solid black;
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1rem;
 }
 
-.btn-solid {
-  color: white;
-  outline: none;
-  border: 0px;
-  margin: 1rem;
-  padding: 1rem;
-  font-size: 1rem;
+.btn-solid{
+    color: var(--white);
+    outline: none;
+    border: 0px;
+    margin: 1rem;
+    padding: 1rem;
+    font-size: 1rem;
 }
 
-.btn-primary {
-  background-color: var(--primary);
+.btn-primary{
+    background-color: var(--primary);
 }
 
-.btn-secondary {
-  background-color: var(--secondary);
+.btn-secondary{
+    background-color:var(--secondary);
 }
 
-.modal-buttons-container {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+.modal-buttons-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
-.modal-page-container {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.modal-page-container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
