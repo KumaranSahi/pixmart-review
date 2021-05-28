@@ -1,21 +1,21 @@
-.catagory-card{
-    width: 17rem;
-    height: 15rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 1rem;
-    color: white;
-    background-position: center;
-    animation: all 0.5s ease-in-out;
-    margin: 1rem;
+.catagory-card {
+  width: 17rem;
+  height: 15rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  color: white;
+  background-position: center;
+  animation: all 0.5s ease-in-out;
+  margin: 1rem;
 }
 
-.catagory-card:hover{
-    transform: scale(1.1);
+.catagory-card:hover {
+  transform: scale(1.1);
 }
 
-.catagory-card span{
-    font-size: 1.5rem;
-    color: white;
+.catagory-card span {
+  font-size: 1.5rem;
+  color: white;
 }

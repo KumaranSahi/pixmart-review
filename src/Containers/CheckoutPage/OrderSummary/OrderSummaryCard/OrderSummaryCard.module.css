@@ -1,21 +1,21 @@
-.order-summary-card{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem;
-    background-color: white;
-    box-shadow: 9px 4px 12px 1px var(--neutral-mild);
-    border-bottom-right-radius: 1rem;
-    margin:1rem;
+.order-summary-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: white;
+  box-shadow: 9px 4px 12px 1px var(--neutral-mild);
+  border-bottom-right-radius: 1rem;
+  margin: 1rem;
 }
 
-.order-summary-card p{
-    font-size: 1.1rem;
-    font-weight: 300;
+.order-summary-card p {
+  font-size: 1.1rem;
+  font-weight: 300;
 }
 
-.order-summary-image{
-    width: 3rem;
-    height: 3rem;
-    box-shadow: 1px 3px 10px 1px var(--secondary);
+.order-summary-image {
+  width: 3rem;
+  height: 3rem;
+  box-shadow: 1px 3px 10px 1px var(--secondary);
 }

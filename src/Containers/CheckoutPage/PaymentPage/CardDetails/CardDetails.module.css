@@ -1,52 +1,52 @@
-.card-details{
-    padding: 1rem;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
+.card-details {
+  padding: 1rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
-.expiry-cvv{
-    display: flex;
-    justify-content: space-between;
+.expiry-cvv {
+  display: flex;
+  justify-content: space-between;
 }
 
-.expiry-cvv .textbox{
-    width: 6.5rem;
+.expiry-cvv .textbox {
+  width: 6.5rem;
 }
 
-.textbox{
-    padding: 1rem;
-    outline: 0;
-    border:0;
-    letter-spacing: 1px;
-    border-bottom: 2px solid var(--primary);
-    margin-top: 0.5rem;
+.textbox {
+  padding: 1rem;
+  outline: 0;
+  border: 0;
+  letter-spacing: 1px;
+  border-bottom: 2px solid var(--primary);
+  margin-top: 0.5rem;
 }
 
-.button-solid{
-    color: var(--white);
-    outline: none;
-    border: 0;
-    margin: 1rem;
-    padding: 0.5rem;
-    font-size: 1rem;
+.button-solid {
+  color: white;
+  outline: none;
+  border: 0;
+  margin: 1rem;
+  padding: 0.5rem;
+  font-size: 1rem;
 }
 
-.button-secondary{
-    background-color: var(--secondary);
+.button-secondary {
+  background-color: var(--secondary);
 }
 
-.error-text{
-    font-style: italic;
-    color: var(--warning);
-    margin: 0;
+.error-text {
+  font-style: italic;
+  color: var(--warning);
+  margin: 0;
 }
 
-@media (min-width:700px){
-    .card-details{
-        width: 30rem;
-    }
-    .expiry-cvv .textbox{
-        width: 10rem;
-    }
+@media (min-width: 700px) {
+  .card-details {
+    width: 30rem;
+  }
+  .expiry-cvv .textbox {
+    width: 10rem;
+  }
 }
