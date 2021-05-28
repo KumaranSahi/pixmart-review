@@ -1,6 +1,6 @@
 .hamburger-container {
-  height: 2.1875rem;
-  width: 3.125rem;
+  height: 2.2rem;
+  width: 3.2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -13,7 +13,7 @@
 
 .hamburger-line {
   height: 2px;
-  width: 2.1875rem;
+  width: 2.2rem;
   background-color: white;
   transition: all 0.3s ease;
 }
