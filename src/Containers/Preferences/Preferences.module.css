@@ -1,4 +1,20 @@
-.field-title{
-    font-weight: 300;
-    margin: 0;
+.field-title {
+  font-weight: 300;
+  margin: 0;
+}
+
+.button-solid {
+  color: white;
+  width: 95%;
+  outline: none;
+  margin: 0.25rem;
+  border: 0px;
+  cursor: pointer;
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+
+.button-primary {
+  background-color: var(--primary);
 }
