@@ -1,7 +1,7 @@
 import classes from "./ProductPage.module.css";
 import { useProducts } from "../../store";
-import { ProductCard } from "./ProductCard/ProductCard";
-import { Preferences } from "../Preferences/Preferences";
+import { ProductCard } from "./productCard/ProductCard";
+import { Preferences } from "../preferences/Preferences";
 
 export const ProductPage = () => {
   const { products } = useProducts();

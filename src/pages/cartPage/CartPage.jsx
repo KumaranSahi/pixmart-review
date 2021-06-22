@@ -1,6 +1,6 @@
 import classes from "./CartPage.module.css";
 import { useEffect } from "react";
-import { CartCard } from "./CartCard/CartCard";
+import { CartCard } from "./cartCard/CartCard";
 import { Link } from "react-router-dom";
 import { useCheckout, useProducts } from "../../store";
 

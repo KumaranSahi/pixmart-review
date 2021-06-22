@@ -1,13 +1,13 @@
 import { Navbar, Spinner } from "../../components";
-import { ProductPage } from "../ProductsPage/ProductPage";
-import { CartPage } from "../CartPage/CartPage";
-import { WishlistPage } from "../WishlistPage/WishlistPage";
-import { LandingPage } from "../LandingPage/LandingPage";
-import { CheckoutPage } from "../CheckoutPage/CheckoutPage";
-import { SigninPage } from "../SigninPage/SigninPage";
+import { ProductPage } from "../productsPage/ProductPage";
+import { CartPage } from "../cartPage/CartPage";
+import { WishlistPage } from "../wishlistPage/WishlistPage";
+import { LandingPage } from "../landingPage/LandingPage";
+import { CheckoutPage } from "../checkoutPage/CheckoutPage";
+import { SigninPage } from "../signinPage/SigninPage";
 
 import { Route, Switch, Redirect } from "react-router-dom";
-import { MobileNavBar } from "./MobileNavBar/MobileNavBar";
+import { MobileNavBar } from "./mobileNavBar/MobileNavBar";
 import { useAuth } from "../../store";
 import { useCheckout } from "../../store";
 import { useProducts } from "../../store";

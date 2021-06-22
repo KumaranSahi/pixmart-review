@@ -1,9 +1,9 @@
 import classes from "./CheckoutPage.module.css";
 import { useCheckout } from "../../store";
-import { AddressPage } from "./AddressPage/AddressPage";
-import { PaymentPage } from "./PaymentPage/PaymentPage";
-import { OrderPlacedModal } from "./OrderPlacedModal/OrderPlacedModal";
-import { OrderSummary } from "./OrderSummary/OrderSummary";
+import { AddressPage } from "./addressPage/AddressPage";
+import { PaymentPage } from "./paymentPage/PaymentPage";
+import { OrderPlacedModal } from "./orderPlacedModal/OrderPlacedModal";
+import { OrderSummary } from "./orderSummary/OrderSummary";
 
 export const CheckoutPage = () => {
   const { currentState } = useCheckout();

@@ -7,7 +7,7 @@ import {
 } from "@material-ui/core";
 import { useCheckout, useProducts, useAuth } from "../../../store";
 import { useState } from "react";
-import CardDetails from "./CardDetails/CardDetails";
+import CardDetails from "./cardDetails/CardDetails";
 
 export const PaymentPage = () => {
   const [paymentMode, setPaymentMode] = useState("CREDITCARD");

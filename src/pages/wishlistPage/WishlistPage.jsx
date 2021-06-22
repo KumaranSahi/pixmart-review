@@ -1,6 +1,6 @@
 import classes from "./WishlistPage.module.css";
 import { useProducts } from "../../store";
-import {WishlistCard} from "./WishlistCard/WishlistCard";
+import {WishlistCard} from "./wishlistCard/WishlistCard";
 
 export const WishlistPage = () => {
   const { wishListItems } = useProducts();

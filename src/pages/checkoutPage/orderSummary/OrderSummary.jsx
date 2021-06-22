@@ -1,8 +1,8 @@
 import classes from "./OrderSummary.module.css";
 import { useCheckout, useProducts, useAuth } from "../../../store";
-import { OrderSummaryCard } from "./OrderSummaryCard/OrderSummaryCard";
-import { AddressDetails } from "./AddressDetails/AddressDetails";
-import { PaymentDetails } from "./PaymentDetails/PaymentDetails";
+import { OrderSummaryCard } from "./orderSummaryCard/OrderSummaryCard";
+import { AddressDetails } from "./addressDetails/AddressDetails";
+import { PaymentDetails } from "./paymentDetails/PaymentDetails";
 
 export const OrderSummary = () => {
   const { cartItems, totalCost, productDispatch } = useProducts();

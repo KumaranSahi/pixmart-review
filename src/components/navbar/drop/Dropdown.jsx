@@ -1,5 +1,5 @@
 import classes from "./Dropdown.module.css";
-import { Preferences } from "../../../Containers/Preferences/Preferences";
+import { Preferences } from "../../../pages/preferences/Preferences";
 
 export const Dropdown = ({ open }) => {
   return open ? (

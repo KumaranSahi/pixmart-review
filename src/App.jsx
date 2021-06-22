@@ -1,9 +1,12 @@
 import "./App.css";
-import { MainPage } from "./Containers/Mainpage/Mainpage";
+import { MainPage } from "./pages/mainpage/Mainpage";
 import { BrowserRouter } from "react-router-dom";
-import { AuthContextProvider,ProductsContextProvider,CheckoutContextProvider } from "./store";
+import {
+  AuthContextProvider,
+  ProductsContextProvider,
+  CheckoutContextProvider,
+} from "./store";
 import { ToastContainer } from "react-toastify";
-
 
 function App() {
   return (
