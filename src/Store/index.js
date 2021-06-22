@@ -1,9 +1,9 @@
-export { useAuth, AuthContextProvider } from "./AuthReducer/AuthContext";
+export { useAuth, AuthContextProvider } from "./authReducer/AuthContext";
 export {
   useProducts,
   ProductsContextProvider,
-} from "./ProductsReducer/ProductsContext";
+} from "./productsReducer/ProductsContext";
 export {
   CheckoutContextProvider,
   useCheckout,
-} from "./CheckoutReducer/CheckoutContext";
+} from "./checkoutReducer/CheckoutContext";

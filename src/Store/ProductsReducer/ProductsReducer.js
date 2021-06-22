@@ -1,5 +1,6 @@
-import axios from "../../useAxios";
+import { APP_URL } from "../../axiosUtils";
 import { successToast, warningToast } from "../../UI/Toast/Toast";
+import axios from "axios";
 
 export const productsReducer = (state, action) => {
   switch (action.type) {
@@ -109,24 +110,15 @@ const calculateTotalCost = (
   return acc + actualPrice * quantity;
 };
 
-export const addItemToCart = async ({ productId, token, dispatch, setLoading }) => {
+export const addItemToCart = async ({ productId, dispatch, setLoading }) => {
   setLoading(true);
-  const config = {
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-  };
   try {
     const {
       data: { data, ok },
-    } = await axios.post(
-      `/api/carts`,
-      {
-        productId: productId,
-        quantity: 1,
-      },
-      config
-    );
+    } = await axios.post(`${APP_URL}/api/carts`, {
+      productId: productId,
+      quantity: 1,
+    });
     if (ok) {
       dispatch({ type: "ADD_TO_CART", payload: [...data] });
       successToast("Item added to cart");
@@ -142,19 +134,13 @@ export const addItemToCart = async ({ productId, token, dispatch, setLoading }) 
 export const removeItemFromCart = async ({
   productId,
   setLoading,
-  token,
   dispatch,
 }) => {
-  const config = {
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-  };
   setLoading(true);
   try {
     const {
       data: { data, ok },
-    } = await axios.delete(`/api/carts/${productId}`, config);
+    } = await axios.delete(`${APP_URL}/api/carts/${productId}`);
     if (ok) {
       dispatch({ type: "ADD_TO_CART", payload: [...data] });
       successToast("Item removed from cart");
@@ -171,23 +157,15 @@ export const changeQuantity = async ({
   productId,
   quantity,
   setLoading,
-  token,
   dispatch,
 }) => {
   setLoading(true);
-  const config = {
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-  };
   try {
     const {
       data: { data, ok },
-    } = await axios.put(
-      `/api/carts/${productId}`,
-      { quantity: quantity },
-      config
-    );
+    } = await axios.put(`${APP_URL}/api/carts/${productId}`, {
+      quantity: quantity,
+    });
     if (ok) {
       dispatch({ type: "ADD_TO_CART", payload: [...data] });
       successToast("Cart item updated");
@@ -200,22 +178,12 @@ export const changeQuantity = async ({
   }
 };
 
-export const addWishlist = async ({
-  productId,
-  token,
-  setLoading,
-  dispatch,
-}) => {
+export const addWishlist = async ({ productId, setLoading, dispatch }) => {
   setLoading(true);
-  const config = {
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-  };
   try {
     const {
       data: { data, ok },
-    } = await axios.post(`/api/wishlists`, { productId: productId }, config);
+    } = await axios.post(`${APP_URL}/api/wishlists`, { productId: productId });
     if (ok) {
       dispatch({ type: "ADD_TO_WISHLIST", payload: [...data] });
       successToast("Item added to Wishlist");
@@ -230,20 +198,14 @@ export const addWishlist = async ({
 
 export const removeItemFromWishlist = async ({
   productId,
-  token,
   setLoading,
   dispatch,
 }) => {
   setLoading(true);
-  const config = {
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-  };
   try {
     const {
       data: { data, ok },
-    } = await axios.delete(`/api/wishlists/${productId}`, config);
+    } = await axios.delete(`${APP_URL}/api/wishlists/${productId}`);
     if (ok) {
       dispatch({ type: "ADD_TO_WISHLIST", payload: [...data] });
       successToast("Item removed from cart");
@@ -257,15 +219,10 @@ export const removeItemFromWishlist = async ({
 };
 
 export const loadCart = async ({ token, dispatch }) => {
-  const config = {
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-  };
   try {
     const {
       data: { data, ok },
-    } = await axios.get(`/api/carts`, config);
+    } = await axios.get(`${APP_URL}/api/carts`);
     if (ok) {
       dispatch({
         type: "ADD_TO_CART",
@@ -279,15 +236,10 @@ export const loadCart = async ({ token, dispatch }) => {
 };
 
 export const loadWishlist = async ({ token, dispatch }) => {
-  const config = {
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-  };
   try {
     const {
       data: { data, ok },
-    } = await axios.get(`/api/wishlists`, config);
+    } = await axios.get(`${APP_URL}/api/wishlists`);
     if (ok) {
       dispatch({
         type: "ADD_TO_WISHLIST",
@@ -304,7 +256,7 @@ export const loadProduct = async ({ dispatch }) => {
   try {
     const {
       data: { data, ok },
-    } = await axios.get("/api/products");
+    } = await axios.get(`${APP_URL}/api/products`);
     if (ok)
       dispatch({
         type: "LOAD_PRODUCT_LIST",

@@ -5,7 +5,7 @@ import {
   useContext,
   useState,
 } from "react";
-import { useAuth } from "../AuthReducer/AuthContext";
+import { useAuth } from "../authReducer/AuthContext";
 import {
   productsReducer,
   loadCart,

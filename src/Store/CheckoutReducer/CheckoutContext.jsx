@@ -5,7 +5,7 @@ import {
   useContext,
   useState,
 } from "react";
-import { useAuth } from "../";
+import { useAuth } from "..";
 import {
   checkoutReducer,
   loadAddresses,

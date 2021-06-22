@@ -1,5 +1,6 @@
 import { warningToast, successToast, infoToast } from "../../UI/Toast/Toast";
-import axios from "../../useAxios";
+import axios from "axios";
+import { APP_URL, setupAuthHeaderForServiceCalls } from "../../axiosUtils";
 
 export const authReducer = (state, action) => {
   switch (action.type) {
@@ -22,10 +23,10 @@ export const authReducer = (state, action) => {
   }
 };
 
-export const signUpUser = async ({userData, setLoading, setCurrentPage}) => {
+export const signUpUser = async ({ userData, setLoading, setCurrentPage }) => {
   setLoading(true);
   try {
-    const { data } = await axios.post("/api/users/signup", userData);
+    const { data } = await axios.post(`${APP_URL}/api/users/signup`, userData);
     if (data.ok) {
       successToast("User Added Successfully");
       setCurrentPage("SIGNIN_PAGE");
@@ -44,29 +45,30 @@ export const signUpUser = async ({userData, setLoading, setCurrentPage}) => {
   }
 };
 
-export const checkAuthTimeout = ({expirationTime, dispatch}) => {
+export const checkAuthTimeout = ({ expirationTime, dispatch }) => {
   setTimeout(() => {
-    signOutUser({dispatch});
+    signOutUser({ dispatch });
   }, expirationTime * 1000);
 };
 
-export const signOutUser = ({dispatch}) => {
+export const signOutUser = ({ dispatch }) => {
   localStorage.clear();
   dispatch({
     type: "SIGNOUT_USER",
   });
 };
 
-export const onReload = ({dispatch}) => {
+export const onReload = ({ dispatch }) => {
   const token = localStorage.getItem("token");
+  setupAuthHeaderForServiceCalls(token);
   const expiresIn = new Date(localStorage.getItem("expiresIn"));
   if (expiresIn <= new Date()) {
-    signOutUser({dispatch});
+    signOutUser({ dispatch });
   } else {
     const userName = localStorage.getItem("userName");
     checkAuthTimeout({
       expirationTime: (expiresIn.getTime() - new Date().getTime()) / 1000,
-      dispatch:dispatch,
+      dispatch: dispatch,
     });
     dispatch({
       type: "SIGNIN_USER",
@@ -79,10 +81,17 @@ export const onReload = ({dispatch}) => {
   }
 };
 
-export const changePassword = async ({userData, setLoading, setCurrentPage}) => {
+export const changePassword = async ({
+  userData,
+  setLoading,
+  setCurrentPage,
+}) => {
   setLoading(true);
   try {
-    const { data } = await axios.post("/api/users/password", userData);
+    const { data } = await axios.post(
+      `${APP_URL}/api/users/password`,
+      userData
+    );
     if (data.ok) {
       successToast("Password changed successfully");
       setCurrentPage("SIGNIN_PAGE");
@@ -95,18 +104,19 @@ export const changePassword = async ({userData, setLoading, setCurrentPage}) => 
   }
 };
 
-export const signInUser = async ({userData, setLoading, dispatch}) => {
+export const signInUser = async ({ userData, setLoading, dispatch }) => {
   setLoading(true);
   try {
     const {
       data: { data },
-    } = await axios.post("/api/users/signin", userData);
+    } = await axios.post(`${APP_URL}/api/users/signin`, userData);
     if (data.ok) {
       localStorage.setItem("token", data.token);
+      setupAuthHeaderForServiceCalls(data.token);
       localStorage.setItem("userName", data.userName);
       const expiresIn = new Date(new Date().getTime() + 86400000);
       localStorage.setItem("expiresIn", expiresIn);
-      checkAuthTimeout({ expirationTime: 86400, dispatch :dispatch});
+      checkAuthTimeout({ expirationTime: 86400, dispatch: dispatch });
       dispatch({
         type: "SIGNIN_USER",
         payload: {

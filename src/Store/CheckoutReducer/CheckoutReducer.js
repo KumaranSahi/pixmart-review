@@ -1,5 +1,6 @@
-import axios from "../../useAxios";
+import { APP_URL } from "../../axiosUtils";
 import { successToast, warningToast } from "../../UI/Toast/Toast";
+import axios from "axios";
 
 export const checkoutReducer = (state, action) => {
   switch (action.type) {
@@ -55,16 +56,11 @@ export const checkoutReducer = (state, action) => {
   }
 };
 
-export const loadAddresses = async ({ token, dispatch, setLoading }) => {
-  const config = {
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-  };
+export const loadAddresses = async ({ dispatch, setLoading }) => {
   try {
     const {
       data: { data },
-    } = await axios.get(`/api/addresses`, config);
+    } = await axios.get(`${APP_URL}/api/addresses`);
     dispatch({
       type: "ADD_USER_ADDRESSES",
       payload: [...data],
@@ -76,16 +72,11 @@ export const loadAddresses = async ({ token, dispatch, setLoading }) => {
   }
 };
 
-export const loadPayment = async ({ token, dispatch, setLoading }) => {
-  const config = {
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-  };
+export const loadPayment = async ({ dispatch, setLoading }) => {
   try {
     const {
       data: { data },
-    } = await axios.get(`/api/payments`, config);
+    } = await axios.get(`${APP_URL}/api/payments`);
     dispatch({
       type: "ADD_USER_PAYMENTS",
       payload: [...data],
@@ -97,17 +88,12 @@ export const loadPayment = async ({ token, dispatch, setLoading }) => {
   }
 };
 
-export const addNewAddress = async ({ setLoading, body, dispatch, token }) => {
-  const config = {
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-  };
+export const addNewAddress = async ({ setLoading, body, dispatch }) => {
   setLoading(true);
   try {
     const {
       data: { data },
-    } = await axios.post(`/api/addresses`, body, config);
+    } = await axios.post(`${APP_URL}/api/addresses`, body);
     dispatch({
       type: "ADD_USER_ADDRESSES",
       payload: [...data],
@@ -121,22 +107,12 @@ export const addNewAddress = async ({ setLoading, body, dispatch, token }) => {
   }
 };
 
-export const deleteAddress = async ({
-  addressId,
-  setLoading,
-  dispatch,
-  token,
-}) => {
-  const config = {
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-  };
+export const deleteAddress = async ({ addressId, setLoading, dispatch }) => {
   setLoading(true);
   try {
     const {
       data: { data },
-    } = await axios.delete(`/api/addresses/${addressId}`, config);
+    } = await axios.delete(`${APP_URL}/api/addresses/${addressId}`);
     dispatch({
       type: "ADD_USER_ADDRESSES",
       payload: [...data],
@@ -150,17 +126,12 @@ export const deleteAddress = async ({
   }
 };
 
-export const addNewPayment = async ({ body, setLoading, dispatch, token }) => {
-  const config = {
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-  };
+export const addNewPayment = async ({ body, setLoading, dispatch }) => {
   setLoading(true);
   try {
     const {
       data: { data },
-    } = await axios.post(`/api/payments`, body, config);
+    } = await axios.post(`${APP_URL}/api/payments`, body);
     dispatch({
       type: "ADD_USER_PAYMENTS",
       payload: [...data],
@@ -180,16 +151,11 @@ export const deletePaymentDetails = async ({
   token,
   dispatch,
 }) => {
-  const config = {
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-  };
   setLoading(true);
   try {
     const {
       data: { data },
-    } = await axios.delete(`/api/payments/${paymentId}`, config);
+    } = await axios.delete(`${APP_URL}/api/payments/${paymentId}`);
     dispatch({
       type: "ADD_USER_PAYMENTS",
       payload: [...data],
@@ -204,14 +170,9 @@ export const deletePaymentDetails = async ({
 };
 
 export const placeOrder = async ({ body, setLoading, dispatch, token }) => {
-  const config = {
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-  };
   setLoading(true);
   try {
-    await axios.post(`/api/orders`, body, config);
+    await axios.post(`${APP_URL}/api/orders`, body);
     dispatch({ type: "PLACE_ORDER" });
     setLoading(false);
     successToast("Order placed successfully");
