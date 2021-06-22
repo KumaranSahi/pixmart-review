@@ -1,7 +1,7 @@
 import classes from "./Avatar.module.css";
 import { useState } from "react";
 import { useAuth } from "../../../store";
-import profileImage from "../../../Assets/profileimage.jpg";
+import profileImage from "../../../assets/profileimage.jpg";
 import { Link, useLocation } from "react-router-dom";
 
 export const Avatar = () => {
@@ -11,10 +11,11 @@ export const Avatar = () => {
 
   let { pathname } = useLocation();
 
-  
   let avatar = pathname !== "/signin" && (
     <div className={classes["name-avatar-container"]}>
-      <Link to="/signin" style={{marginTop:"1.5rem"}}>Login</Link>
+      <Link to="/signin" style={{ marginTop: "1.5rem" }}>
+        Login
+      </Link>
     </div>
   );
 
@@ -38,7 +39,7 @@ export const Avatar = () => {
             <ul className={classes["signout-dropdown"]}>
               <li
                 onClick={() => {
-                  signOutUser({dispatch:authDispatch});
+                  signOutUser({ dispatch: authDispatch });
                   setOpenDropdown(false);
                 }}
               >

@@ -1,5 +1,5 @@
 import classes from './LandingImage.module.css'
-import logo from '../../../Assets/mk logo finD.png'
+import logo from '../../../assets/mk logo finD.png'
 import {Link} from 'react-router-dom'
 
 export const LandingImage=()=>{
