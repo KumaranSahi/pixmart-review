@@ -32,14 +32,12 @@ export const ProductsContextProvider = ({ children }) => {
     if (token)
       loadCart({
         dispatch: dispatch,
-        token: token,
       });
   }, [token]);
 
   useEffect(() => {
     if (token)
       loadWishlist({
-        token: token,
         dispatch: dispatch,
       });
   }, [token]);

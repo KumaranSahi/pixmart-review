@@ -7,7 +7,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useProducts } from "../../../store";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../../store";
 
 export const ProductCard = ({
   id,
@@ -30,7 +29,6 @@ export const ProductCard = ({
     setProductsLoading,
     productLoading,
   } = useProducts();
-  const { token } = useAuth();
 
   const calculateDiscount = (price, discount) => {
     let discountedAmount = price - Math.round(price * (discount / 100));
@@ -97,7 +95,6 @@ export const ProductCard = ({
                 onClick={() => {
                   addItemToCart({
                     productId: id,
-                    token: token,
                     dispatch: productDispatch,
                     setLoading: setProductsLoading,
                   });
@@ -127,7 +124,6 @@ export const ProductCard = ({
               onClick={() => {
                 addWishlist({
                   productId: id,
-                  token: token,
                   setLoading: setProductsLoading,
                   dispatch: productDispatch,
                 });

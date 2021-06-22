@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 import classes from "./NewAddress.module.css";
-import { useAuth, useCheckout } from "../../../../store";
+import { useCheckout } from "../../../../store";
 import { useNewAddressReducer } from "./NewAddressReducer";
 
 const NewAddress = ({ addressAdded }) => {
@@ -12,7 +12,6 @@ const NewAddress = ({ addressAdded }) => {
     checkoutDispatch,
     checkoutLoading,
   } = useCheckout();
-  const { token } = useAuth();
 
   const {
     name,
@@ -127,7 +126,6 @@ const NewAddress = ({ addressAdded }) => {
           },
           setLoading: setCheckoutLoading,
           dispatch: checkoutDispatch,
-          token: token,
         });
         addressAdded();
       }

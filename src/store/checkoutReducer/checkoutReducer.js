@@ -148,7 +148,6 @@ export const addNewPayment = async ({ body, setLoading, dispatch }) => {
 export const deletePaymentDetails = async ({
   paymentId,
   setLoading,
-  token,
   dispatch,
 }) => {
   setLoading(true);
@@ -169,7 +168,7 @@ export const deletePaymentDetails = async ({
   }
 };
 
-export const placeOrder = async ({ body, setLoading, dispatch, token }) => {
+export const placeOrder = async ({ body, setLoading, dispatch }) => {
   setLoading(true);
   try {
     await axios.post(`${APP_URL}/api/orders`, body);

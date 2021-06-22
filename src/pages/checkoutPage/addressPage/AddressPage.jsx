@@ -1,6 +1,6 @@
 import classes from "./AddressPage.module.css";
 import { useState } from "react";
-import { useCheckout, useAuth } from "../../../store";
+import { useCheckout } from "../../../store";
 import NewAddress from "./newAddress/NewAddress";
 import {
   Radio,
@@ -19,7 +19,6 @@ export const AddressPage = () => {
     checkoutLoading,
   } = useCheckout();
   const [addNewAddress, setAddNewAddress] = useState(false);
-  const { token } = useAuth();
   const addressSelected = (event) => {
     checkoutDispatch({
       type: "ADD_ADDRESS",
@@ -58,7 +57,6 @@ export const AddressPage = () => {
                         addressId: address._id,
                         setLoading: setCheckoutLoading,
                         dispatch: checkoutDispatch,
-                        token: token,
                       })
                     }
                   >

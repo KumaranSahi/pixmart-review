@@ -218,7 +218,7 @@ export const removeItemFromWishlist = async ({
   }
 };
 
-export const loadCart = async ({ token, dispatch }) => {
+export const loadCart = async ({ dispatch }) => {
   try {
     const {
       data: { data, ok },
@@ -235,7 +235,7 @@ export const loadCart = async ({ token, dispatch }) => {
   }
 };
 
-export const loadWishlist = async ({ token, dispatch }) => {
+export const loadWishlist = async ({ dispatch }) => {
   try {
     const {
       data: { data, ok },

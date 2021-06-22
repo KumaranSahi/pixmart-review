@@ -28,7 +28,6 @@ export const CheckoutContextProvider = ({ children }) => {
   useEffect(() => {
     if (token)
       loadAddresses({
-        token: token,
         dispatch: dispatch,
         setLoading: setLoading,
       });
@@ -36,7 +35,7 @@ export const CheckoutContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (token)
-      loadPayment({ token: token, dispatch: dispatch, setLoading: setLoading });
+      loadPayment({ dispatch: dispatch, setLoading: setLoading });
   }, [token]);
 
   const [state, dispatch] = useReducer(checkoutReducer, {

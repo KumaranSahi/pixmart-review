@@ -1,5 +1,5 @@
 import classes from "./OrderSummary.module.css";
-import { useCheckout, useProducts, useAuth } from "../../../store";
+import { useCheckout, useProducts } from "../../../store";
 import { OrderSummaryCard } from "./orderSummaryCard/OrderSummaryCard";
 import { AddressDetails } from "./addressDetails/AddressDetails";
 import { PaymentDetails } from "./paymentDetails/PaymentDetails";
@@ -14,7 +14,6 @@ export const OrderSummary = () => {
     checkoutDispatch,
     checkoutLoading,
   } = useCheckout();
-  const { token } = useAuth();
   return (
     <div className={classes["order-summary-container"]}>
       <h1>Order Summary</h1>
@@ -63,7 +62,6 @@ export const OrderSummary = () => {
             body: { products: products, totalCost: totalCost },
             setLoading: setCheckoutLoading,
             dispatch: checkoutDispatch,
-            token: token,
           });
           productDispatch({ type: "CLEAR_CART" });
         }}

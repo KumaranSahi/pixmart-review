@@ -5,7 +5,7 @@ import {
   faCheckCircle,
   faHeart,
 } from "@fortawesome/free-solid-svg-icons";
-import { useProducts, useAuth } from "../../../store";
+import { useProducts } from "../../../store";
 import { useEffect } from "react";
 
 export const CartCard = ({
@@ -27,8 +27,6 @@ export const CartCard = ({
     productDispatch,
     productLoading,
   } = useProducts();
-  const { token } = useAuth();
-
   useEffect(() => {
     productDispatch({ type: "CALCULATE_TOTAL_COST" });
   }, [quantity, productDispatch]);
@@ -94,7 +92,6 @@ export const CartCard = ({
                   productId: id,
                   quantity: quantity - 1,
                   setLoading: setProductsLoading,
-                  token: token,
                   dispatch: productDispatch,
                 })
               }
@@ -110,7 +107,6 @@ export const CartCard = ({
                   productId: id,
                   quantity: quantity + 1,
                   setLoading: setProductsLoading,
-                  token: token,
                   dispatch: productDispatch,
                 })
               }
@@ -125,7 +121,6 @@ export const CartCard = ({
               removeItemFromCart({
                 productId: id,
                 setLoading: setProductsLoading,
-                token: token,
                 dispatch: productDispatch,
               });
             }}

@@ -8,19 +8,17 @@ import { SigninPage } from "../signinPage/SigninPage";
 
 import { Route, Switch, Redirect } from "react-router-dom";
 import { MobileNavBar } from "./mobileNavBar/MobileNavBar";
-import { useAuth } from "../../store";
-import { useCheckout } from "../../store";
-import { useProducts } from "../../store";
+import { useCheckout, useAuth, useProducts } from "../../store";
 
 import classes from "./Mainpage.module.css";
 
 const PrivateLink = ({ ...props }) => {
-  const { token } = useAuth();
+  const token = localStorage.getItem("token");
   return token ? <Route {...props} /> : <Redirect to="/signin" />;
 };
 
 const LockSignin = ({ ...props }) => {
-  const { token } = useAuth();
+  const token = localStorage.getItem("token");
   return token ? <Redirect to="/" /> : <Route {...props} />;
 };
 

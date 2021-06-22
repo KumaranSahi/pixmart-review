@@ -1,5 +1,5 @@
 import classes from "./CardDetails.module.css";
-import { useCheckout, useAuth } from "../../../../store";
+import { useCheckout } from "../../../../store";
 import { useCardDetailsReducer } from "./CardDetailsReducer";
 
 const CardDetails = ({ paymentMode, setAddpayment }) => {
@@ -21,7 +21,6 @@ const CardDetails = ({ paymentMode, setAddpayment }) => {
     setCheckoutLoading,
     checkoutLoading,
   } = useCheckout();
-  const { token } = useAuth();
 
   const cardNumberEntered = (event) => {
     if (!isNaN(event))
@@ -105,7 +104,6 @@ const CardDetails = ({ paymentMode, setAddpayment }) => {
         },
         setLoading: setCheckoutLoading,
         dispatch: checkoutDispatch,
-        token: token,
       });
       setAddpayment();
     }
