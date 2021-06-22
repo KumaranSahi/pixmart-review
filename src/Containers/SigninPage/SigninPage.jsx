@@ -1,6 +1,6 @@
 import classes from "./SigninPage.module.css";
 import { useAuth } from "../../store";
-import { warningToast } from "../../UI/Toast/Toast";
+import { warningToast } from "../../components";
 import { useSigninPageReducer } from "./SiginPageReducer";
 import {
   SigninComponent,
@@ -71,7 +71,7 @@ export const SigninPage = () => {
           password: password,
         },
         setLoading: setAuthLoading,
-        dispatch:authDispatch,
+        dispatch: authDispatch,
       });
   };
 
@@ -86,7 +86,7 @@ export const SigninPage = () => {
           confirmPassword: confirmPassword,
         },
         setLoading: setAuthLoading,
-        setCurrentPage:setAuthCurrentPage,
+        setCurrentPage: setAuthCurrentPage,
       });
     } else {
       warningToast("Passwords do not match");

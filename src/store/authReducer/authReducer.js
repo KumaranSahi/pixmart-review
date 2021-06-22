@@ -1,4 +1,4 @@
-import { warningToast, successToast, infoToast } from "../../UI/Toast/Toast";
+import { warningToast, successToast, infoToast } from "../../components";
 import axios from "axios";
 import { APP_URL, setupAuthHeaderForServiceCalls } from "../../axiosUtils";
 

@@ -1,4 +1,4 @@
-import { Navbar } from "../Navbar/Navbar";
+import { Navbar, Spinner } from "../../components";
 import { ProductPage } from "../ProductsPage/ProductPage";
 import { CartPage } from "../CartPage/CartPage";
 import { WishlistPage } from "../WishlistPage/WishlistPage";
@@ -12,7 +12,6 @@ import { useAuth } from "../../store";
 import { useCheckout } from "../../store";
 import { useProducts } from "../../store";
 
-import Spinner from "../../UI/Spinner/Spinner";
 import classes from "./Mainpage.module.css";
 
 const PrivateLink = ({ ...props }) => {

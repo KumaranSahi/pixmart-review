@@ -1,6 +1,6 @@
 import './Spinner.css'
 
-const Spinner=()=>{
+export const Spinner=()=>{
     return(
         <div className="lds-ring">
             <div></div>
@@ -10,5 +10,3 @@ const Spinner=()=>{
         </div>
     )
 }
-
-export default Spinner;
