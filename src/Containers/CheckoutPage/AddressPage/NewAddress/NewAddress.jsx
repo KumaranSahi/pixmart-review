@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 import classes from "./NewAddress.module.css";
-import { useAuth, useCheckout } from "../../../../Store";
+import { useAuth, useCheckout } from "../../../../store";
 import { useNewAddressReducer } from "./NewAddressReducer";
 
 const NewAddress = ({ addressAdded }) => {

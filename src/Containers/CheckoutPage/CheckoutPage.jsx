@@ -1,5 +1,5 @@
 import classes from "./CheckoutPage.module.css";
-import { useCheckout } from "../../Store";
+import { useCheckout } from "../../store";
 import { AddressPage } from "./AddressPage/AddressPage";
 import { PaymentPage } from "./PaymentPage/PaymentPage";
 import { OrderPlacedModal } from "./OrderPlacedModal/OrderPlacedModal";

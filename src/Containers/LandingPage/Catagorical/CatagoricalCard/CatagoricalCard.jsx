@@ -1,5 +1,5 @@
 import classes from "./CatagoricalCard.module.css";
-import { useProducts } from "../../../../Store";
+import { useProducts } from "../../../../store";
 import { Link } from "react-router-dom";
 
 export const CatagoricalCard = ({ children, type, image }) => {

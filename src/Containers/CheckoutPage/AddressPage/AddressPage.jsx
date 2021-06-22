@@ -1,6 +1,6 @@
 import classes from "./AddressPage.module.css";
 import { useState } from "react";
-import { useCheckout, useAuth } from "../../../Store";
+import { useCheckout, useAuth } from "../../../store";
 import NewAddress from "./NewAddress/NewAddress";
 import {
   Radio,

@@ -2,7 +2,7 @@ import classes from "./CartPage.module.css";
 import { useEffect } from "react";
 import { CartCard } from "./CartCard/CartCard";
 import { Link } from "react-router-dom";
-import { useCheckout, useProducts } from "../../Store";
+import { useCheckout, useProducts } from "../../store";
 
 export const CartPage = () => {
   const { cartItems, totalCost, productDispatch } = useProducts();

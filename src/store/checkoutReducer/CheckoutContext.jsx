@@ -15,7 +15,7 @@ import {
   deleteAddress,
   deletePaymentDetails,
   placeOrder,
-} from "./CheckoutReducer";
+} from "./checkoutReducer";
 
 export const CheckoutContext = createContext();
 

@@ -6,7 +6,7 @@ import {
   Checkbox,
   RadioGroup,
 } from "@material-ui/core";
-import { useProducts } from "../../Store";
+import { useProducts } from "../../store";
 
 export const Preferences = () => {
   const {

@@ -1,6 +1,6 @@
 import classes from "./DesktopNavMenu.module.css";
 import { NavLink } from "react-router-dom";
-import { useProducts } from "../../../Store";
+import { useProducts } from "../../../store";
 
 export const DesktopNavMenu = () => {
   const { cartItems, wishListItems, productDispatch } = useProducts();

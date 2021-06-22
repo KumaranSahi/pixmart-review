@@ -1,5 +1,5 @@
 import classes from "./CardDetails.module.css";
-import { useCheckout, useAuth } from "../../../../Store";
+import { useCheckout, useAuth } from "../../../../store";
 import { useCardDetailsReducer } from "./CardDetailsReducer";
 
 const CardDetails = ({ paymentMode, setAddpayment }) => {

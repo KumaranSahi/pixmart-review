@@ -18,7 +18,7 @@ import {
   removeItemFromCart,
   removeItemFromWishlist,
   addItemToCart,
-} from "./ProductsReducer";
+} from "./productsReducer";
 
 export const ProductsContext = createContext();
 

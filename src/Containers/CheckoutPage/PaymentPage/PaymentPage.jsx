@@ -5,7 +5,7 @@ import {
   FormControl,
   RadioGroup,
 } from "@material-ui/core";
-import { useCheckout, useProducts, useAuth } from "../../../Store";
+import { useCheckout, useProducts, useAuth } from "../../../store";
 import { useState } from "react";
 import CardDetails from "./CardDetails/CardDetails";
 

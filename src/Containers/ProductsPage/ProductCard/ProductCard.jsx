@@ -5,9 +5,9 @@ import {
   faCheckCircle,
   faHeart,
 } from "@fortawesome/free-solid-svg-icons";
-import { useProducts } from "../../../Store";
+import { useProducts } from "../../../store";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../../Store";
+import { useAuth } from "../../../store";
 
 export const ProductCard = ({
   id,

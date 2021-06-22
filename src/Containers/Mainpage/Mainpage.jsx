@@ -8,9 +8,9 @@ import { SigninPage } from "../SigninPage/SigninPage";
 
 import { Route, Switch, Redirect } from "react-router-dom";
 import { MobileNavBar } from "./MobileNavBar/MobileNavBar";
-import { useAuth } from "../../Store";
-import { useCheckout } from "../../Store";
-import { useProducts } from "../../Store";
+import { useAuth } from "../../store";
+import { useCheckout } from "../../store";
+import { useProducts } from "../../store";
 
 import Spinner from "../../UI/Spinner/Spinner";
 import classes from "./Mainpage.module.css";

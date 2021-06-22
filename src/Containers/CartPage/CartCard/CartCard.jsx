@@ -5,7 +5,7 @@ import {
   faCheckCircle,
   faHeart,
 } from "@fortawesome/free-solid-svg-icons";
-import { useProducts, useAuth } from "../../../Store";
+import { useProducts, useAuth } from "../../../store";
 import { useEffect } from "react";
 
 export const CartCard = ({

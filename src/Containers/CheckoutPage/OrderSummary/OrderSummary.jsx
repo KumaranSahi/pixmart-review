@@ -1,5 +1,5 @@
 import classes from "./OrderSummary.module.css";
-import { useCheckout, useProducts, useAuth } from "../../../Store";
+import { useCheckout, useProducts, useAuth } from "../../../store";
 import { OrderSummaryCard } from "./OrderSummaryCard/OrderSummaryCard";
 import { AddressDetails } from "./AddressDetails/AddressDetails";
 import { PaymentDetails } from "./PaymentDetails/PaymentDetails";

@@ -12,7 +12,7 @@ import {
   onReload,
   signOutUser,
   changePassword
-} from "./AuthReducer";
+} from "./authReducer";
 
 export const AuthContext = createContext();
 

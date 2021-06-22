@@ -1,5 +1,5 @@
 import classes from "./ProductPage.module.css";
-import { useProducts } from "../../Store";
+import { useProducts } from "../../store";
 import { ProductCard } from "./ProductCard/ProductCard";
 import { Preferences } from "../Preferences/Preferences";
 
