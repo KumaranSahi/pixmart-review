@@ -18,15 +18,17 @@ export const AuthContext = createContext();
 
 export const useAuth = () => useContext(AuthContext);
 
+export const authInitialState = {
+  token: null,
+  userName: null,
+  expiresIn: null,
+};
+
 export const AuthContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState("SIGNIN_PAGE");
 
-  const [state, dispatch] = useReducer(authReducer, {
-    token: null,
-    userName: null,
-    expiresIn: null,
-  });
+  const [state, dispatch] = useReducer(authReducer, authInitialState);
 
   useEffect(() => {
     onReload({ dispatch });

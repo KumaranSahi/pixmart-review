@@ -10,7 +10,6 @@ import {
   loadProductService,
 } from "./productsServices/productServices";
 
-
 export const addItemToCart = async ({ productId, dispatch, setLoading }) => {
   setLoading(true);
   const data = await addItemToCartService(productId);
@@ -122,11 +121,11 @@ export const loadWishlist = async ({ dispatch }) => {
 };
 
 export const loadProduct = async ({ dispatch }) => {
-  const data = loadProductService();
+  const data = await loadProductService();
   if (data.ok) {
     dispatch({
       type: "LOAD_PRODUCT_LIST",
-      payload: [...data],
+      payload: [...data.data],
     });
   } else {
     console.log(data);
