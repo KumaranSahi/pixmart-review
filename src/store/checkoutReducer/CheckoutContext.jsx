@@ -6,8 +6,8 @@ import {
   useState,
 } from "react";
 import { useAuth } from "..";
+import { checkoutReducer } from "./checkoutReducer/checkoutReducer";
 import {
-  checkoutReducer,
   loadAddresses,
   loadPayment,
   addNewAddress,
@@ -15,7 +15,7 @@ import {
   deleteAddress,
   deletePaymentDetails,
   placeOrder,
-} from "./checkoutReducer";
+} from "./checkoutMethods";
 
 export const CheckoutContext = createContext();
 
@@ -34,8 +34,7 @@ export const CheckoutContextProvider = ({ children }) => {
   }, [token]);
 
   useEffect(() => {
-    if (token)
-      loadPayment({ dispatch: dispatch, setLoading: setLoading });
+    if (token) loadPayment({ dispatch: dispatch, setLoading: setLoading });
   }, [token]);
 
   const [state, dispatch] = useReducer(checkoutReducer, {
