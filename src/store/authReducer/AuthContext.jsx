@@ -5,14 +5,14 @@ import {
   useEffect,
   useContext,
 } from "react";
+import { authReducer } from "./authReducer/authReducer";
 import {
-  authReducer,
   signUpUser,
   signInUser,
   onReload,
   signOutUser,
-  changePassword
-} from "./authReducer";
+  changePassword,
+} from "./authMethods";
 
 export const AuthContext = createContext();
 
@@ -29,7 +29,7 @@ export const AuthContextProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    onReload({dispatch});
+    onReload({ dispatch });
   }, []);
 
   return (
@@ -47,7 +47,7 @@ export const AuthContextProvider = ({ children }) => {
         changePassword: changePassword,
         setAuthCurrentPage: setCurrentPage,
         authLoading: loading,
-        setAuthLoading: setLoading
+        setAuthLoading: setLoading,
       }}
     >
       {children}
