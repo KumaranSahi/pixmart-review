@@ -7,7 +7,6 @@ import {
 } from "react";
 import { useAuth } from "../authReducer/AuthContext";
 import {
-  productsReducer,
   loadCart,
   loadWishlist,
   loadProduct,
@@ -18,7 +17,8 @@ import {
   removeItemFromCart,
   removeItemFromWishlist,
   addItemToCart,
-} from "./productsReducer";
+} from "./productsMethods";
+import { productsReducer } from "./productsReducer/productsReducer";
 
 export const ProductsContext = createContext();
 
