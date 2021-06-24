@@ -95,7 +95,7 @@ export const productsReducer = (state, action) => {
   }
 };
 
-const calculateTotalCost = (
+export const calculateTotalCost = (
   acc,
   { product: { hasDiscount, price, discount }, quantity }
 ) => {

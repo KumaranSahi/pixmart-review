@@ -24,6 +24,19 @@ export const ProductsContext = createContext();
 
 export const useProducts = () => useContext(ProductsContext);
 
+export const productsInitialState = {
+  products: [],
+  cartItems: [],
+  wishListItems: [],
+  hasDiscount: false,
+  fastDelivery: false,
+  includeOutOfStock: false,
+  pixmartChoice: false,
+  sortby: "SORT_LOW_TO_HIGH",
+  filterByCatagory: null,
+  totalCost: 0,
+};
+
 export const ProductsContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const { token } = useAuth();
@@ -48,18 +61,7 @@ export const ProductsContextProvider = ({ children }) => {
     });
   }, []);
 
-  const [state, dispatch] = useReducer(productsReducer, {
-    products: [],
-    cartItems: [],
-    wishListItems: [],
-    hasDiscount: false,
-    fastDelivery: false,
-    includeOutOfStock: false,
-    pixmartChoice: false,
-    sortby: "SORT_LOW_TO_HIGH",
-    filterByCatagory: null,
-    totalCost: 0,
-  });
+  const [state, dispatch] = useReducer(productsReducer, productsInitialState);
 
   const getSortedData = (products, sortby) => {
     if (products && sortby === "SORT_LOW_TO_HIGH")
