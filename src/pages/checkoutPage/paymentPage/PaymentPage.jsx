@@ -18,7 +18,7 @@ export const PaymentPage = () => {
     deletePaymentDetails,
     checkoutDispatch,
     setCheckoutLoading,
-    checkoutLoading
+    checkoutLoading,
   } = useCheckout();
   const { totalCost } = useProducts();
 
@@ -26,7 +26,7 @@ export const PaymentPage = () => {
 
   const paymentSelected = (event) => {
     checkoutDispatch({
-      type: "ADD_PAYMENT_DETAILS",
+      type: "SELECT_PAYMENT_DETAILS",
       payload: event.target.value,
     });
   };
@@ -46,12 +46,12 @@ export const PaymentPage = () => {
               setPaymentMode(event.target.value);
               if (event.target.value === "COD")
                 checkoutDispatch({
-                  type: "ADD_PAYMENT_DETAILS",
+                  type: "SELECT_PAYMENT_DETAILS",
                   payload: "COD",
                 });
               else
                 checkoutDispatch({
-                  type: "ADD_PAYMENT_DETAILS",
+                  type: "SELECT_PAYMENT_DETAILS",
                   payload: null,
                 });
             }}

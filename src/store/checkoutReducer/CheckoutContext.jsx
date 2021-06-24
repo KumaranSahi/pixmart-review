@@ -21,6 +21,14 @@ export const CheckoutContext = createContext();
 
 export const useCheckout = () => useContext(CheckoutContext);
 
+export const checkoutInitialState = {
+  address: null,
+  paymentDetails: null,
+  currentState: "ADDRESSPAGE",
+  userAddresses: [],
+  userPaymentDetails: [],
+};
+
 export const CheckoutContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const { token } = useAuth();
@@ -37,13 +45,7 @@ export const CheckoutContextProvider = ({ children }) => {
     if (token) loadPayment({ dispatch: dispatch, setLoading: setLoading });
   }, [token]);
 
-  const [state, dispatch] = useReducer(checkoutReducer, {
-    address: null,
-    paymentDetails: null,
-    currentState: "ADDRESSPAGE",
-    userAddresses: [],
-    userPaymentDetails: [],
-  });
+  const [state, dispatch] = useReducer(checkoutReducer, checkoutInitialState);
 
   return (
     <CheckoutContext.Provider

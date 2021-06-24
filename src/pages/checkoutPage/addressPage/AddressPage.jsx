@@ -21,7 +21,7 @@ export const AddressPage = () => {
   const [addNewAddress, setAddNewAddress] = useState(false);
   const addressSelected = (event) => {
     checkoutDispatch({
-      type: "ADD_ADDRESS",
+      type: "SELECT_ADDRESS",
       payload: event.target.value,
     });
   };

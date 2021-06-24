@@ -10,12 +10,10 @@ export const checkoutReducer = (state, action) => {
         ...state,
         userPaymentDetails: [...action.payload],
       };
-    case "ADD_ADDRESS":
+    case "SELECT_ADDRESS":
       return {
         ...state,
-        address: state.userAddresses.filter(
-          ({ _id }) => _id === action.payload
-        )[0],
+        address: state.userAddresses.find(({ _id }) => _id === action.payload),
       };
     case "MOVE_TO_ADDRESS":
       return {
@@ -32,15 +30,15 @@ export const checkoutReducer = (state, action) => {
         ...state,
         currentState: "ORDERSUMMARY",
       };
-    case "ADD_PAYMENT_DETAILS":
+    case "SELECT_PAYMENT_DETAILS":
       return {
         ...state,
         paymentDetails:
           action.payload === "COD"
             ? "COD"
-            : state.userPaymentDetails.filter(
+            : state.userPaymentDetails.find(
                 ({ _id }) => _id === action.payload
-              )[0],
+              ),
       };
     case "PLACE_ORDER":
       return {

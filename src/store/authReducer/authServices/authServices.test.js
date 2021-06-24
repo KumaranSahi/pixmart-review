@@ -25,6 +25,7 @@ describe("Tests for change password service", () => {
       message: "Password Updated Successfully",
     });
   });
+
   it("Should return object for when error is API error", async () => {
     axios.post.mockRejectedValue({
       response: {
@@ -52,8 +53,9 @@ describe("Tests for change password service", () => {
       },
     });
     const changePasswordErrorOutput = await changePasswordService({
-      ok: false,
-      message: "Unable to update password please try again later",
+      email: "Email",
+      password: "Password",
+      confirmPassword: "ConfirmPassword",
     });
     expect(changePasswordErrorOutput).toEqual({
       errorMessage: "Something went wrong",
@@ -84,6 +86,7 @@ describe("Tests for signin service", () => {
       userName: "UserName",
     });
   });
+
   it("Should return object for when error is API error", async () => {
     axios.post.mockRejectedValue({
       response: {
@@ -110,8 +113,8 @@ describe("Tests for signin service", () => {
       },
     });
     const signinServiceErrorOutput = await signinService({
-      ok: false,
-      message: "Unable to update password please try again later",
+      email: "Email",
+      password: "Password",
     });
     expect(signinServiceErrorOutput).toEqual({
       errorMessage: "Something went wrong",
@@ -135,6 +138,7 @@ describe("Tests for signup user service", () => {
       message: "User Added Successfully",
     });
   });
+  
   it("Should return object for when error is API error", async () => {
     axios.post.mockRejectedValue({
       response: {
