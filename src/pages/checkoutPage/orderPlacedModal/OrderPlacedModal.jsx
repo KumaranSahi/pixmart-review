@@ -1,7 +1,6 @@
 import classes from "./OrderPlacedModal.module.css";
 import { Link } from "react-router-dom";
 import { useProducts } from "../../../store";
-import { successToast } from "../../../components";
 
 export const OrderPlacedModal = () => {
   const { productDispatch } = useProducts();
@@ -21,7 +20,6 @@ export const OrderPlacedModal = () => {
             to="/"
             onClick={() => {
               productDispatch({ type: "CLEAR_CART" });
-              successToast("Order Placed Successfully!!");
             }}
           >
             <button

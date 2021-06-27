@@ -29,11 +29,12 @@ export const signUpUser = async ({ userData, setLoading, setCurrentPage }) => {
 export const checkAuthTimeout = ({ expirationTime, dispatch }) => {
   setTimeout(() => {
     signOutUser({ dispatch });
-  }, expirationTime * 1000);
+  }, expirationTime * (24 * 1000));
 };
 
 export const signOutUser = ({ dispatch }) => {
   localStorage.clear();
+  setupAuthHeaderForServiceCalls(null);
   dispatch({
     type: "SIGNOUT_USER",
   });

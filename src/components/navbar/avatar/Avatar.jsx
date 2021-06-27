@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useAuth } from "../../../store";
 import profileImage from "../../../assets/profileimage.jpg";
 import { Link, useLocation } from "react-router-dom";
+import { setupAuthHeaderForServiceCalls } from "../../../axiosUtils";
 
 export const Avatar = () => {
   const { userName, signOutUser, authDispatch } = useAuth();
@@ -40,6 +41,7 @@ export const Avatar = () => {
               <li
                 onClick={() => {
                   signOutUser({ dispatch: authDispatch });
+                  setupAuthHeaderForServiceCalls(null);
                   setOpenDropdown(false);
                 }}
               >

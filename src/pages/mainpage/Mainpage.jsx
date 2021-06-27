@@ -6,9 +6,13 @@ import { LandingPage } from "../landingPage/LandingPage";
 import { CheckoutPage } from "../checkoutPage/CheckoutPage";
 import { SigninPage } from "../signinPage/SigninPage";
 
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, useLocation } from "react-router-dom";
 import { MobileNavBar } from "./mobileNavBar/MobileNavBar";
 import { useCheckout, useAuth, useProducts } from "../../store";
+
+import { setupAuthExceptionHandler } from "../../axiosUtils";
+import { useHistory } from "react-router-dom";
+import { useEffect } from "react";
 
 import classes from "./Mainpage.module.css";
 
@@ -26,6 +30,18 @@ export const MainPage = () => {
   const { authLoading } = useAuth();
   const { checkoutLoading } = useCheckout();
   const { productLoading } = useProducts();
+
+  const { push } = useHistory();
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  useEffect(() => {
+    setupAuthExceptionHandler(push);
+  }, [push]);
+
   return (
     <div>
       {(authLoading || checkoutLoading || productLoading) && <Spinner />}
