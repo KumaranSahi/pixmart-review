@@ -6,7 +6,6 @@
   box-sizing: border-box;
   padding: 0.5rem;
   border-bottom-right-radius: 1rem;
-  box-shadow: 7px 9px 13px 5px var(--neutral-mild);
 }
 
 .image-container {
