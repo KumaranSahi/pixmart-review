@@ -76,7 +76,7 @@ export const SigninPage = () => {
           password: password,
         },
         setLoading: setAuthLoading,
-        setCurrentPage: setAuthCurrentPage,
+        dispatch: authDispatch,
       });
     }
   };

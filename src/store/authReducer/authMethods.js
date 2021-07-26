@@ -6,12 +6,25 @@ import {
   signinService,
 } from "./authServices/authServices";
 
-export const signUpUser = async ({ userData, setLoading, setCurrentPage }) => {
+export const signUpUser = async ({ userData, setLoading, dispatch }) => {
   setLoading(true);
   const data = await signUpUserService(userData);
   if (data.ok) {
+    localStorage.setItem("token", data.token);
+    setupAuthHeaderForServiceCalls(data.token);
+    localStorage.setItem("userName", data.userName);
+    const expiresIn = new Date(new Date().getTime() + 86400000);
+    localStorage.setItem("expiresIn", expiresIn);
+    checkAuthTimeout({ expirationTime: 86400, dispatch: dispatch });
+    dispatch({
+      type: "SIGNIN_USER",
+      payload: {
+        token: data.token,
+        userName: data.userName,
+        expiresIn: expiresIn,
+      },
+    });
     successToast("User Added Successfully");
-    setCurrentPage("SIGNIN_PAGE");
     setLoading(false);
   } else {
     if (data.status === 409) {
