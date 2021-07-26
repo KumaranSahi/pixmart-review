@@ -82,8 +82,8 @@ export const SigninPage = () => {
   };
 
   const signInSubmit = async (event) => {
-    event.preventDefault();
-    validateEmail();
+    event && event.preventDefault();
+    validateEmail(email);
     if (emailValid)
       signInUser({
         userData: {
@@ -97,20 +97,33 @@ export const SigninPage = () => {
 
   const changePasswordSubmit = async (event) => {
     event.preventDefault();
-    validateEmail();
+    validateEmail(email);
     if (password === confirmPassword) {
-      changePassword({
-        userData: {
-          email: email,
-          password: password,
-          confirmPassword: confirmPassword,
-        },
-        setLoading: setAuthLoading,
-        setCurrentPage: setAuthCurrentPage,
-      });
+      if (validatePassword(password) && validatePassword(confirmPassword)) {
+        changePassword({
+          userData: {
+            email: email,
+            password: password,
+            confirmPassword: confirmPassword,
+          },
+          setLoading: setAuthLoading,
+          setCurrentPage: setAuthCurrentPage,
+        });
+      }
     } else {
       warningToast("Passwords do not match");
     }
+  };
+
+  const updateGuestCredentials = () => {
+    signinPageDispatch({
+      type: "ADD_EMAIL",
+      payload: "testuser@test.com",
+    });
+    signinPageDispatch({
+      type: "ADD_PASSWORD",
+      payload: "testuser1",
+    });
   };
 
   const pageToRender = () => {
@@ -149,6 +162,7 @@ export const SigninPage = () => {
             password={password}
             signinPageDispatch={signinPageDispatch}
             authLoading={authLoading}
+            passwordValid={passwordValid}
           />
         );
       default:
@@ -168,10 +182,17 @@ export const SigninPage = () => {
   };
 
   return (
-    <div className={classes["login-container"]}>
+    <div>
       <div className={classes["login"]}>
         <div className={classes["signin-signup-container"]}>
           {pageToRender()}
+          <p
+            className={classes["switch-page"]}
+            onClick={() => updateGuestCredentials()}
+          >
+            Sign-in as guest
+          </p>
+
           {currentPage === "SIGNIN_PAGE" && (
             <p
               className={classes["switch-page"]}
