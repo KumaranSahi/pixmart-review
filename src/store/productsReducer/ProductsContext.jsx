@@ -33,7 +33,7 @@ export const productsInitialState = {
   includeOutOfStock: false,
   pixmartChoice: false,
   sortby: "SORT_LOW_TO_HIGH",
-  filterByCatagory: null,
+  filterByCatagory: [],
   totalCost: 0,
 };
 
@@ -87,17 +87,9 @@ export const ProductsContextProvider = ({ children }) => {
   return (
     <ProductsContext.Provider
       value={{
-        products: filteredData,
-        cartItems: [...state.cartItems],
-        wishListItems: [...state.wishListItems],
+        ...state,
         productDispatch: dispatch,
-        hasDiscount: state.hasDiscount,
-        fastDelivery: state.fastDelivery,
-        includeOutOfStock: state.includeOutOfStock,
-        pixmartChoice: state.pixmartChoice,
-        sortby: state.sortby,
-        totalCost: state.totalCost,
-        filterByCatagory: state.filterByCatagory,
+        products: filteredData,
         addItemToCart: addItemToCart,
         removeItemFromCart: removeItemFromCart,
         changeQuantity: changeQuantity,

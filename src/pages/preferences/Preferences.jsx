@@ -19,7 +19,7 @@ export const Preferences = () => {
     filterByCatagory,
   } = useProducts();
   return (
-    <>
+    <div className={classes["preference-container"]}>
       <button
         className={`${classes["button-solid"]} ${classes["button-primary"]}`}
         onClick={() =>
@@ -122,10 +122,11 @@ export const Preferences = () => {
         <FormControlLabel
           control={
             <Checkbox
-              checked={filterByCatagory === "FILTER_ONLY_DSLR"}
+              checked={filterByCatagory.some((item) => item === "DSLR")}
               onChange={() =>
                 productDispatch({
-                  type: "FILTER_ONLY_DSLR",
+                  type: "FILTER_BY_CATAGORY",
+                  payload: "DSLR",
                 })
               }
               name="checkedB"
@@ -137,10 +138,11 @@ export const Preferences = () => {
         <FormControlLabel
           control={
             <Checkbox
-              checked={filterByCatagory === "FILTER_ONLY_MIRRORLESS"}
+              checked={filterByCatagory.some((item) => item === "MIRRORLESS")}
               onChange={() =>
                 productDispatch({
-                  type: "FILTER_ONLY_MIRRORLESS",
+                  type: "FILTER_BY_CATAGORY",
+                  payload: "MIRRORLESS",
                 })
               }
               name="checkedB"
@@ -152,10 +154,13 @@ export const Preferences = () => {
         <FormControlLabel
           control={
             <Checkbox
-              checked={filterByCatagory === "FILTER_ONLY_POINT_AND_SHOOT"}
+              checked={filterByCatagory.some(
+                (item) => item === "POINTANDSHOOT"
+              )}
               onChange={() =>
                 productDispatch({
-                  type: "FILTER_ONLY_POINT_AND_SHOOT",
+                  type: "FILTER_BY_CATAGORY",
+                  payload: "POINTANDSHOOT",
                 })
               }
               name="checkedB"
@@ -167,10 +172,11 @@ export const Preferences = () => {
         <FormControlLabel
           control={
             <Checkbox
-              checked={filterByCatagory === "FILTER_ONLY_ACCESSORIES"}
+              checked={filterByCatagory.some((item) => item === "ACCESSORIES")}
               onChange={() =>
                 productDispatch({
-                  type: "FILTER_ONLY_ACCESSORIES",
+                  type: "FILTER_BY_CATAGORY",
+                  payload: "ACCESSORIES",
                 })
               }
               name="checkedB"
@@ -180,6 +186,6 @@ export const Preferences = () => {
           label="Accessories"
         />
       </FormControl>
-    </>
+    </div>
   );
 };

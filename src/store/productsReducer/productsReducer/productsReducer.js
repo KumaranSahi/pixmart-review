@@ -60,25 +60,14 @@ export const productsReducer = (state, action) => {
         ...state,
         totalCost: state.cartItems.reduce(calculateTotalCost, 0),
       };
-    case "FILTER_ONLY_DSLR":
+    case "FILTER_BY_CATAGORY":
       return {
         ...state,
-        filterByCatagory: "FILTER_ONLY_DSLR",
-      };
-    case "FILTER_ONLY_MIRRORLESS":
-      return {
-        ...state,
-        filterByCatagory: "FILTER_ONLY_MIRRORLESS",
-      };
-    case "FILTER_ONLY_POINT_AND_SHOOT":
-      return {
-        ...state,
-        filterByCatagory: "FILTER_ONLY_POINT_AND_SHOOT",
-      };
-    case "FILTER_ONLY_ACCESSORIES":
-      return {
-        ...state,
-        filterByCatagory: "FILTER_ONLY_ACCESSORIES",
+        filterByCatagory: state.filterByCatagory.some(
+          (item) => item === action.payload
+        )
+          ? state.filterByCatagory.filter((item) => item !== action.payload)
+          : [...state.filterByCatagory, action.payload],
       };
     case "CLEAR_FILTERS":
       return {
@@ -88,7 +77,7 @@ export const productsReducer = (state, action) => {
         includeOutOfStock: false,
         pixmartChoice: false,
         sortby: "SORT_LOW_TO_HIGH",
-        filterByCatagory: null,
+        filterByCatagory: [],
       };
     default:
       return state;

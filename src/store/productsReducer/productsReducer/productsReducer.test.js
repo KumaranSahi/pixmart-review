@@ -154,51 +154,16 @@ describe("Tests for products reducer", () => {
     });
   });
 
-  it("Should add filter only dslr to filter catagory", () => {
+  it("Should add an entry in filter catagory", () => {
     const filterByOnlyDslrValues = {
-      type: "FILTER_ONLY_DSLR",
+      type: "FILTER_BY_CATAGORY",
+      payload: "DSLR",
     };
     expect(
       productsReducer(productsInitialState, filterByOnlyDslrValues)
     ).toEqual({
       ...productsInitialState,
-      filterByCatagory: "FILTER_ONLY_DSLR",
-    });
-  });
-
-  it("Should add filter only mirrorless to filter catagory", () => {
-    const filterByOnlyMirrorlessValues = {
-      type: "FILTER_ONLY_MIRRORLESS",
-    };
-    expect(
-      productsReducer(productsInitialState, filterByOnlyMirrorlessValues)
-    ).toEqual({
-      ...productsInitialState,
-      filterByCatagory: "FILTER_ONLY_MIRRORLESS",
-    });
-  });
-
-  it("Should add filter only point and shoot to filter catagory", () => {
-    const filterByPointAndShootValues = {
-      type: "FILTER_ONLY_POINT_AND_SHOOT",
-    };
-    expect(
-      productsReducer(productsInitialState, filterByPointAndShootValues)
-    ).toEqual({
-      ...productsInitialState,
-      filterByCatagory: "FILTER_ONLY_POINT_AND_SHOOT",
-    });
-  });
-
-  it("Should add filter only accessories to filter catagory", () => {
-    const filterByAccessoriesValues = {
-      type: "FILTER_ONLY_ACCESSORIES",
-    };
-    expect(
-      productsReducer(productsInitialState, filterByAccessoriesValues)
-    ).toEqual({
-      ...productsInitialState,
-      filterByCatagory: "FILTER_ONLY_ACCESSORIES",
+      filterByCatagory: ["DSLR"],
     });
   });
 

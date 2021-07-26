@@ -133,19 +133,11 @@ export const loadProduct = async ({ dispatch }) => {
   }
 };
 
-export const getCatagoricallyFilteredData = (products, filterby) => {
-  if (filterby) {
-    if (filterby === "FILTER_ONLY_DSLR")
-      return products.filter((item) => item.catagory === "DSLR");
-    if (filterby === "FILTER_ONLY_MIRRORLESS")
-      return products.filter((item) => item.catagory === "MIRRORLESS");
-    if (filterby === "FILTER_ONLY_POINT_AND_SHOOT")
-      return products.filter((item) => item.catagory === "POINTANDSHOOT");
-    if (filterby === "FILTER_ONLY_ACCESSORIES")
-      return products.filter((item) => item.catagory === "ACCESSORIES");
-  } else {
-    return products;
+export const getCatagoricallyFilteredData = (products, filterBy) => {
+  if (filterBy.length > 0) {
+    return products.filter((item) => filterBy.includes(item.catagory));
   }
+  return products;
 };
 
 export const getFilteredData = (
