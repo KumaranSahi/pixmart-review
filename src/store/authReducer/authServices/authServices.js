@@ -50,3 +50,20 @@ export const signinService = async (userData) => {
     return { ok: false, errorMessage: "Something went wrong" };
   }
 };
+
+export const signinGuestService = async () => {
+  try {
+    const {
+      data: { data },
+    } = await axios.get(`${APP_URL}/api/users/guest-signin`);
+    return data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const serverError = error;
+      if (serverError && serverError.response) {
+        return serverError.response;
+      }
+    }
+    return { ok: false, errorMessage: "Something went wrong" };
+  }
+};
